@@ -1,7 +1,5 @@
 # IMAC IA - Develop your own plant
 
-
-
 A server that serves a webpage, its resources, and some data
 
 ## Install Project
