@@ -113,12 +113,29 @@ html, body {
       } 
     }   
   }
-  canvas {
+  .canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    .temperature {
+      position: absolute;
+      z-index: 1;
+      width: 45px;
+      height: 100px;
+      top: 0;
+      left: 200px;
+      background-color: rgba($color: black, $alpha: 0.75);
+    }
+    p {
+      position: absolute;
+      z-index: 1;
+      font-size: 52px;
+      font-weight: 400;
+    } 
     canvas {
       display: none;
     }
