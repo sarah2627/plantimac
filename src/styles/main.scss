@@ -1,24 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
 html, body {
   padding: 0px;
   margin: 0px;
-  font-family: comic sans ms;
-  color: pink;
+  background-color: rgb(188, 188, 255);
   width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
+  font-family: 'Roboto', sans-serif;
 }
 
-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
+#app {
   width: 100%;
   height: 100%;
-}
-
-h1 {
-  z-index: 1;
-  position: relative;
-  pointer-events: none;
+  .home {
+    position: absolute;
+    z-index: 999999;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    p {
+      position: absolute;
+      margin: 0;
+      top: 1rem;
+      left: 1rem;
+      font-weight: 300;
+      font-size: 36px;
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        background-color: rgba($color: black, $alpha: 0.75);
+        width: 35px;
+        height: 35px;
+        margin-left: .5rem;
+      }
+    }
+    h1 {
+      pointer-events: none;
+      text-align: center;
+      font-size: 64px;
+      font-weight: 300;
+      span {
+        font-weight: 400;
+      }
+    }
+    #setupApp {
+      text-align: center;
+      .wrapInput {
+        width: 100%;
+        position: relative;
+        border-bottom: 2px solid black;
+        margin: 2rem 0 1rem 0;
+        .input {
+          display: block;
+          width: 700px;
+          margin-bottom: .5rem;
+          text-align: center;
+          font-size: 40px;
+          font-weight: 400;
+          padding: 0;
+          background-color: transparent;
+          color: black;
+          border: none;
+          outline: 0;
+        }
+        .animationBorder {
+          position: absolute;
+          display: block;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+        }
+        .animationBorder::before {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          transition: all 0.4s;
+          background: linear-gradient(45deg, #abe07f, #4c7a0e);
+        }
+        .animationBorder::after {
+          display: block;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: all 0.4s;
+        }
+        .input:focus + .animationBorder::before {
+          width: 100%;
+        }
+      }
+      .btnSubmit {
+        margin-top: 5rem;
+        width: 125px;
+        height: 125px;
+        background-color: rgba($color: black, $alpha: 0.75);
+        outline: 0;
+        border: 0;
+        color: white;
+        cursor: pointer;
+      } 
+    }   
+  }
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    canvas {
+      display: none;
+    }
+  }
 }

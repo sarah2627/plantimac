@@ -20,8 +20,12 @@ export default class Webgl {
     this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
     this.camera.position.z = 5;
     this.renderer = new WebGLRenderer()
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(this.renderer.domElement);
+    this.renderer.setSize( window.innerWidth, window.innerHeight );
+
+    // where the canva will be display
+    const canvas = document.querySelector('.canvas');
+    canvas.appendChild(this.renderer.domElement);
+
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
     /* Lights */

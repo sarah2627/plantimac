@@ -1,19 +1,38 @@
 <!DOCTYPE html>
-<html lang="fr">
-
-<head>
-  <meta charset="utf-8">
-  <title>Plantimac</title>
-  <style>
-    body .dg.ac {
-      z-index: 9999 !important;
-    }
-  </style>
-</head>
-
-<body>
-  <h1>
-    Nom de la plante
-  </h1>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> Plantimac </title>
+    <style>
+      body .dg.ac {
+        z-index: 9999 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <section class="home">
+        <p> Entre le nom et clique sur <span></span> </p>
+        <h1>
+          Cette <span> graine </span> a besoin d'une famille <br/>
+          Donne lui un nom pour l'adopter !
+        </h1>
+        <form id="setupApp" action="#">
+          <div class="wrapInput">
+            <input class="input" type="text" placeholder="Nom de votre plante">
+            <span class="animationBorder"></span>
+          </div>
+          <button class="btnSubmit" form="setupApp" type="submit"></button>
+        </form>
+      </section>
+      <section class="canvas"> 
+        <p> 
+          Nom de la plante : <span class="displayName"></span>
+          <script type="text/javascript">
+            console.log(valueInput)
+          </script>
+       </p>
+      </section>
+    </div>
+  </body>
 </html>

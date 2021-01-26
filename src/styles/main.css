@@ -1,15 +1,41 @@
 html, body {
   padding: 0px;
   margin: 0px;
-  font-family: comic sans ms;
-  color: pink;
+  background-color: #bcbcff;
   width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
 }
 
-canvas {
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+#app .home {
+  position: absolute;
+  z-index: 999999;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#app .home h1 {
+  pointer-events: none;
+}
+
+#app canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -17,9 +43,7 @@ canvas {
   height: 100%;
 }
 
-h1 {
-  z-index: 1;
-  position: relative;
-  pointer-events: none;
+#app canvas canvas {
+  display: none;
 }
 /*# sourceMappingURL=main.css.map */
