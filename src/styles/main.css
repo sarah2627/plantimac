@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
 html, body {
   padding: 0px;
   margin: 0px;
@@ -6,6 +7,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   position: relative;
+  font-family: 'Roboto', sans-serif;
 }
 
 #app {
@@ -29,21 +31,194 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+#app .home p {
+  position: absolute;
+  margin: 0;
+  top: 1rem;
+  left: 1rem;
+  font-weight: 300;
+  font-size: 36px;
+}
+
+#app .home p span {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 35px;
+  height: 35px;
+  margin-left: .5rem;
 }
 
 #app .home h1 {
   pointer-events: none;
+  text-align: center;
+  font-size: 64px;
+  font-weight: 300;
 }
 
-#app canvas {
+#app .home h1 span {
+  font-weight: 400;
+}
+
+#app .home #setupApp {
+  text-align: center;
+}
+
+#app .home #setupApp .wrapInput {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid black;
+  margin: 2rem 0 1rem 0;
+}
+
+#app .home #setupApp .wrapInput .input {
+  display: block;
+  width: 700px;
+  margin-bottom: .5rem;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 400;
+  padding: 0;
+  background-color: transparent;
+  color: black;
+  border: none;
+  outline: 0;
+}
+
+#app .home #setupApp .wrapInput .animationBorder {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+#app .home #setupApp .wrapInput .animationBorder::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  background: linear-gradient(45deg, #abe07f, #4c7a0e);
+}
+
+#app .home #setupApp .wrapInput .animationBorder::after {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+#app .home #setupApp .wrapInput .input:focus + .animationBorder::before {
+  width: 100%;
+}
+
+#app .home #setupApp .wrapSubmit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 5rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#app .home #setupApp .wrapSubmit .btnSubmit {
+  width: 125px;
+  height: 125px;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.75);
+  outline: 0;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+
+#app .home #setupApp .wrapSubmit .missName {
+  margin-top: 1rem;
+}
+
+#app .canvas {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-#app canvas canvas {
+#app .canvas .temperature {
+  position: absolute;
+  z-index: 1;
+  width: 45px;
+  height: 100px;
+  top: 0;
+  left: 200px;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+#app .canvas .temperature button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+#app .canvas p {
+  position: absolute;
+  z-index: 1;
+  font-size: 52px;
+  font-weight: 400;
+}
+
+#app .canvas .menu {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: absolute;
+  z-index: 1;
+  bottom: 50px;
+}
+
+#app .canvas .menu button {
+  border-radius: 18px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  background-color: white;
+  margin-right: 2rem;
+  cursor: pointer;
+  outline: 0;
+}
+
+#app .canvas canvas {
   display: none;
 }
 /*# sourceMappingURL=main.css.map */

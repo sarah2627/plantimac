@@ -8,11 +8,30 @@ const btnSubmit = document.querySelector('.btnSubmit')
 const canvas = document.querySelector('canvas')
 const home = document.querySelector('.home')
 
+const input = document.querySelector('input')
+const missName = document.querySelector('.missName');
+const prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/
+
 btnSubmit.addEventListener('click', (e) => {
     e.preventDefault()
-    let valueInput = document.querySelector('input').value
-    let displayName = document.querySelector('.displayName').innerHTML = valueInput
-    webgl.start()
-    canvas.style.display = 'block'
-    home.style.display = 'none'
+    if(input.validity.valueMissing) {
+        e.preventDefault()
+        missName.textContent = 'Nom de la plante manquant'
+        missName.style.color = '#da5454'
+    } else if (prenomValid.test(input.value) == false) {
+        e.preventDefault()
+        missName.textContent = 'Format incorrect';
+        missName.style.color = 'orange';
+    } else {
+        let valueInput = input.value
+        let displayName = document.querySelector('.displayName').innerHTML = valueInput
+        webgl.start()
+        canvas.style.display = 'block'
+        home.style.display = 'none'
+    }
 })
+
+function popUpSettings() {
+    e.preventDefault()
+    alert('test')
+}

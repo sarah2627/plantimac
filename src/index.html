@@ -17,19 +17,31 @@
           Cette <span> graine </span> a besoin d'une famille <br/>
           Donne lui un nom pour l'adopter !
         </h1>
-        <form id="setupApp" action="#">
+        <form id="setupApp">
           <div class="wrapInput">
-            <input class="input" type="text" placeholder="Nom de votre plante">
+            <input class="input" type="text" placeholder="Nom de votre plante" maxlength='20' required>
             <span class="animationBorder"></span>
           </div>
-          <button class="btnSubmit" form="setupApp" type="submit"></button>
+          <div class="wrapSubmit">
+            <button class="btnSubmit" form="setupApp" type="submit"></button>
+            <span class="missName"></span>
+          </div>
         </form>
       </section>
       <section class="canvas">
         <div class="temperature">
-          <img src="./assets/images/settings.svg"/>
+          <button> <img src="./assets/images/settings.svg"/> </button>
         </div> 
         <p class="displayName"></p>
+        <div class="menu">
+          <div class="menuLeft">
+            <button> <img src="./assets/images/settings.svg"/> </button>
+            <button> <img src="./assets/images/settings.svg"/> </button>
+          </div>
+          <div class="menuRight">
+            <button class="popUpSettings" onclick=popUpSettings()> <img src="./assets/images/settings.svg"/> </button>
+          </div>
+        </div>
       </section>
     </div>
   </body>
