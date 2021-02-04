@@ -12,7 +12,10 @@
   <body>
     <div id="app">
       <section class="home">
-        <p> Entre le nom et clique sur <span></span> </p>
+        <p> 
+          Entre le nom et clique sur
+          <img src="../src/assets/images/graine.svg"/>
+        </p>
         <h1>
           Cette <span> graine </span> a besoin d'une famille <br/>
           Donne lui un nom pour l'adopter !
@@ -23,26 +26,79 @@
             <span class="animationBorder"></span>
           </div>
           <div class="wrapSubmit">
-            <button class="btnSubmit" form="setupApp" type="submit"></button>
+            <button class="btnSubmit" form="setupApp" type="submit">
+              <img src="../src/assets/images/graine.svg"/>
+            </button>
             <span class="missName"></span>
           </div>
         </form>
       </section>
       <section class="canvas">
-        <div class="temperature">
-          <button> <img src="./assets/images/settings.svg"/> </button>
-        </div> 
-        <p class="displayName"></p>
-        <div class="menu">
-          <div class="menuLeft">
-            <button> <img src="./assets/images/settings.svg"/> </button>
-            <button> <img src="./assets/images/settings.svg"/> </button>
+        <div class="overlay">
+          <div class="temps">
+            <button> <img src="../src/assets/images/lune.svg"/> </button>
+          </div> 
+          <div class="namePlant">
+            <p class="displayName"></p>
           </div>
-          <div class="menuRight">
-            <button class="popUpSettings" onclick=popUpSettings()> <img src="./assets/images/settings.svg"/> </button>
+          <div class="menu">
+            <div class="menuLeft">
+              <button> <img src="../src/assets/images/arrosoir.svg"/> </button>
+              <button> <img src="../src/assets/images/soleil.svg"/> </button>
+            </div>
+            <div class="menuRight">
+              <button class="popUpSettings"> <img src="../src/assets/images/options.svg"/> </button>
+            </div>
+          </div>
+        </div>
+        <div class="overlayPopUp"></div>
+        <div class="popUp">
+          <p class="displayName"></p>
+          <div class="settingsPlant">
+            <div class="potColor">
+              <h2> Couleur de pot </h2>
+            </div>
+            <div class="potStyle">
+              <h2> Style de pot </h2>
+              <form action="" id="potStyle">
+                <div class="potStyle">
+                  <div class="choice">
+                    <input type="radio" name="choice-pot" id="pot-1" value="pot-1" class="visually-hidden">
+                    <label class="pot-1" for="pot-1">
+                      <img src="../src/assets/images/pot-1.svg"/>
+                    </label>
+                  </div>
+                  <div class="choice">
+                    <input type="radio" name="choice-pot" id="pot-2" value="pot-2" class="visually-hidden">
+                    <label class="pot-2" for="pot-2">
+                      <img src="../src/assets/images/pot-2.svg"/>
+                    </label>
+                  </div>
+                  <div class="choice">
+                    <input type="radio" name="choice-pot" id="pot-3" value="pot-3" class="visually-hidden">
+                    <label class="pot-3" for="pot-3">
+                      <img src="../src/assets/images/pot-3.svg"/>
+                    </label>
+                  </div>
+                </div>
+                <input class="submitSettings" type="submit" value="Valider">
+              </form>
+            </div>
           </div>
         </div>
       </section>
     </div>
+    <script>
+      // const overlayPopUp = document.querySelector('.overlayPopUp')
+      // const popUp = document.querySelector('.popUp')
+      // function displayPopUpSettings() {
+      //   overlayPopUp.style.display = 'flex'
+      //   popUp.style.display = 'block'
+      // }
+      // function removePopUpSettings() {
+      //   overlayPopUp.style.display = 'none'
+      //   popUp.style.display = 'none'
+      // }
+    </script>
   </body>
 </html>

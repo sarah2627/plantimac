@@ -31,7 +31,18 @@ btnSubmit.addEventListener('click', (e) => {
     }
 })
 
-function popUpSettings() {
+const overlayPopUp = document.querySelector('.overlayPopUp')
+const popUp = document.querySelector('.popUp')
+const popUpSettings = document.querySelector('.popUpSettings')
+
+popUpSettings.addEventListener('click', (e) => {
     e.preventDefault()
-    alert('test')
-}
+    overlayPopUp.style.display = 'flex'
+    popUp.style.display = 'block'
+})
+
+overlayPopUp.addEventListener('click', (e) => {
+    e.preventDefault()
+    overlayPopUp.style.display = 'none'
+    popUp.style.display = 'none'
+})
