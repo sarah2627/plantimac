@@ -4,11 +4,13 @@ import { webglGuiFolder } from '../utils/gui'
 
 import SkySphere from './objects/skySphere/SkySphere'
 import MagicalObject from './objects/MagicalObject'
+import Cube from './objects/Cube'
+import LSystem from './objects/LSystem'
 
 export default class Webgl {
   constructor() {
     /* Variables */
-    this.time = 0
+    this.last = 0
 
     /* Functions & events */
     this.start = this.start.bind(this)
@@ -43,15 +45,18 @@ export default class Webgl {
     this.scene.add( this.sky );
     
     /* Plant */
-    this.cube = new MagicalObject()
+    /*
+    this.cube = new Cube()
     this.scene.add(this.cube);
+    */
+    this.lSystem = new LSystem(this.scene)
 
     /* Gui */
     this.setGui();
   }
   
   setGui() {
-    this.cube.setGui(webglGuiFolder)
+    /* this.cube.setGui(webglGuiFolder) */
   }
 
   onResize () {
@@ -60,10 +65,13 @@ export default class Webgl {
     this.renderer.setSize( window.innerWidth, window.innerHeight )
   }
 
-  start () {
+  start (time) {
     requestAnimationFrame(this.start);
+    if(time - this.last >= 100) {
+      this.last = time;
+      this.lSystem.update()
+    }
     this.time += 0.01;
-    this.cube.update()
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   }
