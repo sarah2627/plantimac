@@ -3,9 +3,7 @@ import { OrbitControls } from './controls/OrbitControls'
 import { webglGuiFolder } from '../utils/gui'
 
 import SkySphere from './objects/skySphere/SkySphere'
-import MagicalObject from './objects/MagicalObject'
-import Cube from './objects/Cube'
-import LSystem from './objects/LSystem'
+import Plant from './objects/plant/Plant'
 
 export default class Webgl {
   constructor() {
@@ -45,11 +43,7 @@ export default class Webgl {
     this.scene.add( this.sky );
     
     /* Plant */
-    /*
-    this.cube = new Cube()
-    this.scene.add(this.cube);
-    */
-    this.lSystem = new LSystem(this.scene)
+    this.plant = new Plant(this.scene)
 
     /* Gui */
     this.setGui();
@@ -69,9 +63,8 @@ export default class Webgl {
     requestAnimationFrame(this.start);
     if(time - this.last >= 100) {
       this.last = time;
-      this.lSystem.update()
+      this.plant.update()
     }
-    this.time += 0.01;
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   }

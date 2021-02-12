@@ -1,20 +1,18 @@
-import Cube from './Cube'
-import { Vector3, Euler, Quaternion } from 'three'
+import { Vector3, Euler } from 'three'
+
+import  { getRandomArbitrary } from '../../../utils/functions'
 
 export default class LSystem {
 
-  constructor(scene) {
-    this.scene = scene
-    this.plant = []
-    let word = this.createWordLSystem("X", {'FFL' : 'FF', 'X' : 'F+F[[X]-X]-F[-FXL]+X'})
-    /*let word = this.createWordLSystem("FFL", {'F' : 'F'})*/
-    this.createShape(word, 25*Math.PI/180)
+  constructor(axiom, rules, alpha, iterations = 1) {
+    this.word = this.createWordLSystem(axiom, rules, iterations)
+    this.shape = this.createShape(this.word, alpha)
   }
 
   /**
    * Create word with L-System
    */
-  createWordLSystem(axiom, rules, iterations = 3) {
+  createWordLSystem(axiom, rules, iterations = 1) {
     for (let i = 0; i < iterations; i++){
       let translation = ''
       for (let c of axiom) {
@@ -22,7 +20,6 @@ export default class LSystem {
       }
       axiom = translation
     }
-    console.log(axiom)
     return axiom
   }
 
@@ -30,6 +27,7 @@ export default class LSystem {
    * Create shape with a word (L-System)
    */
   createShape(word, alpha) {
+    let shape = []
     let position_saves = []
     let location = new Vector3(0, 0, 0)
     let rotation = new Euler(0, 0, 0, 'XYZ')
@@ -40,15 +38,13 @@ export default class LSystem {
           let direction = new Vector3(0, 1, 0)
           direction.applyEuler(rotation)
           location.add(direction)
-          /*this.createBranch(location, rotation)*/
-          this.plant.push({type: 0, location: location.clone(), rotation: rotation.clone()});
+          shape.push({type: 0, location: location.clone(), rotation: rotation.clone()});
         } 
         if(letter == 'L') {
           let direction = new Vector3(0, 0.5, 0)
           direction.applyEuler(rotation)
           location.add(direction)
-          /* this.createLeaf(location, rotation) */
-          this.plant.push({type: 1, location: location.clone(), rotation: rotation.clone()});
+          shape.push({type: 1, location: location.clone(), rotation: rotation.clone()});
         } 
       } else if (letter == 'L') {
         let direction = new Vector3(0, 1, 0)
@@ -56,9 +52,9 @@ export default class LSystem {
         location.add(direction)
         this.createLeaf(location, rotation)
       } else if(letter == '+' || letter == '-' || letter == '&' || letter == '^' || letter == '>' || letter == '<' || letter == '|') {
-          rotation.x += this.getRandomArbitrary(-0.1, 0.1);
-          rotation.y += this.getRandomArbitrary(0, 1);
-          rotation.z += this.getRandomArbitrary(-0.1, 0.1);
+          rotation.x += getRandomArbitrary(-0.1, 0.1);
+          rotation.y += getRandomArbitrary(0, 1);
+          rotation.z += getRandomArbitrary(-0.1, 0.1);
 
         if (letter == '+') {
           rotation.z += alpha
@@ -83,37 +79,7 @@ export default class LSystem {
         rotation = last_position_save[1]
       }
     }
-    console.log(this.plant);
-  }
-
-  createBranch(location, rotation) {
-    const cube = new Cube(location, rotation, new Vector3(0.2, 1, 0.2))
-    this.scene.add(cube)
-  }
-
-  createLeaf(location, rotation) {
-    const cube = new Cube(location, rotation, new Vector3(0.5, 0.5, 0.5))
-    this.scene.add(cube)
-  }
-
-  getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  drawPartPlant(partPlant) {
-    if(partPlant.type == 0) {
-      this.createBranch(partPlant.location, partPlant.rotation)
-    } else if(partPlant.type == 1) {
-      this.createLeaf(partPlant.location, partPlant.rotation)
-    }
-  }
-
-  update() {
-    if(this.plant.length) {
-      console.log(this.plant)
-      this.drawPartPlant(this.plant.shift())
-    }
-    
+    return shape
   }
 
 }
