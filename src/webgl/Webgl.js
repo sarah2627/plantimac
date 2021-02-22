@@ -8,11 +8,13 @@ let sky, sun;
 
 // import SkySphere from './objects/skySphere/SkySphere'
 import MagicalObject from './objects/MagicalObject'
+import SkySphere from './objects/skySphere/SkySphere'
+import Plant from './objects/plant/Plant'
 
 export default class Webgl {
   constructor() {
     /* Variables */
-    this.time = 0
+    this.last = 0
 
     /* Functions & events */
     this.start = this.start.bind(this)
@@ -65,15 +67,14 @@ export default class Webgl {
     sky.setInclination;
   
     /* Plant */
-    this.cube = new MagicalObject()
-    this.scene.add(this.cube);
+    this.plant = new Plant(this.scene)
 
     /* Gui */
     this.setGui();
   }
   
   setGui() {
-    this.cube.setGui(webglGuiFolder)
+    /* this.cube.setGui(webglGuiFolder) */
   }
 
   onResize () {
@@ -82,10 +83,12 @@ export default class Webgl {
     this.renderer.setSize( window.innerWidth, window.innerHeight )
   }
 
-  start () {
+  start (time) {
     requestAnimationFrame(this.start);
-    this.time += 0.01;
-    this.cube.update();
+    if(time - this.last >= 100) {
+      this.last = time;
+      this.plant.update()
+    }
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   }
