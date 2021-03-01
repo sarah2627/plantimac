@@ -62,6 +62,21 @@ function interactions() {
             booleanRain = false;
             webgl.rain(booleanRain)
         }
+    }) 
+
+    /* Inclination sun */
+    const temps = document.querySelector('#temps')
+    let inclination = 0.5;
+
+    temps.addEventListener('click', (e) => {
+        e.preventDefault()
+        if (inclination === 0.5) {
+            inclination = 0.48;
+            webgl.sky(inclination)
+        } else {
+            inclination = 0.5;
+            webgl.sky(inclination)
+        }
     })
 }
 
