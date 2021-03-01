@@ -41,13 +41,6 @@ export default class Webgl {
     this.spotlight.position.set(10, 10, -10)
     this.scene.add(this.spotlight)
 
-    /* Skysphere */
-    // this.sky = new SkySphere({
-    //   colorUp: 0x7ee5fc,
-    //   colorDown: 0x1844d7
-    // })
-    // this.scene.add( this.sky );
-
     /* Sun and sky */
     sky = new Sky()
     sky.scale.setScalar(450000)
@@ -78,7 +71,7 @@ export default class Webgl {
       exposure: renderer.toneMappingExposure
     }
 
-    effectController.inclination = inclination;
+    effectController.inclination = inclination
 
     const uniforms = sky.material.uniforms
     uniforms["turbidity"].value = effectController.turbidity
