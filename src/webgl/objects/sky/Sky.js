@@ -5,7 +5,7 @@ import {
 	ShaderMaterial,
 	UniformsUtils,
 	Vector3
-} from 'three';
+} from 'three'
 
 // import fragmentShader from './shaders/fragment.fs'
 // import vertexShader from './shaders/vertex.vs'
@@ -13,22 +13,22 @@ import {
 export default class Sky {
 
 	constructor() {
-		var shader = Sky.SkyShader;
+		var shader = Sky.SkyShader
 
-		var material = new ShaderMaterial( {
+		var material = new ShaderMaterial({
 			name: 'SkyShader',
 			fragmentShader: shader.fragmentShader,
 			vertexShader: shader.vertexShader,
-			uniforms: UniformsUtils.clone( shader.uniforms ),
+			uniforms: UniformsUtils.clone(shader.uniforms),
 			side: BackSide,
 			depthWrite: false
-		} );
+		})
 
-		Mesh.call( this, new BoxGeometry( 1, 1, 1 ), material );
+		Mesh.call(this, new BoxGeometry( 1, 1, 1 ), material)
 	}
-};
+}
 
-Sky.prototype = Object.create( Mesh.prototype );
+Sky.prototype = Object.create(Mesh.prototype)
 
 Sky.SkyShader = {
 
@@ -201,7 +201,5 @@ Sky.SkyShader = {
 
 		'}'
 	].join( '\n' )
-
 };
 
-export { Sky };

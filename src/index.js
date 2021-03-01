@@ -6,12 +6,14 @@ import Rain from './webgl/objects/rain/Rain'
 var webgl = new Webgl()
 
 function interactions() {
+
+    /* Form accueil */
     const btnSubmit = document.querySelector('.btnSubmit')
     const home = document.querySelector('.home')
     const canvas = document.querySelector('canvas')
 
     const input = document.querySelector('input')
-    const missName = document.querySelector('.missName');
+    const missName = document.querySelector('.missName')
     const prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/
 
     btnSubmit.addEventListener('click', (e) => {
@@ -22,8 +24,8 @@ function interactions() {
             missName.style.color = '#da5454'
         } else if (prenomValid.test(input.value) == false) {
             e.preventDefault()
-            missName.textContent = 'Format incorrect';
-            missName.style.color = 'orange';
+            missName.textContent = 'Format incorrect'
+            missName.style.color = 'orange'
         } else {
             let valueInput = input.value
             document.querySelector('.displayName').innerHTML = valueInput
@@ -32,6 +34,8 @@ function interactions() {
             home.style.display = 'none'
         }
     })
+
+    /* Open/close popup parameters */
 
     const overlayPopUp = document.querySelector('.overlayPopUp')
     const popUp = document.querySelector('.popUp')
@@ -51,30 +55,30 @@ function interactions() {
 
     /* Add/Remove rain */
     const rain = document.querySelector('#rain')
-    let booleanRain = false;
+    let booleanRain = false
 
     rain.addEventListener('click', (e) => {
         e.preventDefault()
         if (booleanRain === false) {
-            booleanRain = true;
+            booleanRain = true
             webgl.rain(booleanRain)
         } else {
-            booleanRain = false;
+            booleanRain = false
             webgl.rain(booleanRain)
         }
     }) 
 
     /* Inclination sun */
     const temps = document.querySelector('#temps')
-    let inclination = 0.5;
+    let inclination = 0.5
 
     temps.addEventListener('click', (e) => {
         e.preventDefault()
         if (inclination === 0.5) {
-            inclination = 0.48;
+            inclination = 0.48
             webgl.sky(inclination)
         } else {
-            inclination = 0.5;
+            inclination = 0.5
             webgl.sky(inclination)
         }
     })

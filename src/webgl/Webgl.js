@@ -2,8 +2,7 @@ import { Scene, PerspectiveCamera, WebGLRenderer, AmbientLight, SpotLight, Vecto
 import { OrbitControls } from './controls/OrbitControls'
 // import { webglGuiFolder } from '../utils/gui'
 
-import { Sky } from './objects/sky/Sky'
-// import SkySphere from './objects/skySphere/SkySphere'
+import Sky from './objects/sky/Sky'
 // import MagicalObject from './objects/MagicalObject'
 import Plant from './objects/plant/Plant'
 import Rain from './objects/rain/Rain'
@@ -41,11 +40,12 @@ export default class Webgl {
     this.spotlight.position.set(10, 10, -10)
     this.scene.add(this.spotlight)
 
-    /* Sun and sky */
+    /* Sky */
     sky = new Sky()
     sky.scale.setScalar(450000)
     this.scene.add(sky)
 
+    /* Sun */
     sun = new Vector3()
 
     /* Plant */
@@ -58,7 +58,6 @@ export default class Webgl {
     this.start = this.start.bind(this)
   }
 
-  /// GUI
   updateSky(renderer, scene, camera, inclination) {
 
     const effectController = {
