@@ -1,4 +1,4 @@
-import { Vector3 } from 'three'
+import { Points, Vector3 } from 'three'
 
 import LSystem from './LSystem'
 import Branch from './Branch'
@@ -36,3 +36,7 @@ export default class Plant {
   }
 
 }
+
+// variable qui a des Points
+// variable si trop haute > pousse plus
+// variable si trop basse > pousse plus

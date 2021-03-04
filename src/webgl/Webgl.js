@@ -64,9 +64,9 @@ export default class Webgl {
       turbidity: 10,
       rayleigh: 3,
       mieCoefficient: 0.005,
-      mieDirectionalG: 0.7,
+      mieDirectionalG: 0.1,
       inclination: 0.5, // elevation / inclination
-      azimuth: 0.25, // Facing front,
+      azimuth: 0.35, // Facing front,
       exposure: renderer.toneMappingExposure
     }
 

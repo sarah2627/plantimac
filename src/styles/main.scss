@@ -150,7 +150,7 @@ html, body {
     .overlay {
       width: 80%;
       margin: auto;
-      .temps {
+      .jour-nuit {
         position: absolute;
         z-index: 1;
         width: 45px;
@@ -160,16 +160,21 @@ html, body {
         border-radius: 0 0 25px 25px;
         background-color: rgba($color: $secondTextColor, $alpha: 0.75);
         display: flex;
+        justify-content: center;
         align-items: flex-end;
-        button {
+        img {
           margin-bottom: 1rem;
           cursor: pointer;
           border: none;
           outline: none;
           background-color: transparent;
-          img {
-            width: 100%;
-          }
+          width: 80%;
+        }
+        .jour {
+          display: none;
+        }
+        .nuit {
+          display: block;
         }
       }
       .namePlant {

@@ -36,7 +36,6 @@ function interactions() {
     })
 
     /* Open/close popup parameters */
-
     const overlayPopUp = document.querySelector('.overlayPopUp')
     const popUp = document.querySelector('.popUp')
     const popUpSettings = document.querySelector('.popUpSettings')
@@ -70,16 +69,22 @@ function interactions() {
 
     /* Inclination sun */
     const temps = document.querySelector('#temps')
+    const jour = document.querySelector('.jour')
+    const nuit = document.querySelector('.nuit')
     let inclination = 0.5
 
     temps.addEventListener('click', (e) => {
         e.preventDefault()
         if (inclination === 0.5) {
-            inclination = 0.48
+            inclination = 0.47
             webgl.sky(inclination)
+            jour.style.display = 'block'
+            nuit.style.display = 'none'
         } else {
             inclination = 0.5
             webgl.sky(inclination)
+            jour.style.display = 'none'
+            nuit.style.display = 'block'
         }
     })
 }
