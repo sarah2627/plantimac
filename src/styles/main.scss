@@ -59,6 +59,7 @@ html, body {
       font-weight: 300;
       font-size: 36px;
       display: flex;
+      align-items: center;
       img {
         width: 40px;
         margin-left: 1rem;
@@ -143,7 +144,7 @@ html, body {
           margin-top: 1rem;
         }
       }
-    }   
+    }
   }
   .canvas {
     position: relative;
@@ -339,6 +340,39 @@ html, body {
     }
     canvas {
       display: none;
+    }
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  #app {
+    .home {
+      padding: 2rem;
+      width: auto;
+      p {
+        font-size: 22px;
+        top: 2rem;
+        left: 2rem;
+        img {
+          margin-left: .5rem;
+        }
+      }
+      h1 {
+        font-size: 36px;
+      }
+      #setupApp .wrapInput .input {
+        font-size: 26px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+  #app {
+    .home {
+      width: 100%;
     }
   }
 }
