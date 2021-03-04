@@ -26,7 +26,7 @@ btnSubmit.addEventListener('click', (e) => {
         missName.style.color = 'orange'
     } else {
         let valueInput = input.value
-        document.querySelector('.displayName').innerHTML = valueInput
+        document.querySelectorAll('.displayName').forEach(i => i.innerHTML = valueInput)
         webgl.start()
         canvas.style.display = 'block'
         home.style.display = 'none'
