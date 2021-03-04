@@ -82,7 +82,6 @@ const btnSubmitSettings = document.querySelector('.submitSettings')
         // Pot style
         var style = document.querySelector('[name="choice-pot"]:checked')
         webgl.changeStyle(style.value)
-        console.log(style.value)
         // Color
         var color = document.querySelector('[name="choice-color"]:checked')
         webgl.pot.changeColor(color.value)

@@ -181,12 +181,32 @@ html, body {
       .namePlant {
         display: flex;
         justify-content: center;
-        p {
+        .displayName {
           position: absolute;
           z-index: 1;
           font-size: 52px;
           font-weight: 400;
           color: $secondTextColor;
+        }
+        .needsPlant {
+          display: none;
+          margin: auto;
+          position: absolute;
+          top: 10rem;
+          right: 3rem;
+          z-index: 1;
+          margin: 1.5rem;
+          padding: 1rem;
+          width: 250px;
+          height: 150px;
+          border-radius: 100%;
+          box-sizing: border-box;
+          text-align: center;
+          font-size: 1.5rem;
+          background-color: antiquewhite;
+          p {
+            margin: 18%;
+          }
         }
       }
       .menu {

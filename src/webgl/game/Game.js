@@ -12,12 +12,32 @@ export default class Game {
         this.plant.pointDeViePlant -= 1
         
         if(this.plant.pointDeViePlant > 20 && this.plant.pointDeViePlant < 30) {
+            this.stopDisplayNeedPlant()
             this.plant.update()
         } else if (this.plant.pointDeViePlant <= 20) {
-            console.log("J'ai soiiiiiiiiiif")
+            this.displayNeedPlant('thirsty')
         } else if (this.plant.pointDeViePlant >= 30) {
-            console.log("Je me noie") 
+            this.displayNeedPlant('drowning')
         }
+    }
+
+    displayNeedPlant(need) {
+        const bubble = document.querySelector('.needsPlant')
+        const bubbleNeed = document.querySelector('.needs')
+        if(need == 'thirsty') {
+            console.log("J'ai soiiiiiiiiiif")
+            bubbleNeed.innerHTML = "J'ai soiiiiiiiiiif"
+            bubble.style.display = 'block'
+        } else if (need == 'drowning') {
+            console.log("Je me noie")
+            bubbleNeed.innerHTML = "Je me noie"
+            bubble.style.display = 'block'
+        }
+    }
+
+    stopDisplayNeedPlant() {
+        const bubble = document.querySelector('.needsPlant')
+        bubble.style.display = 'none'
     }
 
     /* Add/Remove rain */
@@ -36,7 +56,7 @@ export default class Game {
                 booleanRain = false
                 this.scene.remove(activeRain)
             }
-        }) 
+        })
     }
 
     /* Animation rain */

@@ -73,6 +73,7 @@ export default class Webgl {
     this.setGui();
   }
 
+  // POT
   addPot(style) {
     this.pot = new Pot(style)
     this.scene.add(this.pot);
@@ -80,10 +81,11 @@ export default class Webgl {
 
   changeStyle(style) {
     if(this.style != style) {
-      //this.pot.delete()
+      /* destroy pot */
       this.pot.geometry = undefined
       this.pot.material = undefined
       this.scene.remove(this.pot)
+      /* add new stylish pot */
       this.addPot(style)
       this.style = style
     }
