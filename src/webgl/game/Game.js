@@ -21,9 +21,9 @@ export default class Game {
             this.plant.update()
             console.log("Je me sens bien")
         } else if (this.pointsThirst <= 25) {
-            console.log("J'ai soif")
+            this.displayNeedPlant('thirsty')
         } else if (this.pointsThirst >= 75) {
-            console.log("Je me noie") 
+            this.displayNeedPlant('drowning')
         } else if (this.pointsSun <= 25) {
             console.log("J'ai chaud")
         } else if (this.pointsSun >= 75) {
@@ -52,8 +52,8 @@ export default class Game {
         const bubble = document.querySelector('.needsPlant')
         const bubbleNeed = document.querySelector('.needs')
         if(need == 'thirsty') {
-            console.log("J'ai soiiiiiiiiiif")
-            bubbleNeed.innerHTML = "J'ai soiiiiiiiiiif"
+            console.log("J'ai soif")
+            bubbleNeed.innerHTML = "J'ai soif"
             bubble.style.display = 'block'
         } else if (need == 'drowning') {
             console.log("Je me noie")
