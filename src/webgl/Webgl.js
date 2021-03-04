@@ -59,8 +59,9 @@ export default class Webgl {
 
     /* Start animation */
     this.start = this.start.bind(this)
+    
     /* Plant pot */
-    this.style = "pot-3"
+    this.style = "pot-1"
     this.addPot(this.style)
 
     /* Gui */
@@ -100,6 +101,7 @@ export default class Webgl {
     renderer.render(scene, camera)
   }
 
+  // POT
   addPot(style) {
     this.pot = new Pot(style)
     this.scene.add(this.pot);
@@ -107,10 +109,11 @@ export default class Webgl {
 
   changeStyle(style) {
     if(this.style != style) {
-      //this.pot.delete()
+      /* destroy old pot */
       this.pot.geometry = undefined
       this.pot.material = undefined
       this.scene.remove(this.pot)
+      /* create new stylish pot */
       this.addPot(style)
       this.style = style
     }

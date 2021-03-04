@@ -245,7 +245,7 @@ html, body {
           .potColor {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: space-evenly;
             align-items: center;
             .choice {
               position: relative;
@@ -256,12 +256,20 @@ html, body {
             }
             .color-1, .color-2, .color-3 {
               border-radius: 10px;
-              background-color: #B65B11;
               width: 50px;
               height: 50px;
               display: flex;
               align-items: center;
               justify-content: center;
+            }
+            .color-1 {
+              background-color: #da5454;
+            }
+            .color-2 {
+              background-color: #B65B11;
+            }
+            .color-3 {
+              background-color: #FFA45B;
             }
             #color-1:checked ~ .color-1 {
               border: 2px solid $secondTextColor;
@@ -323,7 +331,7 @@ html, body {
             border-radius: 18px;
             padding: 1rem 2rem;
             width: 35%;
-            margin: 4rem auto 0 auto;
+            margin: 2rem auto 0 auto;
             font-family: 'SeoulNamsan-CL';
           }
         }

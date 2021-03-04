@@ -8,42 +8,38 @@ var webgl = new Webgl()
 function interactions() {
 // HOME
 const btnSubmit = document.querySelector('.btnSubmit')
-const canvas = document.querySelector('canvas')
 const home = document.querySelector('.home')
+const canvas = document.querySelector('canvas')
 
-    /* Form accueil */
-    const btnSubmit = document.querySelector('.btnSubmit')
-    const home = document.querySelector('.home')
-    const canvas = document.querySelector('canvas')
+const input = document.querySelector('input')
+const missName = document.querySelector('.missName')
+const prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/
 
-    const input = document.querySelector('input')
-    const missName = document.querySelector('.missName')
-    const prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/
-
-    btnSubmit.addEventListener('click', (e) => {
+btnSubmit.addEventListener('click', (e) => {
+    e.preventDefault()
+    if(input.validity.valueMissing) {
         e.preventDefault()
-        if(input.validity.valueMissing) {
-            e.preventDefault()
-            missName.textContent = 'Nom de la plante manquant'
-            missName.style.color = '#da5454'
-        } else if (prenomValid.test(input.value) == false) {
-            e.preventDefault()
-            missName.textContent = 'Format incorrect'
-            missName.style.color = 'orange'
-        } else {
-            let valueInput = input.value
-            document.querySelector('.displayName').innerHTML = valueInput
-            webgl.start()
-            canvas.style.display = 'block'
-            home.style.display = 'none'
-        }
-    })
+        missName.textContent = 'Nom de la plante manquant'
+        missName.style.color = '#da5454'
+    } else if (prenomValid.test(input.value) == false) {
+        e.preventDefault()
+        missName.textContent = 'Format incorrect'
+        missName.style.color = 'orange'
+    } else {
+        let valueInput = input.value
+        document.querySelector('.displayName').innerHTML = valueInput
+        webgl.start()
+        canvas.style.display = 'block'
+        home.style.display = 'none'
+    }
+})
+
+// POPUP
+const overlayPopUp = document.querySelector('.overlayPopUp')
+const popUp = document.querySelector('.popUp')
+const popUpSettings = document.querySelector('.popUpSettings')
 
     /* Open/close popup parameters */
-    const overlayPopUp = document.querySelector('.overlayPopUp')
-    const popUp = document.querySelector('.popUp')
-    const popUpSettings = document.querySelector('.popUpSettings')
-
     popUpSettings.addEventListener('click', (e) => {
         e.preventDefault()
         overlayPopUp.style.display = 'flex'
@@ -55,11 +51,7 @@ const home = document.querySelector('.home')
         overlayPopUp.style.display = 'none'
         popUp.style.display = 'none'
     })
-// POPUP
-const overlayPopUp = document.querySelector('.overlayPopUp')
-const popUp = document.querySelector('.popUp')
-const popUpSettings = document.querySelector('.popUpSettings')
-
+    
     /* Add/Remove rain */
     const rain = document.querySelector('#rain')
     let booleanRain = false
@@ -95,23 +87,23 @@ const popUpSettings = document.querySelector('.popUpSettings')
             nuit.style.display = 'block'
         }
     })
-}
-
-window.onload = interactions()
 
 // SETTINGS
 const btnSubmitSettings = document.querySelector('.submitSettings')
 
-btnSubmitSettings.addEventListener('click', (e) => {
-    e.preventDefault()
-    // Pot style
-    var style = document.querySelector('[name="choice-pot"]:checked')
-    webgl.changeStyle(style.value)
-    console.log(style.value)
-    // Color
-    var color = document.querySelector('[name="choice-color"]:checked')
-    webgl.pot.changeColor(color.value)
-    // Close popup
-    overlayPopUp.style.display = 'none'
-    popUp.style.display = 'none'
-})
+    btnSubmitSettings.addEventListener('click', (e) => {
+        e.preventDefault()
+        // Pot style
+        var style = document.querySelector('[name="choice-pot"]:checked')
+        webgl.changeStyle(style.value)
+        console.log(style.value)
+        // Color
+        var color = document.querySelector('[name="choice-color"]:checked')
+        webgl.pot.changeColor(color.value)
+        // Close popup
+        overlayPopUp.style.display = 'none'
+        popUp.style.display = 'none'
+    })
+}
+
+window.onload = interactions()
