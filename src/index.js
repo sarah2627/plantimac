@@ -50,21 +50,6 @@ const popUpSettings = document.querySelector('.popUpSettings')
         overlayPopUp.style.display = 'none'
         popUp.style.display = 'none'
     })
-    
-    /* Add/Remove rain */
-    const rain = document.querySelector('#rain')
-    let booleanRain = false
-
-    rain.addEventListener('click', (e) => {
-        e.preventDefault()
-        if (booleanRain === false) {
-            booleanRain = true
-            webgl.rain(booleanRain)
-        } else {
-            booleanRain = false
-            webgl.rain(booleanRain)
-        }
-    }) 
 
     /* Inclination sun */
     const temps = document.querySelector('#temps')
