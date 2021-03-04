@@ -73,6 +73,22 @@ export default class Webgl {
     this.setGui();
   }
 
+  addPot(style) {
+    this.pot = new Pot(style)
+    this.scene.add(this.pot);
+  }
+
+  changeStyle(style) {
+    if(this.style != style) {
+      //this.pot.delete()
+      this.pot.geometry = undefined
+      this.pot.material = undefined
+      this.scene.remove(this.pot)
+      this.addPot(style)
+      this.style = style
+    }
+  }
+
   setGui() {
     /* this.cube.setGui(webglGuiFolder) */
   }
