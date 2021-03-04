@@ -30,8 +30,8 @@ var OrbitControls = function ( object, domElement ) {
 	this.target = new Vector3();
 
 	// How far you can dolly in and out ( PerspectiveCamera only )
-	this.minDistance = 0;
-	this.maxDistance = Infinity;
+	this.minDistance = 3;
+	this.maxDistance = 25;
 
 	// How far you can zoom in and out ( OrthographicCamera only )
 	this.minZoom = 0;
@@ -39,8 +39,8 @@ var OrbitControls = function ( object, domElement ) {
 
 	// How far you can orbit vertically, upper and lower limits.
 	// Range is 0 to Math.PI radians.
-	this.minPolarAngle = 0; // radians
-	this.maxPolarAngle = Math.PI; // radians
+	this.minPolarAngle = 1.5; // radians
+	this.maxPolarAngle = 1.5; // radians
 
 	// How far you can orbit horizontally, upper and lower limits.
 	// If set, the interval [ min, max ] must be a sub-interval of [ - 2 PI, 2 PI ], with ( max - min < 2 PI )
@@ -55,7 +55,7 @@ var OrbitControls = function ( object, domElement ) {
 	// This option actually enables dollying in and out; left as "zoom" for backwards compatibility.
 	// Set to false to disable zooming
 	this.enableZoom = true;
-	this.zoomSpeed = 1.0;
+	this.zoomSpeed = 0.5;
 
 	// Set to false to disable rotating
 	this.enableRotate = true;

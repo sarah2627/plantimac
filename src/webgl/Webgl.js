@@ -23,7 +23,7 @@ export default class Webgl {
     /* Scene & camera */
     this.scene = new Scene()
     this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    this.camera.position.z = 5
+    this.camera.position.z = 15
     this.renderer = new WebGLRenderer()
     this.renderer.setSize( window.innerWidth, window.innerHeight )
 
@@ -32,6 +32,8 @@ export default class Webgl {
     canvas.appendChild(this.renderer.domElement)
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+    this.controls.target.set(0, 3, 0);
+    this.controls.update();  
 
     /* Lights */
     this.light = new AmbientLight(0x404040, 2) // soft white light
