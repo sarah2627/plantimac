@@ -11,6 +11,7 @@ export default class Plant {
     const lSystem = new LSystem("X", {'FFL' : 'FF', 'X' : 'F+F[[X]-X]-F[-FXL]+X'}, 25*Math.PI/180, 3)
     this.plant = lSystem.shape
     this.partPlant = 0
+    this.pointDeViePlant = 25
   }
 
   /**
@@ -34,9 +35,4 @@ export default class Plant {
       this.partPlant++
     }
   }
-
 }
-
-// variable qui a des Points
-// variable si trop haute > pousse plus
-// variable si trop basse > pousse plus

@@ -1,7 +1,6 @@
 import './styles/main.scss'
 
 import Webgl from './webgl/Webgl'
-import Rain from './webgl/objects/rain/Rain'
 
 var webgl = new Webgl()
 
@@ -51,21 +50,6 @@ function interactions() {
         overlayPopUp.style.display = 'none'
         popUp.style.display = 'none'
     })
-
-    /* Add/Remove rain */
-    const rain = document.querySelector('#rain')
-    let booleanRain = false
-
-    rain.addEventListener('click', (e) => {
-        e.preventDefault()
-        if (booleanRain === false) {
-            booleanRain = true
-            webgl.rain(booleanRain)
-        } else {
-            booleanRain = false
-            webgl.rain(booleanRain)
-        }
-    }) 
 
     /* Inclination sun */
     const temps = document.querySelector('#temps')

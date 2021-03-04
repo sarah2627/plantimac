@@ -6,6 +6,7 @@ import Sky from './objects/sky/Sky'
 // import MagicalObject from './objects/MagicalObject'
 import Plant from './objects/plant/Plant'
 import Rain from './objects/rain/Rain'
+import Game from './game/Game'
 
 let sky, sun
 
@@ -50,6 +51,12 @@ export default class Webgl {
 
     /* Plant */
     this.plant = new Plant(this.scene)
+
+    /* Rain */
+    this.rains = new Rain(this.scene)
+    
+    /* Game */
+    this.game = new Game(this.scene, this.plant, this.rains)
     
     /* Gui */
     this.setGui()
@@ -95,11 +102,6 @@ export default class Webgl {
     /* this.cube.setGui(webglGuiFolder) */
   }
   
-  /* Rain */
-  rain(booleanRain) {
-    this.rains = new Rain(this.scene, booleanRain)
-  }
-
   /* Sun and sky */
   sky(booleanInclination) {
     this.inclination = booleanInclination
@@ -113,15 +115,15 @@ export default class Webgl {
 
   start(time) {
     
-    if(time - this.last >= 100) {
+    if(time - this.last >= 5000) {
       this.last = time
-      this.plant.update()
+      this.game.updatePlant()
     }
+
+    /* Movement in the scene */
     this.controls.update()
 
-    if(this.rains) {
-      this.rains.update()
-    }
+    this.game.updateRain()
     
     this.updateSky(this.renderer, this.scene, this.camera, this.inclination)
 

@@ -4,9 +4,8 @@ let rainGeo, rains;
 
 export default class Rain {
 
-  constructor(scene, booleanRain) {
+  constructor(scene) {
     this.scene = scene;
-    this.booleanRain = booleanRain;
     rainGeo = new Geometry()
     for (let i=0 ; i<6000 ; i++) {
         let rain = new Vector3(
@@ -28,12 +27,9 @@ export default class Rain {
     })
 
     rains = new Points(rainGeo, rainMaterial)
-
-    if (this.booleanRain === true) {
-        this.scene.add(rains)
-    } else {
-        this.scene.remove(rains)
-    }
+  }
+  getRains() {
+    return rains
   }
   update() {
     rainGeo.vertices.forEach(p => {
