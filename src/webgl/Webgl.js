@@ -6,6 +6,7 @@ import Sky from './objects/sky/Sky'
 // import MagicalObject from './objects/MagicalObject'
 import Plant from './objects/plant/Plant'
 import Rain from './objects/rain/Rain'
+import Pot from './objects/pot/Pot'
 import Game from './game/Game'
 
 let sky, sun
@@ -24,7 +25,7 @@ export default class Webgl {
     /* Scene & camera */
     this.scene = new Scene()
     this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    this.camera.position.z = 5
+    this.camera.position.z = 15
     this.renderer = new WebGLRenderer()
     this.renderer.setSize( window.innerWidth, window.innerHeight )
 
@@ -33,6 +34,8 @@ export default class Webgl {
     canvas.appendChild(this.renderer.domElement)
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+    this.controls.target.set(0, 3, 0);
+    this.controls.update();  
 
     /* Lights */
     this.light = new AmbientLight(0x404040, 2) // soft white light
@@ -63,6 +66,13 @@ export default class Webgl {
 
     /* Start animation */
     this.start = this.start.bind(this)
+    
+    /* Plant pot */
+    this.style = "pot-1"
+    this.addPot(this.style)
+
+    /* Gui */
+    this.setGui();
   }
 
   updateSky(renderer, scene, camera, inclination) {
@@ -96,6 +106,24 @@ export default class Webgl {
 
     renderer.toneMappingExposure = effectController.exposure
     renderer.render(scene, camera)
+  }
+
+  // POT
+  addPot(style) {
+    this.pot = new Pot(style)
+    this.scene.add(this.pot);
+  }
+
+  changeStyle(style) {
+    if(this.style != style) {
+      /* destroy old pot */
+      this.pot.geometry = undefined
+      this.pot.material = undefined
+      this.scene.remove(this.pot)
+      /* create new stylish pot */
+      this.addPot(style)
+      this.style = style
+    }
   }
   
   setGui() {

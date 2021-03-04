@@ -242,6 +242,45 @@ html, body {
         #potStyle {
           display: flex;
           flex-direction: column;
+          .potColor {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            .choice {
+              position: relative;
+              flex: 1;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .color-1, .color-2, .color-3 {
+              border-radius: 10px;
+              width: 50px;
+              height: 50px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .color-1 {
+              background-color: #da5454;
+            }
+            .color-2 {
+              background-color: #B65B11;
+            }
+            .color-3 {
+              background-color: #FFA45B;
+            }
+            #color-1:checked ~ .color-1 {
+              border: 2px solid $secondTextColor;
+            }
+            #color-2:checked ~ .color-2 {
+              border: 2px solid $secondTextColor;
+            }
+            #color-3:checked ~ .color-3 {
+              border: 2px solid $secondTextColor;
+            }
+          }
           .potStyle {
             display: flex;
             flex-direction: row;
@@ -274,14 +313,14 @@ html, body {
             #pot-3:checked ~ .pot-3 {
               border: 2px solid $secondTextColor;
             }
-            label {
-              cursor: pointer;
-              outline: none;
-            }
-            .visually-hidden {
-              position: absolute;
-              left: -100vw;
-            }
+          }
+          label {
+            cursor: pointer;
+            outline: none;
+          }
+          .visually-hidden {
+            position: absolute;
+            left: -100vw;
           }
           .submitSettings {
             background-color: #FFA45B;
@@ -292,7 +331,7 @@ html, body {
             border-radius: 18px;
             padding: 1rem 2rem;
             width: 35%;
-            margin: 4rem auto 0 auto;
+            margin: 2rem auto 0 auto;
             font-family: 'SeoulNamsan-CL';
           }
         }
