@@ -1,8 +1,8 @@
-import { Scene, PerspectiveCamera, WebGLRenderer, AmbientLight, SpotLight, Vector3, Geometry, TextureLoader, PointsMaterial, Points } from 'three'
+import { Scene, PerspectiveCamera, WebGLRenderer, AmbientLight, SpotLight, Vector3, Geometry, TextureLoader, PointsMaterial, Points, sRGBEncoding, ACESFilmicToneMapping } from 'three'
 import { OrbitControls } from './controls/OrbitControls'
 // import { webglGuiFolder } from '../utils/gui'
 
-import Sky from './objects/sky/Sky'
+import Background from './objects/background/Background'
 // import MagicalObject from './objects/MagicalObject'
 import Plant from './objects/plant/Plant'
 import Rain from './objects/rain/Rain'
@@ -16,7 +16,6 @@ export default class Webgl {
   constructor() {
     /* Variables */
     this.last = 0
-    this.inclination = 0.5
 
     /* Functions & events */
     this.onResize = this.onResize.bind(this)
@@ -25,32 +24,31 @@ export default class Webgl {
     /* Scene & camera */
     this.scene = new Scene()
     this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    this.camera.position.z = 15
+    this.camera.position.z = 10
     this.renderer = new WebGLRenderer()
+    this.renderer.setPixelRatio( window.devicePixelRatio )
     this.renderer.setSize( window.innerWidth, window.innerHeight )
+    this.renderer.outputEncoding = sRGBEncoding;
+		this.renderer.toneMapping = ACESFilmicToneMapping;
+		this.renderer.toneMappingExposure = 0.5;
 
     // where the canva will be display
     const canvas = document.querySelector('.canvas')
     canvas.appendChild(this.renderer.domElement)
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-    this.controls.target.set(0, 3, 0);
+    this.controls.target.set(0, 5, 0);
     this.controls.update();  
 
     /* Lights */
     this.light = new AmbientLight(0x404040, 2) // soft white light
     this.scene.add(this.light)
-    this.spotlight = new SpotLight(0xffffff)
-    this.spotlight.position.set(10, 10, -10)
+    this.spotlight = new SpotLight(0xffffff, 0.8)
+    this.spotlight.position.set(2, 10, -10)
     this.scene.add(this.spotlight)
 
-    /* Sky */
-    sky = new Sky()
-    sky.scale.setScalar(450000)
-    this.scene.add(sky)
-
-    /* Sun */
-    sun = new Vector3()
+    /* Background (with Sky) */
+    this.background = new Background(this.scene, this.renderer, this.camera)
 
     /* Plant */
     this.plant = new Plant(this.scene)
@@ -75,64 +73,15 @@ export default class Webgl {
     this.setGui();
   }
 
-  updateSky(renderer, scene, camera, inclination) {
-
-    const effectController = {
-      turbidity: 10,
-      rayleigh: 3,
-      mieCoefficient: 0.005,
-      mieDirectionalG: 0.1,
-      inclination: 0.5, // elevation / inclination
-      azimuth: 0.35, // Facing front,
-      exposure: renderer.toneMappingExposure
-    }
-
-    effectController.inclination = inclination
-
-    const uniforms = sky.material.uniforms
-    uniforms["turbidity"].value = effectController.turbidity
-    uniforms["rayleigh"].value = effectController.rayleigh
-    uniforms["mieCoefficient"].value = effectController.mieCoefficient
-    uniforms["mieDirectionalG"].value = effectController.mieDirectionalG
-
-    const theta = Math.PI * (effectController.inclination - 0.5)
-    const phi = 2 * Math.PI * (effectController.azimuth - 0.5)
-
-    sun.x = Math.cos(phi)
-    sun.y = Math.sin(phi) * Math.sin(theta)
-    sun.z = Math.sin(phi) * Math.cos(theta)
-
-    uniforms["sunPosition"].value.copy(sun)
-
-    renderer.toneMappingExposure = effectController.exposure
-    renderer.render(scene, camera)
-  }
-
-  // POT
-  addPot(style) {
-    this.pot = new Pot(style)
-    this.scene.add(this.pot);
-  }
-
-  changeStyle(style) {
-    if(this.style != style) {
-      /* destroy old pot */
-      this.pot.geometry = undefined
-      this.pot.material = undefined
-      this.scene.remove(this.pot)
-      /* create new stylish pot */
-      this.addPot(style)
-      this.style = style
-    }
-  }
-  
   setGui() {
     /* this.cube.setGui(webglGuiFolder) */
   }
   
   /* Sun and sky */
-  sky(booleanInclination) {
-    this.inclination = booleanInclination
+  sky() {
+    this.background.toggleBackground()
+    this.light.intensity = 0.5
+    this.spotlight.intensity = 0.2
   }
 
   onResize() {
@@ -152,8 +101,6 @@ export default class Webgl {
     this.controls.update()
 
     this.game.updateRain()
-    
-    this.updateSky(this.renderer, this.scene, this.camera, this.inclination)
 
     this.renderer.render(this.scene, this.camera)
     requestAnimationFrame(this.start)

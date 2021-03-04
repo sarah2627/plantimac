@@ -61,15 +61,17 @@ const popUpSettings = document.querySelector('.popUpSettings')
         e.preventDefault()
         if (inclination === 0.5) {
             inclination = 0.47
-            webgl.sky(inclination)
+            webgl.sky()
             jour.style.display = 'block'
             nuit.style.display = 'none'
         } else {
             inclination = 0.5
-            webgl.sky(inclination)
+            webgl.sky()
             jour.style.display = 'none'
             nuit.style.display = 'block'
         }
+
+
     })
 
 // SETTINGS

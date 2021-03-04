@@ -25,6 +25,43 @@ export default class Sky {
 		})
 
 		Mesh.call(this, new BoxGeometry( 1, 1, 1 ), material)
+
+		/* Sun */
+		this.sun = new Vector3()
+	}
+
+	update() {
+		console.log('yo')
+	}
+
+	initSky(renderer, scene, camera) {
+		const effectController = {
+			turbidity: 0.1,
+			rayleigh: 0.1,
+			mieCoefficient: 0.005,
+			mieDirectionalG: 0.8,
+			inclination: 0.1, // elevation / inclination
+			azimuth: 0.25, // Facing front,
+			exposure: renderer.toneMappingExposure
+		}
+	
+		const uniforms = sky.material.uniforms
+		uniforms["turbidity"].value = effectController.turbidity
+		uniforms["rayleigh"].value = effectController.rayleigh
+		uniforms["mieCoefficient"].value = effectController.mieCoefficient
+		uniforms["mieDirectionalG"].value = effectController.mieDirectionalG
+	
+		const theta = Math.PI * (effectController.inclination - 0.5)
+		const phi = 2 * Math.PI * (effectController.azimuth - 0.5)
+	
+		this.sun.x = Math.cos(phi)
+		this.sun.y = Math.sin(phi) * Math.sin(theta)
+		this.sun.z = Math.sin(phi) * Math.cos(theta)
+	
+		uniforms["sunPosition"].value.copy(this.sun)
+	
+		renderer.toneMappingExposure = effectController.exposure
+		renderer.render(scene, camera)
 	}
 }
 
