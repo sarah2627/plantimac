@@ -1,4 +1,4 @@
-import { Vector3 } from 'three'
+import { Vector3, AmbientLight, SpotLight } from 'three'
 
 import Sky from './Sky'
 
@@ -41,11 +41,27 @@ export default class Background {
 
     renderer.toneMappingExposure = effectController.exposure
     renderer.render(scene, camera)
+
+    // Lights
+    this.light = new AmbientLight(0x404040, 2) // soft white light
+    scene.add(this.light)
+    this.spotlight = new SpotLight(0xffffff, 0.8)
+    this.spotlight.position.set(2, 10, -10)
+    scene.add(this.spotlight)
   }
 
-  toggleBackground() {
+  putTheNight() {
     this.sky.material.uniforms["turbidity"].value = 0.0005
     this.sky.material.uniforms["rayleigh"].value = 0.003
+    this.light.intensity = 0.5
+    this.spotlight.intensity = 0.2
+  }
+
+  putTheDay() {
+    this.sky.material.uniforms["turbidity"].value = 0.15
+    this.sky.material.uniforms["rayleigh"].value = 0.1
+    this.light.intensity = 2
+    this.spotlight.intensity = 0.8
   }
 
 }

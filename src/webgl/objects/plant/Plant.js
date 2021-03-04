@@ -11,7 +11,6 @@ export default class Plant {
     const lSystem = new LSystem("X", {'FFL' : 'FF', 'X' : 'F+F[[X]-X]-F[-FXL]+X'}, 25*Math.PI/180, 3)
     this.plant = lSystem.shape
     this.partPlant = 0
-    this.pointDeViePlant = 25
   }
 
   /**

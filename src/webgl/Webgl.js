@@ -2,7 +2,7 @@ import { Scene, PerspectiveCamera, WebGLRenderer, AmbientLight, SpotLight, Vecto
 import { OrbitControls } from './controls/OrbitControls'
 // import { webglGuiFolder } from '../utils/gui'
 
-import Background from './objects/background/Background'
+import Background from './objects/environment/Environment'
 // import MagicalObject from './objects/MagicalObject'
 import Plant from './objects/plant/Plant'
 import Rain from './objects/rain/Rain'
@@ -15,7 +15,8 @@ export default class Webgl {
 
   constructor() {
     /* Variables */
-    this.last = 0
+    this.lastTime1 = 0
+    this.lastTime2 = 0
 
     /* Functions & events */
     this.onResize = this.onResize.bind(this)
@@ -40,13 +41,6 @@ export default class Webgl {
     this.controls.target.set(0, 5, 0);
     this.controls.update();  
 
-    /* Lights */
-    this.light = new AmbientLight(0x404040, 2) // soft white light
-    this.scene.add(this.light)
-    this.spotlight = new SpotLight(0xffffff, 0.8)
-    this.spotlight.position.set(2, 10, -10)
-    this.scene.add(this.spotlight)
-
     /* Background (with Sky) */
     this.background = new Background(this.scene, this.renderer, this.camera)
 
@@ -54,10 +48,10 @@ export default class Webgl {
     this.plant = new Plant(this.scene)
 
     /* Rain */
-    this.rains = new Rain(this.scene)
+    this.rain = new Rain(this.scene)
     
     /* Game */
-    this.game = new Game(this.scene, this.plant, this.rains)
+    this.game = new Game(this.scene, this.plant, this.rain, this.background)
     
     /* Gui */
     this.setGui()
@@ -94,13 +88,6 @@ export default class Webgl {
   setGui() {
     /* this.cube.setGui(webglGuiFolder) */
   }
-  
-  /* Sun and sky */
-  sky() {
-    this.background.toggleBackground()
-    this.light.intensity = 0.5
-    this.spotlight.intensity = 0.2
-  }
 
   onResize() {
     this.camera.aspect = window.innerWidth / window.innerHeight
@@ -110,15 +97,21 @@ export default class Webgl {
 
   start(time) {
     
-    if(time - this.last >= 5000) {
-      this.last = time
+    if(time - this.lastTime1 >= 2000) {
+      this.lastTime1 = time
       this.game.updatePlant()
     }
 
+    if(time - this.lastTime2 >= 200) {
+      this.lastTime2 = time
+      this.game.updatePointsPlant()
+    }
+
+    /* Animaton rain */
+    this.game.updateRain()
+
     /* Movement in the scene */
     this.controls.update()
-
-    this.game.updateRain()
 
     this.renderer.render(this.scene, this.camera)
     requestAnimationFrame(this.start)

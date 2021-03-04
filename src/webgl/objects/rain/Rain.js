@@ -1,6 +1,6 @@
 import { Vector3, Geometry, TextureLoader, PointsMaterial, Points } from 'three'
 
-let rainGeo, rains;
+let rainGeo, rain;
 
 export default class Rain {
 
@@ -8,14 +8,14 @@ export default class Rain {
     this.scene = scene;
     rainGeo = new Geometry()
     for (let i=0 ; i<6000 ; i++) {
-        let rain = new Vector3(
+        let drop = new Vector3(
             Math.random() * 600 - 300,
             Math.random() * 600 - 300,
             Math.random() * 600 - 300
         )
-        rain.velocity = 0
-        rain.acceleration = 0.02
-        rainGeo.vertices.push(rain)
+        drop.velocity = 0
+        drop.acceleration = 0.02
+        rainGeo.vertices.push(drop)
     }
 
     const sprite = new TextureLoader().load('../../../../src/assets/images/water-drop.png')
@@ -26,11 +26,13 @@ export default class Rain {
         map: sprite
     })
 
-    rains = new Points(rainGeo, rainMaterial)
+    rain = new Points(rainGeo, rainMaterial)
   }
-  getRains() {
-    return rains
+
+  getRain() {
+    return rain
   }
+  
   update() {
     rainGeo.vertices.forEach(p => {
         p.velocity += p.acceleration

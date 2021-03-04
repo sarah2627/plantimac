@@ -51,29 +51,6 @@ const popUpSettings = document.querySelector('.popUpSettings')
         popUp.style.display = 'none'
     })
 
-    /* Inclination sun */
-    const temps = document.querySelector('#temps')
-    const jour = document.querySelector('.jour')
-    const nuit = document.querySelector('.nuit')
-    let inclination = 0.5
-
-    temps.addEventListener('click', (e) => {
-        e.preventDefault()
-        if (inclination === 0.5) {
-            inclination = 0.47
-            webgl.sky()
-            jour.style.display = 'block'
-            nuit.style.display = 'none'
-        } else {
-            inclination = 0.5
-            webgl.sky()
-            jour.style.display = 'none'
-            nuit.style.display = 'block'
-        }
-
-
-    })
-
 // SETTINGS
 const btnSubmitSettings = document.querySelector('.submitSettings')
 
