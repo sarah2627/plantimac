@@ -242,6 +242,37 @@ html, body {
         #potStyle {
           display: flex;
           flex-direction: column;
+          .potColor {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            .choice {
+              position: relative;
+              flex: 1;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .color-1, .color-2, .color-3 {
+              border-radius: 10px;
+              background-color: #B65B11;
+              width: 50px;
+              height: 50px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            #color-1:checked ~ .color-1 {
+              border: 2px solid $secondTextColor;
+            }
+            #color-2:checked ~ .color-2 {
+              border: 2px solid $secondTextColor;
+            }
+            #color-3:checked ~ .color-3 {
+              border: 2px solid $secondTextColor;
+            }
+          }
           .potStyle {
             display: flex;
             flex-direction: row;
@@ -274,14 +305,14 @@ html, body {
             #pot-3:checked ~ .pot-3 {
               border: 2px solid $secondTextColor;
             }
-            label {
-              cursor: pointer;
-              outline: none;
-            }
-            .visually-hidden {
-              position: absolute;
-              left: -100vw;
-            }
+          }
+          label {
+            cursor: pointer;
+            outline: none;
+          }
+          .visually-hidden {
+            position: absolute;
+            left: -100vw;
           }
           .submitSettings {
             background-color: #FFA45B;

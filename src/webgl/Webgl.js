@@ -6,6 +6,7 @@ import Sky from './objects/sky/Sky'
 // import MagicalObject from './objects/MagicalObject'
 import Plant from './objects/plant/Plant'
 import Rain from './objects/rain/Rain'
+import Pot from './objects/pot/Pot'
 
 let sky, sun
 
@@ -58,6 +59,12 @@ export default class Webgl {
 
     /* Start animation */
     this.start = this.start.bind(this)
+    /* Plant pot */
+    this.style = "pot-3"
+    this.addPot(this.style)
+
+    /* Gui */
+    this.setGui();
   }
 
   updateSky(renderer, scene, camera, inclination) {
@@ -91,6 +98,22 @@ export default class Webgl {
 
     renderer.toneMappingExposure = effectController.exposure
     renderer.render(scene, camera)
+  }
+
+  addPot(style) {
+    this.pot = new Pot(style)
+    this.scene.add(this.pot);
+  }
+
+  changeStyle(style) {
+    if(this.style != style) {
+      //this.pot.delete()
+      this.pot.geometry = undefined
+      this.pot.material = undefined
+      this.scene.remove(this.pot)
+      this.addPot(style)
+      this.style = style
+    }
   }
   
   setGui() {

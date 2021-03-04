@@ -6,6 +6,10 @@ import Rain from './webgl/objects/rain/Rain'
 var webgl = new Webgl()
 
 function interactions() {
+// HOME
+const btnSubmit = document.querySelector('.btnSubmit')
+const canvas = document.querySelector('canvas')
+const home = document.querySelector('.home')
 
     /* Form accueil */
     const btnSubmit = document.querySelector('.btnSubmit')
@@ -51,6 +55,10 @@ function interactions() {
         overlayPopUp.style.display = 'none'
         popUp.style.display = 'none'
     })
+// POPUP
+const overlayPopUp = document.querySelector('.overlayPopUp')
+const popUp = document.querySelector('.popUp')
+const popUpSettings = document.querySelector('.popUpSettings')
 
     /* Add/Remove rain */
     const rain = document.querySelector('#rain')
@@ -90,3 +98,20 @@ function interactions() {
 }
 
 window.onload = interactions()
+
+// SETTINGS
+const btnSubmitSettings = document.querySelector('.submitSettings')
+
+btnSubmitSettings.addEventListener('click', (e) => {
+    e.preventDefault()
+    // Pot style
+    var style = document.querySelector('[name="choice-pot"]:checked')
+    webgl.changeStyle(style.value)
+    console.log(style.value)
+    // Color
+    var color = document.querySelector('[name="choice-color"]:checked')
+    webgl.pot.changeColor(color.value)
+    // Close popup
+    overlayPopUp.style.display = 'none'
+    popUp.style.display = 'none'
+})

@@ -56,12 +56,26 @@
         <div class="popUp">
           <p class="displayName"></p>
           <div class="settingsPlant">
-            <div class="potColor">
-              <h2> Couleur de pot </h2>
-            </div>
             <div class="potStyle">
-              <h2> Style de pot </h2>
-              <form action="" id="potStyle">
+              <form id="potStyle">
+                <h2> Couleur de pot </h2>
+                <div class="potColor">
+                  <div class="choice_color">
+                    <input type="radio" name="choice-color" id="color-1" value="#da5454" class="visually-hidden">
+                    <label class="color-1" for="color-1"></label>
+                  </div>
+                  <div class="choice_color">
+                    <input type="radio" name="choice-color" id="color-2" value="#B65B11" class="visually-hidden">
+                    <label class="color-2" for="color-2">
+                    </label>
+                  </div>
+                  <div class="choice_color">
+                    <input type="radio" name="choice-color" id="color-3" value="#FFA45B" class="visually-hidden">
+                    <label class="color-3" for="color-3">
+                    </label>
+                  </div>
+                </div>
+                <h2> Style de pot </h2>
                 <div class="potStyle">
                   <div class="choice">
                     <input type="radio" name="choice-pot" id="pot-1" value="pot-1" class="visually-hidden">
@@ -82,7 +96,7 @@
                     </label>
                   </div>
                 </div>
-                <input class="submitSettings" type="submit" value="Valider">
+                <button class="submitSettings" form="potStyle" type="submit">Valider</button>
               </form>
             </div>
           </div>
