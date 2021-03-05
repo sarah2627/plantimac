@@ -142,15 +142,18 @@ html, body {
             border: 0;
             background-color: transparent;
             cursor: pointer;
-            transition: rotate .8s ease-in;
+            transition: transform .8s ease-in;
           }
           .btnSubmit:hover {
             transform: rotate(360deg);
           }
+          img {
+            width: 100%;
+          }
         }
         .missName {
           margin-top: 1rem;
-        }
+        }      
       }
     }
   }
@@ -297,6 +300,9 @@ html, body {
         }
         .menuLeft {
           display: flex;
+        }
+        .popUpSettings {
+          margin-right: 0;
         }
         .popUpSettings:hover {
           background-color: #C57B3C!important;
