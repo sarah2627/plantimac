@@ -7,33 +7,42 @@ var webgl
 function interactions() {
     
 // HOME
-const btnSubmit = document.querySelector('.btnSubmit')
+const btnSubmit = document.querySelectorAll('.btnSubmit')
 const home = document.querySelector('.home')
-
 const input = document.querySelector('input')
 const missName = document.querySelector('.missName')
 const prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/
 
-btnSubmit.addEventListener('click', (e) => {
-    e.preventDefault()
-    if(input.validity.valueMissing) {
-        e.preventDefault()
-        missName.textContent = 'Nom de la plante manquant'
-        missName.style.color = '#da5454'
-    } else if (prenomValid.test(input.value) == false) {
-        e.preventDefault()
-        missName.textContent = 'Format incorrect'
-        missName.style.color = 'orange'
-    } else {
-        let valueInput = input.value
-        document.querySelectorAll('.displayName').forEach(i => i.innerHTML = valueInput)
-        document.querySelector('.changeName').value = valueInput
-        webgl = new Webgl(1)
-        webgl.start()
-        document.querySelector('canvas').style.display = 'block'
-        home.style.display = 'none'
-    }
-})
+    /* Start the game */
+    btnSubmit.forEach(element => {
+        element.addEventListener('click', (e) => {
+            e.preventDefault()
+            if(input.validity.valueMissing) {
+                e.preventDefault()
+                missName.textContent = 'Nom de la plante manquant'
+                missName.style.color = '#da5454'
+            } else if (prenomValid.test(input.value) == false) {
+                e.preventDefault()
+                missName.textContent = 'Format incorrect'
+                missName.style.color = 'orange'
+            } else {
+                // value of the name
+                let valueInput = input.value
+                document.querySelectorAll('.displayName').forEach(i => i.innerHTML = valueInput)
+                document.querySelector('.changeName').value = valueInput
+                
+                // value of the button submit (1, 2 ou 3)
+                let valueSubmit = element.value
+                webgl = new Webgl(valueSubmit)
+                
+                // start and display the webgl game
+                webgl.start()
+                document.querySelector('canvas').style.display = 'block'
+                home.style.display = 'none'
+            }
+        })
+    });
+
 
 // POPUP
 const overlayPopUp = document.querySelector('.overlayPopUp')
