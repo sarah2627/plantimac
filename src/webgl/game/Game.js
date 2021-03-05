@@ -17,17 +17,23 @@ export default class Game {
     }
 
     updatePlant() {
+        const bubble = document.querySelector('.needsPlant')
+        const bubbleNeed = bubble.querySelector('.needs')
+
         if(this.pointsThirst > 25 && this.pointsThirst < 75 && this.pointsSun > 25 && this.pointsSun < 75) {
+            bubble.style.display = 'none'
             this.plant.update()
-            console.log("Je me sens bien")
-        } else if (this.pointsThirst <= 25) {
-            this.displayNeedPlant('thirsty')
-        } else if (this.pointsThirst >= 75) {
-            this.displayNeedPlant('drowning')
-        } else if (this.pointsSun <= 25) {
-            console.log("J'ai chaud")
-        } else if (this.pointsSun >= 75) {
-            console.log("J'ai froid")
+        } else {
+            bubble.style.display = 'block'
+            if (this.pointsThirst <= 25) {
+                bubbleNeed.innerHTML = "J'ai soif"
+            } else if (this.pointsThirst >= 75) {
+                bubbleNeed.innerHTML = "Je me noie"
+            } else if (this.pointsSun <= 25) {
+                bubbleNeed.innerHTML = "J'ai froid"
+            } else if (this.pointsSun >= 75) {
+                bubbleNeed.innerHTML = "J'ai chaud"
+            }
         }
     }
 
@@ -38,33 +44,19 @@ export default class Game {
         } else if (this.pointsThirst >= 100) {
             this.pointsThirst = 100
         }
+        const barThirst = document.getElementById("barThirst").children[0]
+        barThirst.style.width = this.pointsThirst+"%";
+        this.pointsThirst <= 25 || this.pointsThirst >= 75 ? barThirst.classList.add("danger") : barThirst.classList.remove("danger")
 
-        this.pointsSun += this.booleanSun ? 1 : -1
+        this.pointsSun += this.booleanSun ? -1 : 1
         if (this.pointsSun <= 0) {
             this.pointsSun = 0
         } else if (this.pointsSun >= 100) {
             this.pointsSun = 100
         }
-        //console.log(this.pointsThirst)
-    }
-
-    displayNeedPlant(need) {
-        const bubble = document.querySelector('.needsPlant')
-        const bubbleNeed = document.querySelector('.needs')
-        if(need == 'thirsty') {
-            console.log("J'ai soif")
-            bubbleNeed.innerHTML = "J'ai soif"
-            bubble.style.display = 'block'
-        } else if (need == 'drowning') {
-            console.log("Je me noie")
-            bubbleNeed.innerHTML = "Je me noie"
-            bubble.style.display = 'block'
-        }
-    }
-
-    stopDisplayNeedPlant() {
-        const bubble = document.querySelector('.needsPlant')
-        bubble.style.display = 'none'
+        const barSun = document.getElementById("barSun").children[0]
+        barSun.style.width = this.pointsSun+"%";
+        this.pointsSun <= 25 || this.pointsSun >= 75 ? barSun.classList.add("danger") : barSun.classList.remove("danger")
     }
 
     /* Add/Remove rain */

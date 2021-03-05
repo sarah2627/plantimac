@@ -32,6 +32,8 @@ export default class Plant {
     if(this.plant.length && this.partPlant<this.plant.length) {
       this.drawPartPlant(this.plant[this.partPlant])
       this.partPlant++
+      const barGrowth = document.getElementById("barGrowth").children[0]
+      barGrowth.style.width = (100*this.partPlant/this.plant.length)+"%";
     }
   }
 }

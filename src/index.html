@@ -39,11 +39,30 @@
           <div class="jour-nuit">
               <img class="nuit" src="../src/assets/images/lune.svg"/>
               <img class="jour" src="../src/assets/images/soleil.svg"/>
-          </div>
-          <div class="namePlant">
+          </div> 
+          <div class="infosPlant">
             <p class="displayName"></p>
             <div class="needsPlant">
               <p class="needs"></p>
+            </div>
+            <div class="bars">
+              <div class="bar">
+                <div class="meter" id="barGrowth">
+                  <span style="width: 0%"></span>
+                </div>
+              </div>
+              <div class="bar">
+                <label for="barThirst">Soif :</label>
+                <div class="meter" id="barThirst">
+                  <span style="width: 50%"></span>
+                </div>
+              </div>
+              <div class="bar">
+                <label for="barSun">Soleil :</label>
+                <div class="meter" id="barSun">
+                  <span style="width: 50%"></span>
+                </div>
+              </div>
             </div>
           </div>
           <div class="menu">
