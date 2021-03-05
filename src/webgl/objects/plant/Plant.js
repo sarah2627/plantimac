@@ -6,9 +6,21 @@ import Leaf from './Leaf'
 
 export default class Plant {
 
-  constructor(scene) {
+  constructor(scene, seed = 1) {
     this.scene = scene
-    const lSystem = new LSystem("X", {'FFL' : 'FF', 'X' : 'F+F[[X]-X]-F[-FXL]+X'}, 25*Math.PI/180, 3)
+    
+    let lSystem = 0
+    switch (seed) {
+      case 2:
+        lSystem = new LSystem("X", {'X' : 'F+F[[X]-XL]-F[-FXL]+XL'}, 10*Math.PI/180, 3)
+        break;
+      case 3:
+        lSystem = new LSystem("X", {'FFL' : 'FF', 'X' : 'F+F[[XL]-X]-F[-FXL]+X'}, 22*Math.PI/180, 3)
+        break;
+      default:
+        lSystem = new LSystem("X", {'X' : 'F+F[[XLL]-XL]-F[-FXLLL]+X'}, 32*Math.PI/180, 3)
+    }
+
     this.plant = lSystem.shape
     this.partPlant = 0
   }
@@ -32,6 +44,8 @@ export default class Plant {
     if(this.plant.length && this.partPlant<this.plant.length) {
       this.drawPartPlant(this.plant[this.partPlant])
       this.partPlant++
+      const barGrowth = document.getElementById("barGrowth").children[0]
+      barGrowth.style.width = (100*this.partPlant/this.plant.length)+"%";
     }
   }
 }

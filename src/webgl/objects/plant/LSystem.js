@@ -52,9 +52,9 @@ export default class LSystem {
         location.add(direction)
         this.createLeaf(location, rotation)
       } else if(letter == '+' || letter == '-' || letter == '&' || letter == '^' || letter == '>' || letter == '<' || letter == '|') {
-          rotation.x += getRandomArbitrary(-0.1, 0.1);
+          rotation.x += getRandomArbitrary(-0.05, 0.05);
           rotation.y += getRandomArbitrary(0, 1);
-          rotation.z += getRandomArbitrary(-0.1, 0.1);
+          rotation.z += getRandomArbitrary(-0.05, 0.05);
 
         if (letter == '+') {
           rotation.z += alpha
