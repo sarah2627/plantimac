@@ -3,8 +3,7 @@ import { BoxGeometry, Mesh, Vector3 } from 'three'
 
 export default class Cube extends Mesh {
 
-  constructor(location = new Vector3(), rotation = new Vector3(), scale = new Vector3(1, 1, 1), material ) {
-
+  constructor(location = new Vector3(), rotation = new Vector3(), scale = new Vector3(1, 1, 1), material) {
     const geometry = new BoxGeometry(scale.x, scale.y, scale.z);
     geometry.translate(0, -(scale.y/2), 0)
 

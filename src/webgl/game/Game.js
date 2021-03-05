@@ -67,7 +67,7 @@ export default class Game {
     /* Add/Remove rain */
     initThist() {
         const thirstButton = document.querySelector('#thirst')
-        const rainR = this.rain.getRain()
+        const rainR = this.rain.rainObject
         thirstButton.addEventListener('click', (e) => {
             e.preventDefault()
             if (this.booleanThirst) {

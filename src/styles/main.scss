@@ -236,9 +236,10 @@ html, body {
           text-align: right;
           >.bar{
             margin-bottom: 10px;
-            label {
-              width: 60px;
-              display: inline-block;
+            .imgBar {
+              width: 30px;
+              vertical-align: middle;
+              margin: 0 3px;
             }
             .meter {
               display: inline-block;
