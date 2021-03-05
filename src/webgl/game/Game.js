@@ -1,5 +1,5 @@
 export default class Game {
-    constructor(scene, plant, rain, background) {
+    constructor(scene, plant, rain, sound, background) {
         this.scene = scene
         this.plant = plant
         
@@ -14,6 +14,11 @@ export default class Game {
         this.initSun()
         this.booleanSun = false
         this.pointsSun = 50
+
+        /* Sound */
+        this.sound = sound
+        this.initSound()
+        this.booleanAudio = false
     }
 
     updatePlant() {
@@ -84,6 +89,13 @@ export default class Game {
             }
         })
     }
+    
+    /* Animation rain */
+    updateRain() {
+        if(this.booleanThirst) {
+            this.rain.update()
+        }
+    }
 
     /* Add/Remove sun */
     initSun() {
@@ -109,10 +121,18 @@ export default class Game {
         })
     }
 
-    /* Animation rain */
-    updateRain() {
-        if(this.booleanThirst) {
-            this.rain.update()
-        }
+    /* Add/Remove sound */
+    initSound() {
+        const sound = document.querySelector('.sound')
+
+        sound.addEventListener('click', (e) => {
+            e.preventDefault()
+            if (this.booleanAudio) {
+                this.booleanAudio = false
+            } else {
+                this.booleanAudio = true
+            }
+        })
     }
+
 }

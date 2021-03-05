@@ -1,4 +1,4 @@
-import { Scene, PerspectiveCamera, WebGLRenderer, AmbientLight, SpotLight, Vector3, Geometry, TextureLoader, PointsMaterial, Points, sRGBEncoding, ACESFilmicToneMapping } from 'three'
+import { Scene, PerspectiveCamera, WebGLRenderer, sRGBEncoding, ACESFilmicToneMapping, AudioListener, Audio, AudioLoader } from 'three'
 import { OrbitControls } from './controls/OrbitControls'
 // import { webglGuiFolder } from '../utils/gui'
 
@@ -6,10 +6,9 @@ import Background from './objects/environment/Environment'
 // import MagicalObject from './objects/MagicalObject'
 import Plant from './objects/plant/Plant'
 import Rain from './objects/rain/Rain'
+import Sound from './objects/sound/Sound'
 import Pot from './objects/pot/Pot'
 import Game from './game/Game'
-
-let sky, sun
 
 export default class Webgl {
 
@@ -50,8 +49,11 @@ export default class Webgl {
     /* Rain */
     this.rain = new Rain(this.scene)
     
+    /* Sound */
+    this.sound = new Sound(this.camera)
+    
     /* Game */
-    this.game = new Game(this.scene, this.plant, this.rain, this.background)
+    this.game = new Game(this.scene, this.plant, this.rain, this.background, this.sound)
     
     /* Gui */
     this.setGui()
