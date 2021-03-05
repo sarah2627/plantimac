@@ -27,6 +27,7 @@ btnSubmit.addEventListener('click', (e) => {
     } else {
         let valueInput = input.value
         document.querySelectorAll('.displayName').forEach(i => i.innerHTML = valueInput)
+        document.querySelector('.changeName').value = valueInput
         webgl.start()
         canvas.style.display = 'block'
         home.style.display = 'none'
@@ -55,9 +56,13 @@ const popUpSettings = document.querySelector('.popUpSettings')
 
 // SETTINGS
 const btnSubmitSettings = document.querySelector('.submitSettings')
+const inputChangeName = document.querySelector('.changeName')
 
     btnSubmitSettings.addEventListener('click', (e) => {
         e.preventDefault()
+        // Name
+        let valueInput = inputChangeName.value
+        document.querySelectorAll('.displayName').forEach(i => i.innerHTML = valueInput)
         // Pot style
         var style = document.querySelector('[name="choice-pot"]:checked')
         webgl.changeStyle(style.value)

@@ -266,7 +266,21 @@ html, body {
       transform:translate(-50%, -50%);
       z-index: 1;
       .settingsPlant {
-        margin: 3rem;
+        margin: 2rem;
+        .changeName {
+          display: block;
+          margin: auto;
+          margin-bottom: 1rem;
+          padding: 0;
+          background-color: transparent;
+          border: none;
+          border-bottom: 2px solid #B65B11;
+          outline: 0;
+          color: #C57B3C;
+          font-family: 'Averia Sans Libre';
+          font-size: 36px;
+          text-align: center;
+        }
         .displayName {
           font-size: 36px;
           color: #C57B3C;
@@ -274,10 +288,10 @@ html, body {
           text-align: center;
         }
         h2 {
-          margin: 0;
+          margin: 10px;
         }
         .potStyle {
-          margin-top: 3rem;
+          margin-top: 1rem;
           #potStyle {
             display: flex;
             flex-direction: column;
