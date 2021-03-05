@@ -88,7 +88,7 @@ export default class Webgl {
   }
 
   start(time) {
-    if(time - this.lastTime1 >= 2) {
+    if(time - this.lastTime1 >= 400) {
       this.lastTime1 = time
       this.game.updatePlant()
     }

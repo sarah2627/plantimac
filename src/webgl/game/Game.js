@@ -1,5 +1,5 @@
 export default class Game {
-    constructor(scene, plant, rain, sound, background) {
+    constructor(scene, plant, rain, background, sound) {
         this.scene = scene
         this.plant = plant
         
