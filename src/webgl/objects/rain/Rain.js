@@ -13,15 +13,14 @@ export default class Rain {
             Math.random() * 600 - 300,
             Math.random() * 600 - 300
         )
-        drop.velocity = 0
+        drop.velocity = 0.3
         drop.acceleration = 0.02
         rainGeo.vertices.push(drop)
     }
 
-    const sprite = new TextureLoader().load('../../../../src/assets/images/water-drop.png')
+    const sprite = new TextureLoader().load('../../../../src/assets/images/water-drop.svg')
     const rainMaterial = new PointsMaterial({
-        // color: 0xaaaaaa,
-        size: 0.7,
+        size: 0.6,
         transparent: true,
         map: sprite
     })
@@ -38,9 +37,9 @@ export default class Rain {
         p.velocity += p.acceleration
         p.y -= p.velocity
     
-        if (p.y < -200) {
-        p.y = 200
-        p.velocity = 0
+        if (p.y < -275) {
+          p.y = 275
+          p.velocity = 0
         }
     })
     rainGeo.verticesNeedUpdate = true
