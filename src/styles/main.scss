@@ -139,6 +139,10 @@ html, body {
           border: 0;
           background-color: transparent;
           cursor: pointer;
+          transition: all .8s ease-in;
+        }
+        .btnSubmit:hover {
+          transform: rotate(360deg);
         }
         .missName {
           margin-top: 1rem;
@@ -165,7 +169,6 @@ html, body {
         align-items: flex-end;
         img {
           margin-bottom: 1rem;
-          cursor: pointer;
           border: none;
           outline: none;
           background-color: transparent;
@@ -216,9 +219,6 @@ html, body {
         position: absolute;
         z-index: 1;
         bottom: 50px;
-        .menuLeft {
-          display: flex;
-        }
         button {
           border-radius: 18px;
           width: 100px;
@@ -227,10 +227,20 @@ html, body {
           margin-right: 2rem;
           border: none;
           cursor: pointer;
+          transition: all .3s ease;
           outline: 0;
           img {
             width: 100%;
           }
+        }
+        button:hover {
+          background-color: #C57B3C!important;
+        }
+        .menuLeft {
+          display: flex;
+        }
+        .popUpSettings:hover {
+          background-color: #C57B3C!important;
         }
       }
     }
@@ -247,123 +257,134 @@ html, body {
     .popUp {
       display: none;
       background-color: $bgColor;
-      border-radius: 10%;
+      border-radius: 25px;
       border: 2px solid $textColor;
-      width: 600px;
-      height: 500px;
       display: none;
       position: absolute;
       left: 50%;
       top: 50%;
       transform:translate(-50%, -50%);
       z-index: 1;
-
       .settingsPlant {
-        margin: 3rem 4rem;
+        margin: 3rem;
         .displayName {
-          font-size: 1.5rem;
+          font-size: 36px;
+          color: #C57B3C;
           margin: 0;
           text-align: center;
         }
         h2 {
           margin: 0;
         }
-        #potStyle {
-          display: flex;
-          flex-direction: column;
-          .potColor {
+        .potStyle {
+          margin-top: 3rem;
+          #potStyle {
             display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            align-items: center;
-            margin: 1rem;
-            .choice {
-              position: relative;
-              flex: 1;
+            flex-direction: column;
+            .potColor {
               display: flex;
-              justify-content: center;
+              flex-direction: row;
+              justify-content: space-evenly;
               align-items: center;
-            }
-            .color-1, .color-2, .color-3 {
-              border-radius: 10px;
-              width: 50px;
-              height: 50px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-            .color-1 {
-              background-color: #da5454;
-            }
-            .color-2 {
-              background-color: #B65B11;
-            }
-            .color-3 {
-              background-color: #FFA45B;
-            }
-            #color-1:checked ~ .color-1 {
-              border: 2px solid $secondTextColor;
-            }
-            #color-2:checked ~ .color-2 {
-              border: 2px solid $secondTextColor;
-            }
-            #color-3:checked ~ .color-3 {
-              border: 2px solid $secondTextColor;
-            }
-          }
-          .potStyle {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            margin: 1rem;
-            .choice {
-              position: relative;
-              flex: 1;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              img {
-                padding: 1rem;
+              margin: 1rem;
+              .choice {
+                position: relative;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+              .color-1, .color-2, .color-3 {
+                border-radius: 10px;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              .color-1 {
+                background-color: #da5454;
+                box-sizing: border-box;
+              }
+              .color-2 {
+                background-color: #B65B11;
+                box-sizing: border-box;
+              }
+              .color-3 {
+                background-color: #FFA45B;
+                box-sizing: border-box;
+              }
+              #color-1:checked ~ .color-1 {
+                border: 2px solid $secondTextColor;
+              }
+              #color-2:checked ~ .color-2 {
+                border: 2px solid $secondTextColor;
+              }
+              #color-3:checked ~ .color-3 {
+                border: 2px solid $secondTextColor;
               }
             }
-            .pot-1, .pot-2, .pot-3 {
-              border-radius: 10px;
-              width: 125px;
-              height: 125px;
+            .potStyle {
               display: flex;
+              flex-direction: row;
+              justify-content: space-between;
               align-items: center;
-              justify-content: center;
+              margin: 1rem;
+              .choice {
+                position: relative;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 1rem;
+                img {
+                  padding: 1rem;
+                }
+              }
+              .pot-1, .pot-2, .pot-3 {
+                border-radius: 10px;
+                width: 125px;
+                height: 125px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-sizing: border-box;
+              }
+              #pot-1:checked ~ .pot-1 {
+                border: 2px solid $secondTextColor;
+              }
+              #pot-2:checked ~ .pot-2 {
+                border: 2px solid $secondTextColor;
+              }
+              #pot-3:checked ~ .pot-3 {
+                border: 2px solid $secondTextColor;
+              }
             }
-            #pot-1:checked ~ .pot-1 {
-              border: 2px solid $secondTextColor;
+            label {
+              cursor: pointer;
+              outline: none;
             }
-            #pot-2:checked ~ .pot-2 {
-              border: 2px solid $secondTextColor;
+            .visually-hidden {
+              position: absolute;
+              left: -100vw;
             }
-            #pot-3:checked ~ .pot-3 {
-              border: 2px solid $secondTextColor;
+            .submitSettings {
+              background-color: #FFA45B;
+              color: white;
+              border: none;
+              outline: 0;
+              font-size: 18px;
+              border-radius: 18px;
+              padding: 1rem 2rem;
+              width: 35%;
+              margin: 1rem auto 0 auto;
+              font-family: 'Averia Sans Libre';
+              cursor: pointer;
+              transition: all .3s ease;
             }
-          }
-          label {
-            cursor: pointer;
-            outline: none;
-          }
-          .visually-hidden {
-            position: absolute;
-            left: -100vw;
-          }
-          .submitSettings {
-            background-color: #FFA45B;
-            color: white;
-            border: none;
-            outline: 0;
-            font-size: 18px;
-            border-radius: 18px;
-            padding: 1rem 2rem;
-            width: 35%;
-            margin: 1rem auto 0 auto;
-            font-family: 'SeoulNamsan-CL';
+            .submitSettings:hover {
+              background-color: #C57B3C!important;
+            }
           }
         }
       }
@@ -396,6 +417,35 @@ html, body {
         width: 100%;
       }
     }
+    .canvas .popUp .settingsPlant {
+      margin: 2rem;
+      .potStyle {
+        margin-top: 2rem;
+        #potStyle {
+          .potColor {
+            .choice_color {
+              margin: auto .5rem;
+            }
+          }
+          .potStyle {
+            flex-direction: column; 
+            margin: 0; 
+            .choice {
+              margin: 1rem;
+            }
+            .pot-1, .pot-2, .pot-3 {
+              border-radius: 10px;
+              width: 145px;
+              height: 110px;
+            }
+          }
+          .submitSettings {
+            width: 65%;
+            margin: auto;
+          }
+        }
+      } 
+    }
   }
 }
 
@@ -403,6 +453,22 @@ html, body {
   #app {
     .home {
       width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #app {
+    .canvas {
+      .overlay {
+        .menu {
+          justify-content: center;
+          button {
+            width: 80px;
+            height: 80px;
+          }
+        }
+      }
     }
   }
 }

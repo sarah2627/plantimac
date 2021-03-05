@@ -76,14 +76,16 @@ export default class Game {
             if (this.booleanThirst) {
                 this.booleanThirst = false
                 this.scene.remove(rainR)
+                thirstButton.style.background = '#FFA45B'
             } else {
                 this.booleanThirst = true
                 this.scene.add(rainR)
+                thirstButton.style.background = '#C57B3C'
             }
         })
     }
 
-    /* Add/Remove rain */
+    /* Add/Remove sun */
     initSun() {
         const temps = document.querySelector('#temps')
         const jour = document.querySelector('.jour')
@@ -93,11 +95,13 @@ export default class Game {
             e.preventDefault()
             if (this.booleanSun) {
                 this.booleanSun = false
+                temps.style.background = '#FFA45B'
                 jour.style.display = 'block'
                 nuit.style.display = 'none'
                 this.background.putTheDay()
             } else {
                 this.booleanSun = true
+                temps.style.background = '#C57B3C'
                 jour.style.display = 'none'
                 nuit.style.display = 'block'
                 this.background.putTheNight()

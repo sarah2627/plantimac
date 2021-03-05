@@ -43,12 +43,14 @@ const popUpSettings = document.querySelector('.popUpSettings')
         e.preventDefault()
         overlayPopUp.style.display = 'flex'
         popUp.style.display = 'block'
+        popUpSettings.style.background = '#C57B3C'
     })
 
     overlayPopUp.addEventListener('click', (e) => {
         e.preventDefault()
         overlayPopUp.style.display = 'none'
         popUp.style.display = 'none'
+        popUpSettings.style.background = '#FFA45B'
     })
 
 // SETTINGS
@@ -65,6 +67,7 @@ const btnSubmitSettings = document.querySelector('.submitSettings')
         // Close popup
         overlayPopUp.style.display = 'none'
         popUp.style.display = 'none'
+        popUpSettings.style.background = '#FFA45B'
     })
 }
 
