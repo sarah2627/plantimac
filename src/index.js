@@ -32,7 +32,7 @@ const prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-Z
                 document.querySelector('.changeName').value = valueInput
                 
                 // value of the button submit (1, 2 ou 3)
-                let valueSubmit = element.value
+                let valueSubmit = parseInt(element.value)
                 webgl = new Webgl(valueSubmit)
                 
                 // start and display the webgl game

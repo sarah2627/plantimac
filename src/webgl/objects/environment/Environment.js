@@ -14,6 +14,7 @@ export default class Background {
     // Add sun
     this.sun = new Vector3();
 
+    // Parameters sky
     const effectController = {
       turbidity: 0.15,
       rayleigh: 0.1,
@@ -23,20 +24,18 @@ export default class Background {
       azimuth: 0.35, // Facing front,
       exposure: renderer.toneMappingExposure
     }
-
     const uniforms = this.sky.material.uniforms
     uniforms["turbidity"].value = effectController.turbidity
     uniforms["rayleigh"].value = effectController.rayleigh
     uniforms["mieCoefficient"].value = effectController.mieCoefficient
     uniforms["mieDirectionalG"].value = effectController.mieDirectionalG
-
     const theta = Math.PI * (effectController.inclination - 0.5)
     const phi = 2 * Math.PI * (effectController.azimuth - 0.5)
 
+    // Parameters sun
     this.sun.x = Math.cos(phi)
     this.sun.y = Math.sin(phi) * Math.sin(theta)
     this.sun.z = Math.sin(phi) * Math.cos(theta)
-
     uniforms["sunPosition"].value.copy(this.sun)
 
     renderer.toneMappingExposure = effectController.exposure
@@ -50,6 +49,9 @@ export default class Background {
     scene.add(this.spotlight)
   }
 
+  /**
+   * Switch to the night
+   */
   putTheNight() {
     this.sky.material.uniforms["turbidity"].value = 0.0005
     this.sky.material.uniforms["rayleigh"].value = 0.003
@@ -57,6 +59,9 @@ export default class Background {
     this.spotlight.intensity = 0.2
   }
 
+  /**
+   * Switch to the day
+   */
   putTheDay() {
     this.sky.material.uniforms["turbidity"].value = 0.15
     this.sky.material.uniforms["rayleigh"].value = 0.1

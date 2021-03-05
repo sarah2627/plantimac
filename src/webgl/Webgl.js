@@ -53,10 +53,7 @@ export default class Webgl {
     this.sound = new Sound(this.camera)
     
     /* Game */
-    this.game = new Game(this.scene, this.plant, this.rain, this.background, this.sound)
-    
-    /* Gui */
-    this.setGui()
+    this.game = new Game(this.scene, this.plant, this.rain, this.background)
 
     /* Start animation */
     this.start = this.start.bind(this)
@@ -64,9 +61,6 @@ export default class Webgl {
     /* Plant pot */
     this.style = "pot-1"
     this.addPot(this.style)
-
-    /* Gui */
-    this.setGui();
   }
 
   // POT
@@ -86,11 +80,7 @@ export default class Webgl {
       this.style = style
     }
   }
-
-  setGui() {
-    /* this.cube.setGui(webglGuiFolder) */
-  }
-
+  
   onResize() {
     this.camera.aspect = window.innerWidth / window.innerHeight
     this.camera.updateProjectionMatrix()

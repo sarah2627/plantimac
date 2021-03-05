@@ -11,6 +11,8 @@ export default class Game {
 
         /* Sun */
         this.background = background
+        console.log(this.background)
+        /*console.log(this.rain)*/
         this.initSun()
         this.booleanSun = false
         this.pointsSun = 50
@@ -67,7 +69,7 @@ export default class Game {
     /* Add/Remove rain */
     initThist() {
         const thirstButton = document.querySelector('#thirst')
-        const rainR = this.rain.getRain()
+        const rainR = this.rain.rainObject
         thirstButton.addEventListener('click', (e) => {
             e.preventDefault()
             if (this.booleanThirst) {
