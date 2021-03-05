@@ -13,7 +13,7 @@ let sky, sun
 
 export default class Webgl {
 
-  constructor() {
+  constructor(seed = 1) {
     /* Variables */
     this.lastTime1 = 0
     this.lastTime2 = 0
@@ -45,7 +45,7 @@ export default class Webgl {
     this.background = new Background(this.scene, this.renderer, this.camera)
 
     /* Plant */
-    this.plant = new Plant(this.scene)
+    this.plant = new Plant(this.scene, seed)
 
     /* Rain */
     this.rain = new Rain(this.scene)
@@ -96,8 +96,7 @@ export default class Webgl {
   }
 
   start(time) {
-    
-    if(time - this.lastTime1 >= 2000) {
+    if(time - this.lastTime1 >= 2) {
       this.lastTime1 = time
       this.game.updatePlant()
     }

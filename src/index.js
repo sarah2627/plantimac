@@ -2,13 +2,13 @@ import './styles/main.scss'
 
 import Webgl from './webgl/Webgl'
 
-var webgl = new Webgl()
+var webgl
 
 function interactions() {
+    
 // HOME
 const btnSubmit = document.querySelector('.btnSubmit')
 const home = document.querySelector('.home')
-const canvas = document.querySelector('canvas')
 
 const input = document.querySelector('input')
 const missName = document.querySelector('.missName')
@@ -28,8 +28,9 @@ btnSubmit.addEventListener('click', (e) => {
         let valueInput = input.value
         document.querySelectorAll('.displayName').forEach(i => i.innerHTML = valueInput)
         document.querySelector('.changeName').value = valueInput
+        webgl = new Webgl(1)
         webgl.start()
-        canvas.style.display = 'block'
+        document.querySelector('canvas').style.display = 'block'
         home.style.display = 'none'
     }
 })
