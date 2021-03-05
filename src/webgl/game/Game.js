@@ -11,6 +11,8 @@ export default class Game {
 
         /* Sun */
         this.background = background
+        console.log(this.background)
+        /*console.log(this.rain)*/
         this.initSun()
         this.booleanSun = false
         this.pointsSun = 50

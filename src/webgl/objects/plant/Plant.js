@@ -14,10 +14,10 @@ export default class Plant {
         lSystem = new LSystem("X", {'X' : 'F+F[[X]-XL]-F[-FXL]+XL'}, 10*Math.PI/180, 3)
         break;
       case 3:
-        lSystem = new LSystem("X", {'FFL' : 'FF', 'X' : 'F+F[[XL]-X]-F[-FXL]+X'}, 22*Math.PI/180, 3)
+        lSystem = new LSystem("X", {'FFL' : 'FF', 'X' : 'F+F[[XL]-X]-F[-FXL]+X'}, 25*Math.PI/180, 3)
         break;
       default:
-        lSystem = new LSystem("X", {'X' : 'F+F[[XLL]-XL]-F[-FXLLL]+X'}, 32*Math.PI/180, 3)
+        lSystem = new LSystem("X", {'X' : 'F+F[[XLL]-XL]-FLL[-XLL]+X'}, 30*Math.PI/180, 3)
     }
     this.plant = lSystem.shape
     this.partPlant = 0
