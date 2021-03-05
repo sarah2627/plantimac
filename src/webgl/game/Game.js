@@ -123,10 +123,11 @@ export default class Game {
             e.preventDefault()
             if (this.booleanAudio) {
                 this.booleanAudio = false
+                console.log(this.booleanAudio)
             } else {
                 this.booleanAudio = true
+                console.log(this.booleanAudio)
             }
         })
     }
-
 }

@@ -53,7 +53,7 @@ export default class Webgl {
     this.sound = new Sound(this.camera)
     
     /* Game */
-    this.game = new Game(this.scene, this.plant, this.rain, this.background)
+    this.game = new Game(this.scene, this.plant, this.rain, this.sound, this.background)
 
     /* Start animation */
     this.start = this.start.bind(this)

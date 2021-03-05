@@ -189,7 +189,7 @@ html, body {
       .sound {
         position: absolute;
         z-index: 1;
-        left: 12rem;
+        left: 4rem;
         width: 50px;
         height: 115px;
         background-color: transparent;
@@ -199,6 +199,7 @@ html, body {
         img {
           width: 80%;
           margin-bottom: 1rem;
+          cursor: pointer;
         }
       }
       .infosPlant {
