@@ -377,23 +377,26 @@ html, body {
               }
               .color-1, .color-2, .color-3 {
                 border-radius: 10px;
-                width: 50px;
-                height: 50px;
+                width: 75px;
+                height: 75px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                box-sizing: border-box;
+              }              
+              .colored-1, .colored-2, .colored-3 {
+                border-radius: 10px;
+                width: 50px;
+                height: 50px;
               }
-              .color-1 {
+              .colored-1 {
                 background-color: #da5454;
-                box-sizing: border-box;
               }
-              .color-2 {
+              .colored-2 {
                 background-color: #B65B11;
-                box-sizing: border-box;
               }
-              .color-3 {
+              .colored-3 {
                 background-color: #FFA45B;
-                box-sizing: border-box;
               }
               #color-1:checked ~ .color-1 {
                 border: 2px solid $secondTextColor;
