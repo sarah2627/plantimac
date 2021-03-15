@@ -1,5 +1,5 @@
 export default class Game {
-    constructor(scene, plant, rain, background, sound) {
+    constructor(scene, plant, rain, sound, soundRain, background) {
         this.scene = scene
         this.plant = plant
         
@@ -21,6 +21,8 @@ export default class Game {
         this.sound = sound
         this.initSound()
         this.booleanAudio = false
+        // Rain sound effect
+        this.soundRain = soundRain
     }
 
     updatePlant() {
@@ -76,10 +78,12 @@ export default class Game {
                 this.booleanThirst = false
                 this.scene.remove(rainR)
                 thirstButton.style.background = '#FFA45B'
+                this.soundRain.playSound(this.booleanThirst, 'pluie.mp3')
             } else {
                 this.booleanThirst = true
                 this.scene.add(rainR)
                 thirstButton.style.background = '#C57B3C'
+                this.soundRain.playSound(this.booleanThirst, 'pluie.mp3')
             }
         })
     }
@@ -118,15 +122,21 @@ export default class Game {
     /* Add/Remove sound */
     initSound() {
         const sound = document.querySelector('.sound')
+        const speaker = document.querySelector('.speaker')
+        const speakerStop = document.querySelector('.speakerStop')
 
         sound.addEventListener('click', (e) => {
             e.preventDefault()
             if (this.booleanAudio) {
+                this.sound.playSound(this.booleanAudio, 'oiseaux.ogg')
+                speaker.style.display = 'flex'
+                speakerStop.style.display = 'none'
                 this.booleanAudio = false
-                console.log(this.booleanAudio)
             } else {
+                this.sound.playSound(this.booleanAudio, 'oiseaux.ogg')
+                speaker.style.display = 'none'
+                speakerStop.style.display = 'flex'
                 this.booleanAudio = true
-                console.log(this.booleanAudio)
             }
         })
     }
