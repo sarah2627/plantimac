@@ -1,5 +1,8 @@
+import Sound from '../objects/sound/Sound'
+
 export default class Game {
-    constructor(scene, plant, rain, sound, soundRain, background) {
+    constructor(camera, scene, plant, rain, background) {
+        this.camera = camera
         this.scene = scene
         this.plant = plant
         
@@ -11,18 +14,16 @@ export default class Game {
 
         /* Sun */
         this.background = background
-        console.log(this.background)
-        /*console.log(this.rain)*/
         this.initSun()
         this.booleanSun = false
         this.pointsSun = 50
 
         /* Sound */
-        this.sound = sound
-        this.initSound()
+        this.soundBirds = new Sound(this.camera, this.scene, 'oiseaux.ogg')
+        this.soundRain = new Sound(this.camera, this.scene, 'pluie.mp3')
+        this.sounds = [this.soundBirds, this.soundRain]
         this.booleanAudio = false
-        // Rain sound effect
-        this.soundRain = soundRain
+        this.initSound()
     }
 
     updatePlant() {
@@ -78,13 +79,12 @@ export default class Game {
                 this.booleanThirst = false
                 this.scene.remove(rainR)
                 thirstButton.style.background = '#FFA45B'
-                this.soundRain.playSound(this.booleanThirst, 'pluie.mp3')
             } else {
                 this.booleanThirst = true
                 this.scene.add(rainR)
                 thirstButton.style.background = '#C57B3C'
-                this.soundRain.playSound(this.booleanThirst, 'pluie.mp3')
             }
+            this.soundRain.toggleSound(this.booleanThirst)
         })
     }
     
@@ -109,6 +109,7 @@ export default class Game {
                 jour.style.display = 'block'
                 nuit.style.display = 'none'
                 this.background.putTheDay()
+                
             } else {
                 this.booleanSun = true
                 temps.style.background = '#C57B3C'
@@ -116,6 +117,7 @@ export default class Game {
                 nuit.style.display = 'block'
                 this.background.putTheNight()
             }
+            this.soundBirds.toggleSound(this.booleanSun)
         })
     }
 
@@ -128,16 +130,19 @@ export default class Game {
         sound.addEventListener('click', (e) => {
             e.preventDefault()
             if (this.booleanAudio) {
-                this.sound.playSound(this.booleanAudio, 'oiseaux.ogg')
                 speaker.style.display = 'flex'
                 speakerStop.style.display = 'none'
                 this.booleanAudio = false
             } else {
-                this.sound.playSound(this.booleanAudio, 'oiseaux.ogg')
                 speaker.style.display = 'none'
                 speakerStop.style.display = 'flex'
                 this.booleanAudio = true
             }
+            // Mute all sounds
+            const booleanAudio = this.booleanAudio
+            this.sounds.forEach(function(item) {
+                item.toggleMuteSound(booleanAudio)
+            })
         })
     }
 }

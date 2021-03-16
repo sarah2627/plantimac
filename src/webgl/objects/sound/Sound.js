@@ -1,61 +1,47 @@
-import { AudioListener,  Audio, AudioLoader } from 'three'
-
-let sound, sound1
+import { AudioListener, Audio, AudioLoader } from 'three'
 
 export default class Sound {
 
-    constructor(camera, pathImg) {
+    constructor(camera, scene, pathImg) {
 
-        const listener = new AudioListener()
-        camera.add(listener)
+        // instantiate a listener
+        const audioListener = new AudioListener()
+
+        // add the listener to the camera
+        camera.add(audioListener)
+
+        // instantiate audio object
+        const sound1 = new Audio(audioListener)
+
+        // add the audio object to the scene
+        scene.add(sound1)
         
-        // load a sound and set it as the Audio object's buffer
+        // instantiate a loader
         const audioLoader = new AudioLoader()
 
-        if(pathImg === "oiseaux.ogg") {
-            // create a global audio source
-            sound = new Audio(listener)
+        // load a resource
+        audioLoader.load('../../src/assets/sounds/' + pathImg, function(buffer) {
+            sound1.setBuffer(buffer);
+            sound1.setLoop(true);
+            sound1.setVolume(0.5);
+        })
+        this.sound1 = sound1
+    }
 
-            audioLoader.load('../../src/assets/sounds/' + pathImg, function(buffer) {
-                sound.setBuffer(buffer);
-                sound.setLoop(true);
-                sound.setVolume(0.5);
-                sound.play()
-            })
-        }
-
-        if(pathImg === "pluie.mp3") {
-            // create a global audio source
-            sound1 = new Audio(listener)
-
-            audioLoader.load('../../src/assets/sounds/' + pathImg, function(buffer) {
-                sound1.setBuffer(buffer);
-                sound1.setLoop(true);
-                sound1.setVolume(0.5);
-            })
+    toggleSound(booleanAudio) {
+        if(booleanAudio) {
+            this.sound1.play()
+        } else {
+            this.sound1.stop()
         }
     }
 
-    playSound(booleanAudio, pathImg) {
-
-        if ((booleanAudio) && (pathImg === 'oiseaux.ogg')) {
-            sound.play()
-        } else if ((booleanAudio === 'false') && (pathImg === 'oiseaux.ogg')){
-            console.log('stop Oiseaux 2', booleanAudio)
-            sound.stop()
+    toggleMuteSound(booleanMuteAudio) {
+        if(booleanMuteAudio) {
+            this.sound1.setVolume(0)
         } else {
-            return
-        }
-
-        if ((booleanAudio) && (pathImg === 'pluie.mp3')) {
-            sound1.play()
-            console.log("tesssst")
-        } else if ((booleanAudio === 'false') && (pathImg === 'pluie.mp3')) {
-            sound1.stop()
-            console.log("tesssst2")
-        } else {
-            console.log("tesssst3")
-            return
+            this.sound1.setVolume(0.5)
         }
     }
+
 }
