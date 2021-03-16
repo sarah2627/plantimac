@@ -222,20 +222,23 @@ html, body {
           margin: 20px 0 0 0;
         }
         .needsPlant {
-          display: none;
+          display: block;
+          justify-content: center;
           position: absolute;
           top: 10rem;
           right: 10rem;
-          width: 250px;
+          width: 230px;
           height: 150px;
-          border-radius: 100%;
+          //border-radius: 100%;
           text-align: center;
           font-size: 1.5rem;
-          background-color: #FCFCFC;
+          //background-color: #FCFCFC;
+          background-image: url(/src/assets/images/bulle.svg);
+          background-size: contain;
           padding: 10px;
-          p {
-            margin: 0;
-            line-height: 150px;
+          .needsImage {
+            width: 40%;
+            margin: 25px;
           }
         }
         .bars {

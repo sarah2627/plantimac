@@ -28,21 +28,26 @@ export default class Game {
 
     updatePlant() {
         const bubble = document.querySelector('.needsPlant')
-        const bubbleNeed = bubble.querySelector('.needs')
+        //const bubbleNeed = document.querySelector('.needs')
+        const needsImage = document.querySelector('.needsImage')
 
         if(this.pointsThirst > 25 && this.pointsThirst < 75 && this.pointsSun > 25 && this.pointsSun < 75) {
             bubble.style.display = 'none'
             this.plant.update()
         } else {
-            bubble.style.display = 'block'
+            bubble.style.display = 'block' 
             if (this.pointsThirst <= 25) {
-                bubbleNeed.innerHTML = "J'ai soif"
+                needsImage.src  = 'src/assets/images/thirst_2.png'
+                //bubbleNeed.innerHTML = "J'ai soif"
             } else if (this.pointsThirst >= 75) {
-                bubbleNeed.innerHTML = "Je me noie"
+                needsImage.src  = 'src/assets/images/thirst_1.png'
+                //bubbleNeed.innerHTML = "Je me noie"
             } else if (this.pointsSun <= 25) {
-                bubbleNeed.innerHTML = "J'ai froid"
+                needsImage.src  = 'src/assets/images/sun_1.png'
+                //bubbleNeed.innerHTML = "J'ai froid"
             } else if (this.pointsSun >= 75) {
-                bubbleNeed.innerHTML = "J'ai chaud"
+                needsImage.src  = 'src/assets/images/sun_2.png'
+                //bubbleNeed.innerHTML = "J'ai chaud"
             }
         }
     }
