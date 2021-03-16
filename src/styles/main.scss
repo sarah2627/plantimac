@@ -233,10 +233,14 @@ html, body {
           text-align: center;
           font-size: 1.5rem;
           //background-color: #FCFCFC;
-          background-image: url(/src/assets/images/bulle.svg);
           background-size: contain;
           padding: 10px;
+          .bubbleImage {
+            width: 100%;
+          }
           .needsImage {
+            position: absolute;
+            left: 3.5rem;
             width: 40%;
             margin: 25px;
           }
