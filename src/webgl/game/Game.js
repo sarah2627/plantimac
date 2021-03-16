@@ -18,10 +18,16 @@ export default class Game {
         this.booleanSun = false
         this.pointsSun = 50
 
+        /* Bubble */
+        this.booleanBubble = false
+
         /* Sound */
-        this.soundBirds = new Sound(this.camera, this.scene, 'oiseaux.ogg')
+        this.soundAmbiance = new Sound(this.camera, this.scene, 'ambiance.mp3')
+        this.soundNight = new Sound(this.camera, this.scene, 'night.mp3')
         this.soundRain = new Sound(this.camera, this.scene, 'pluie.mp3')
-        this.sounds = [this.soundBirds, this.soundRain]
+        this.soundButton = new Sound(this.camera, this.scene, 'button.ogg')
+        this.soundBubble = new Sound(this.camera, this.scene, 'bubble.mp3')
+        this.sounds = [this.soundAmbiance, this.soundNight, this.soundRain, this.soundButton, this.soundBubble]
         this.booleanAudio = false
         this.initSound()
     }
@@ -35,6 +41,7 @@ export default class Game {
             this.plant.update()
         } else {
             bubble.style.display = 'block'
+            this.booleanBubble = true
             if (this.pointsThirst <= 25) {
                 bubbleNeed.innerHTML = "J'ai soif"
             } else if (this.pointsThirst >= 75) {
@@ -85,6 +92,7 @@ export default class Game {
                 thirstButton.style.background = '#C57B3C'
             }
             this.soundRain.toggleSound(this.booleanThirst)
+            this.soundButton.toggleSound(this.booleanThirst)
         })
     }
     
@@ -109,7 +117,6 @@ export default class Game {
                 jour.style.display = 'block'
                 nuit.style.display = 'none'
                 this.background.putTheDay()
-                
             } else {
                 this.booleanSun = true
                 temps.style.background = '#C57B3C'
@@ -117,7 +124,8 @@ export default class Game {
                 nuit.style.display = 'block'
                 this.background.putTheNight()
             }
-            this.soundBirds.toggleSound(this.booleanSun)
+            this.soundNight.toggleSound(this.booleanSun)
+            this.soundButton.toggleSound(this.booleanSun)
         })
     }
 

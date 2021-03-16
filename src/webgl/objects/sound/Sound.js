@@ -23,7 +23,13 @@ export default class Sound {
         audioLoader.load('../../src/assets/sounds/' + pathImg, function(buffer) {
             sound1.setBuffer(buffer);
             sound1.setLoop(true);
-            sound1.setVolume(0.5);
+            if(pathImg === "button.ogg" || pathImg === "bubble.mp3") {
+                sound1.setLoop(false);
+            }
+            sound1.setVolume(0.1);
+            if(pathImg === "ambiance.mp3") {
+                sound1.play()
+            }
         })
         this.sound1 = sound1
     }
@@ -40,7 +46,7 @@ export default class Sound {
         if(booleanMuteAudio) {
             this.sound1.setVolume(0)
         } else {
-            this.sound1.setVolume(0.5)
+            this.sound1.setVolume(0.1)
         }
     }
 
