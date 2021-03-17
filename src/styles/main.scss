@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'SeoulNamsan-CL';
-  src:url('../assets/fonts/SeoulNamsan-CL.ttf.woff') format('woff'),
-      url('../assets/fonts/SeoulNamsan-CL.ttf.svg#SeoulNamsan-CL') format('svg'),
-      url('../assets/fonts/SeoulNamsan-CL.ttf.eot'),
-      url('../assets/fonts/SeoulNamsan-CL.ttf.eot?#iefix') format('embedded-opentype'); 
+  src: url('../assets/fonts/SeoulNamsan-CL.ttf.woff') format('woff'),
+    url('../assets/fonts/SeoulNamsan-CL.ttf.svg#SeoulNamsan-CL') format('svg'),
+    url('../assets/fonts/SeoulNamsan-CL.ttf.eot'),
+    url('../assets/fonts/SeoulNamsan-CL.ttf.eot?#iefix') format('embedded-opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -12,76 +12,86 @@
   font-family: 'Averia Sans Libre';
   font-style: normal;
   font-weight: 400;
-  src: url('../assets/fonts/averia-sans-libre-v9-latin-regular.eot'); /* IE9 Compat Modes */
+  src: url('../assets/fonts/averia-sans-libre-v9-latin-regular.eot');
   src: local(''),
-       url('../assets/fonts/averia-sans-libre-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../assets/fonts/averia-sans-libre-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../assets/fonts/averia-sans-libre-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('../assets/fonts/averia-sans-libre-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('../assets/fonts/averia-sans-libre-v9-latin-regular.svg#AveriaSansLibre') format('svg'); /* Legacy iOS */
+    url('../assets/fonts/averia-sans-libre-v9-latin-regular.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/averia-sans-libre-v9-latin-regular.woff2') format('woff2'),
+    url('../assets/fonts/averia-sans-libre-v9-latin-regular.woff') format('woff'),
+    url('../assets/fonts/averia-sans-libre-v9-latin-regular.ttf') format('truetype'),
+    url('../assets/fonts/averia-sans-libre-v9-latin-regular.svg#AveriaSansLibre') format('svg');
 }
 
 $bgColor: #FFFAE8;
-$textColor: #000000;
-$secondTextColor: #C57B3C;
+$color1: #000000;
+$color2: #C57B3C;
+$color3: #FFA45B;
 
-html, body {
-  padding: 0px;
-  margin: 0px;
+html,
+body {
+  position: relative;
   background-color: $bgColor;
+  color: $color1;
+  margin: 0px;
+  padding: 0px;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  position: relative;
   font-family: 'Averia Sans Libre';
-  color: $textColor;
 }
 
 #app {
   width: 100%;
   height: 100%;
-  .home {
+
+  #home {
     position: absolute;
-    z-index: 999999;
-    justify-content: center;
+    background-color: $bgColor;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    background-color: $bgColor;
-    p {
-      font-family: 'SeoulNamsan-CL';
+    z-index: 1;
+
+    .instructions {
       position: absolute;
       margin: 0;
-      top: 1rem;
-      left: 1rem;
-      font-weight: 300;
-      font-size: 36px;
+      top: 15px;
+      left: 15px;
       display: flex;
       align-items: center;
+      font-family: 'SeoulNamsan-CL';
+      font-size: 36px;
+      font-weight: 300;
+
       img {
         width: 40px;
-        margin-left: 1rem;
+        margin-left: 15px;
       }
     }
+
     h1 {
       pointer-events: none;
       text-align: center;
       font-size: 64px;
       font-weight: 300;
+
       span {
         font-weight: 400;
-        color: $secondTextColor;
+        color: $color2;
       }
     }
+
     #setupApp {
       text-align: center;
-      .wrapInput {
+
+      #wrapInput {
         width: 100%;
         position: relative;
-        border-bottom: 2px solid $textColor;
+        border-bottom: 2px solid $color1;
         margin: 2rem 0 1rem 0;
+
         .input {
           display: block;
           width: 700px;
@@ -91,11 +101,12 @@ html, body {
           font-weight: 400;
           padding: 0;
           background-color: transparent;
-          color: $secondTextColor;
+          color: $color2;
           border: none;
           outline: 0;
           font-family: 'Averia Sans Libre';
         }
+
         .animationBorder {
           position: absolute;
           display: block;
@@ -105,6 +116,7 @@ html, body {
           left: 0;
           pointer-events: none;
         }
+
         .animationBorder::before {
           content: "";
           display: block;
@@ -114,8 +126,9 @@ html, body {
           width: 0;
           height: 2px;
           transition: all 0.4s;
-          background: linear-gradient(45deg, #FFA45B, #B65B11);
+          background: linear-gradient(45deg, $color3, $color2);
         }
+
         .animationBorder::after {
           display: block;
           width: 100%;
@@ -124,18 +137,22 @@ html, body {
           left: 0;
           transition: all 0.4s;
         }
-        .input:focus + .animationBorder::before {
+
+        .input:focus+.animationBorder::before {
           width: 100%;
         }
       }
-      .wrapSubmit {
+
+      #wrapSubmit {
         display: flex;
         flex-direction: column;
         margin-top: 5rem;
         justify-content: center;
+
         .seed {
           display: flex;
           flex-direction: row;
+
           .btnSubmit {
             margin: auto;
             outline: 0;
@@ -144,120 +161,126 @@ html, body {
             cursor: pointer;
             transition: transform .8s ease-in;
           }
+
           .btnSubmit:hover {
             transform: rotate(360deg);
           }
+
           img {
             width: 100%;
           }
         }
+
         .missName {
           margin-top: 1rem;
-        }      
+        }
       }
     }
   }
-  .canvas {
+
+  #canvas {
     position: relative;
-    .overlay {
+    display: none;
+
+    #overlay {
       width: 80%;
       margin: auto;
-      .jour-nuit {
+
+      #menuInfosGame {
         position: absolute;
-        z-index: 1;
-        width: 50px;
-        height: 115px;
-        border-radius: 0 0 25px 25px;
-        background-color: rgba($color: $secondTextColor, $alpha: 0.75);
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        img {
-          margin-bottom: 1rem;
-          border: none;
-          outline: none;
-          background-color: transparent;
-          width: 80%;
+
+        >div {
+          width: 50px;
+          height: 115px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: flex-end;
+
+          img {
+            margin-bottom: 10px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            width: 80%;
+          }
         }
-        .jour {
-          display: block;
+
+        #infosDayNight {
+          border-radius: 0 0 25px 25px;
+          background-color: rgba($color: $color2, $alpha: 0.75);
+
+          #infosDay {
+            display: block;
+          }
+
+          #infosNight {
+            display: none;
+          }
         }
-        .nuit {
-          display: none;
+
+        #sound {
+          margin-left: 4px;
+
+          img {
+            cursor: pointer;
+          }
+
+          #speakerStop {
+            display: none;
+          }
         }
+
       }
-      .sound {
-        position: absolute;
-        z-index: 1;
-        left: 4rem;
-        width: 50px;
-        height: 115px;
-        background-color: transparent;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        img {
-          width: 80%;
-          margin-bottom: 1rem;
-          cursor: pointer;
-        }
-      }
-      // .speaker {
-      //   display: none;
-      // }
-      .speakerStop {
-        display: none;
-      }
-      .infosPlant {
-        display: flex;
-        justify-content: center;
-        .displayName {
+
+      #infosPlant {
+
+        #displayName {
           position: absolute;
           font-size: 52px;
           font-weight: 400;
-          color: $secondTextColor;
+          color: $color2;
           width: 100%;
           text-align: center;
           left: 0;
           margin: 20px 0 0 0;
         }
-        .needsPlant {
+
+        #needsPlant {
           display: block;
-          justify-content: center;
           position: absolute;
-          top: 10rem;
-          right: 10rem;
+          top: 20vh;
+          right: 20vw;
           width: 230px;
-          height: 150px;
-          //border-radius: 100%;
-          text-align: center;
-          font-size: 1.5rem;
-          //background-color: #FCFCFC;
-          background-size: contain;
           padding: 10px;
-          .bubbleImage {
+
+          #bubbleImage {
             width: 100%;
           }
-          .needsImage {
+
+          #needsImage {
             position: absolute;
-            left: 3.5rem;
+            left: 55px;
             width: 40%;
             margin: 25px;
           }
         }
-        .bars {
+
+        #menuBars {
           color: #FCFCFC;
           position: absolute;
           right: 20px;
           top: 20px;
           text-align: right;
-          >.bar{
+
+          >.bar {
             margin-bottom: 10px;
+
             .imgBar {
               width: 30px;
               vertical-align: middle;
               margin: 0 3px;
             }
+
             .meter {
               display: inline-block;
               vertical-align: middle;
@@ -265,306 +288,229 @@ html, body {
               background-color: #FCFCFC;
               padding: 3px;
               border-radius: 5px;
-              /*box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);*/
+
               &#barGrowth {
                 width: 300px;
+
                 span {
                   height: 15px;
                 }
               }
+
               span {
                 display: block;
                 height: 22px;
                 background-color: #5bffa4;
                 border-radius: 5px;
                 transition: width 500ms ease-in-out;
+
                 &.danger {
-                  background-color: #FFA45B;
+                  background-color: $color3;
                 }
+
                 &.danger {
-                  background-color: #FFA45B;
+                  background-color: $color3;
                 }
               }
             }
           }
         }
       }
-      .menu {
+
+      #menuButtons {
         width: 80%;
         display: flex;
         justify-content: space-between;
         position: absolute;
-        z-index: 1;
         bottom: 50px;
+
         button {
           border-radius: 18px;
           width: 100px;
           height: 100px;
-          background-color: #FFA45B;
+          background-color: $color3;
           margin-right: 2rem;
           border: none;
           cursor: pointer;
           transition: all .3s ease;
           outline: 0;
+
           img {
             width: 100%;
           }
+
+          &:hover {
+            background-color: $color2 !important;
+          }
         }
-        button:hover {
-          background-color: #C57B3C!important;
-        }
-        .menuLeft {
+
+        #menuButtonsActions {
           display: flex;
         }
-        .popUpSettings {
+
+        #popUpSettings {
           margin-right: 0;
-        }
-        .popUpSettings:hover {
-          background-color: #C57B3C!important;
         }
       }
     }
-    .overlayPopUp {
+
+    #overlayPopUp {
       display: none;
-      justify-content: center;
-      align-items: center;
       position: absolute;
-      z-index: 1;
       width: 100%;
       height: 100%;
       background-color: rgba($color: #000000, $alpha: 0.7);
     }
-    .popUp {
+
+    #popUp {
+      width: 85%;
+      max-width: 500px;
       display: none;
       background-color: $bgColor;
       border-radius: 25px;
-      border: 2px solid $textColor;
+      border: 2px solid $color2;
       display: none;
       position: absolute;
       left: 50%;
       top: 50%;
-      transform:translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      padding: 25px;
       z-index: 1;
-      .settingsPlant {
-        margin: 2rem;
-        .changeName {
-          display: block;
-          margin: auto;
-          margin-bottom: 1rem;
-          padding: 0;
-          background-color: transparent;
-          border: none;
-          border-bottom: 2px solid #B65B11;
-          outline: 0;
-          color: #C57B3C;
-          font-family: 'Averia Sans Libre';
-          font-size: 36px;
-          text-align: center;
-        }
-        .displayName {
-          font-size: 36px;
-          color: #C57B3C;
-          margin: 0;
-          text-align: center;
-        }
-        h2 {
-          margin: 10px;
-        }
-        .potStyle {
-          margin-top: 1rem;
-          #potStyle {
-            display: flex;
-            flex-direction: column;
-            .potColor {
-              display: flex;
-              flex-direction: row;
-              justify-content: space-evenly;
-              align-items: center;
-              margin: 1rem;
-              .choice {
-                position: relative;
-                flex: 1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              }
-              .color-1, .color-2, .color-3 {
-                border-radius: 10px;
-                width: 75px;
-                height: 75px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-sizing: border-box;
-              }              
-              .colored-1, .colored-2, .colored-3 {
-                border-radius: 10px;
-                width: 50px;
-                height: 50px;
-              }
-              .colored-1 {
-                background-color: #da5454;
-              }
-              .colored-2 {
-                background-color: #B65B11;
-              }
-              .colored-3 {
-                background-color: #FFA45B;
-              }
-              #color-1:checked ~ .color-1 {
-                border: 2px solid $secondTextColor;
-              }
-              #color-2:checked ~ .color-2 {
-                border: 2px solid $secondTextColor;
-              }
-              #color-3:checked ~ .color-3 {
-                border: 2px solid $secondTextColor;
-              }
+
+      #changeName {
+        display: block;
+        margin: auto;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid #B65B11;
+        outline: 0;
+        color: $color2;
+        font-family: 'Averia Sans Libre';
+        font-size: 36px;
+        text-align: center;
+      }
+
+      p {
+        margin: 0 10px;
+      }
+
+      #potSettings {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+
+        .potSetting {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+          margin: 15px 0;
+
+          .choice {
+            margin: 0 5px;
+
+            input {
+              visibility: hidden;
+              position: absolute;
             }
-            .potStyle {
-              display: flex;
-              flex-direction: row;
-              justify-content: space-between;
-              align-items: center;
-              margin: 1rem;
-              .choice {
-                position: relative;
-                flex: 1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 1rem;
-                img {
-                  padding: 1rem;
-                }
-              }
-              .pot-1, .pot-2, .pot-3 {
-                border-radius: 10px;
-                width: 125px;
-                height: 125px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-sizing: border-box;
-              }
-              #pot-1:checked ~ .pot-1 {
-                border: 2px solid $secondTextColor;
-              }
-              #pot-2:checked ~ .pot-2 {
-                border: 2px solid $secondTextColor;
-              }
-              #pot-3:checked ~ .pot-3 {
-                border: 2px solid $secondTextColor;
-              }
+
+            input:checked~label {
+              border: 2px solid $color2;
             }
+
             label {
               cursor: pointer;
               outline: none;
+              border-radius: 10px;
+              width: 100px;
+              height: 100px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-sizing: border-box;
+
+              div,
+              img {
+                border-radius: 10px;
+                width: 75px;
+                height: 75px;
+              }
+
+              #colored1 {
+                background-color: #DA5454;
+              }
+
+              #colored2 {
+                background-color: #B65B11;
+              }
+
+              #colored3 {
+                background-color: #FFA45B;
+              }
             }
-            .visually-hidden {
-              position: absolute;
-              left: -100vw;
-            }
-            .submitSettings {
-              background-color: #FFA45B;
-              color: white;
-              border: none;
-              outline: 0;
-              font-size: 18px;
-              border-radius: 18px;
-              padding: 1rem 2rem;
-              width: 35%;
-              margin: 1rem auto 0 auto;
-              font-family: 'Averia Sans Libre';
-              cursor: pointer;
-              transition: all .3s ease;
-            }
-            .submitSettings:hover {
-              background-color: #C57B3C!important;
-            }
+          }
+        }
+
+        #submitSettings {
+          background-color: $color3;
+          color: #FFFFFF;
+          border: none;
+          outline: 0;
+          font-size: 18px;
+          border-radius: 18px;
+          padding: 15px 25px;
+          width: 150px;
+          margin: 15px auto 0 auto;
+          font-family: 'Averia Sans Libre';
+          line-height: 20px;
+          cursor: pointer;
+          transition: all .3s ease;
+
+          &:hover {
+            background-color: $color2;
           }
         }
       }
     }
-    canvas {
-      display: none;
-    }
   }
 }
 
-
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   #app {
-    .home {
-      padding: 2rem;
-      width: auto;
-      p {
+    #home {
+      .instructions {
         font-size: 22px;
-        top: 2rem;
-        left: 2rem;
+        top: 8px;
+        left: 8px;
+
         img {
-          margin-left: .5rem;
+          margin-left: 8px;
         }
       }
+
       h1 {
         font-size: 36px;
       }
-      #setupApp .wrapInput .input {
+
+      #setupApp #wrapInput .input {
         font-size: 26px;
         width: 100%;
       }
     }
-    .canvas .popUp .settingsPlant {
-      margin: 2rem;
-      .potStyle {
-        margin-top: 2rem;
-        #potStyle {
-          .potColor {
-            .choice_color {
-              margin: auto .5rem;
-            }
-          }
-          .potStyle {
-            flex-direction: column; 
-            margin: 0; 
-            .choice {
-              margin: 1rem;
-            }
-            .pot-1, .pot-2, .pot-3 {
-              border-radius: 10px;
-              width: 145px;
-              height: 110px;
-            }
-          }
-          .submitSettings {
-            width: 65%;
-            margin: auto;
-          }
-        }
-      } 
-    }
-  }
-}
 
-@media screen and (min-width: 600px) and (max-width: 800px) {
-  #app {
-    .home {
-      width: 100%;
-    }
-  }
-}
-
-@media screen and (max-width: 600px) {
-  #app {
-    .canvas {
-      .overlay {
-        .menu {
-          justify-content: center;
+    #canvas {
+      #overlay {
+        #menuButtons {
           button {
             width: 80px;
             height: 80px;
           }
         }
+      }
+
+      #popUp {
+        padding: 20px;
       }
     }
   }

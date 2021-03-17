@@ -15,7 +15,7 @@ export default class Rain {
       drop.acceleration = 0.02
       this.rainGeometry.vertices.push(drop)
     }
-    const sprite = new TextureLoader().load('../../../../src/assets/images/water-drop.svg')
+    const sprite = new TextureLoader().load('../../../../src/assets/images/waterDrop.svg')
     const rainMaterial = new PointsMaterial({
       size: 0.6,
       transparent: true,

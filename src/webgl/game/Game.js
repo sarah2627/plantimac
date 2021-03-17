@@ -6,58 +6,62 @@ export default class Game {
         this.scene = scene
         this.plant = plant
         
-        /* Thirst */
+        // Thirst
         this.rain = rain
         this.initThist()
         this.booleanThirst = false
         this.pointsThirst = 50
 
-        /* Sun */
+        // Sun
         this.background = background
         this.initSun()
         this.booleanSun = false
         this.pointsSun = 50
 
-        /* Bubble */
+        // Bubble
         this.booleanBubble = false
 
-        /* Sound */
-        this.soundAmbiance = new Sound(this.camera, this.scene, 'ambiance.mp3')
+        // Sounds
+        this.soundAmbient = new Sound(this.camera, this.scene, 'ambient.mp3')
         this.soundNight = new Sound(this.camera, this.scene, 'night.mp3')
-        this.soundRain = new Sound(this.camera, this.scene, 'pluie.mp3')
+        this.soundRain = new Sound(this.camera, this.scene, 'rain.mp3')
         this.soundButton = new Sound(this.camera, this.scene, 'button.ogg')
         this.soundBubble = new Sound(this.camera, this.scene, 'bubble.mp3')
-        this.sounds = [this.soundAmbiance, this.soundNight, this.soundRain, this.soundButton, this.soundBubble]
+        this.sounds = [this.soundAmbient, this.soundNight, this.soundRain, this.soundButton, this.soundBubble]
         this.booleanAudio = false
         this.initSound()
     }
 
+    /* Update plant : bubble and growth */
     updatePlant() {
-        const bubble = document.querySelector('.needsPlant')
-        //const bubbleNeed = document.querySelector('.needs')
-        const needsImage = document.querySelector('.needsImage')
+        const bubble = document.querySelector('#needsPlant')
+        const needsImage = document.querySelector('#needsImage')
 
         if(this.pointsThirst > 25 && this.pointsThirst < 75 && this.pointsSun > 25 && this.pointsSun < 75) {
             bubble.style.display = 'none'
             this.plant.update()
         } else {
-            bubble.style.display = 'block' 
+            if(bubble.style.display === 'none') {
+                this.soundBubble.playSound()
+                bubble.style.display = 'block' 
+            }
             if (this.pointsThirst <= 25) {
-                needsImage.src  = 'src/assets/images/thirst_2.png'
-                //bubbleNeed.innerHTML = "J'ai soif"
+                //J'ai soif
+                needsImage.src  = 'src/assets/images/thirst1.png'
             } else if (this.pointsThirst >= 75) {
-                needsImage.src  = 'src/assets/images/thirst_1.png'
-                //bubbleNeed.innerHTML = "Je me noie"
+                //Je me noie
+                needsImage.src  = 'src/assets/images/thirst2.png'
             } else if (this.pointsSun <= 25) {
-                needsImage.src  = 'src/assets/images/sun_1.png'
-                //bubbleNeed.innerHTML = "J'ai froid"
+                //J'ai froid
+                needsImage.src  = 'src/assets/images/sun1.png'
             } else if (this.pointsSun >= 75) {
-                needsImage.src  = 'src/assets/images/sun_2.png'
-                //bubbleNeed.innerHTML = "J'ai chaud"
+                //J'ai chaud
+                needsImage.src  = 'src/assets/images/sun2.png'
             }
         }
     }
 
+    /* Update points plant and bars */
     updatePointsPlant() {
         this.pointsThirst += this.booleanThirst ? 1 : -1
         if (this.pointsThirst <= 0) {
@@ -65,7 +69,7 @@ export default class Game {
         } else if (this.pointsThirst >= 100) {
             this.pointsThirst = 100
         }
-        const barThirst = document.getElementById("barThirst").children[0]
+        const barThirst = document.getElementById('barThirst').children[0]
         barThirst.style.width = this.pointsThirst+"%";
         this.pointsThirst <= 25 || this.pointsThirst >= 75 ? barThirst.classList.add("danger") : barThirst.classList.remove("danger")
 
@@ -75,14 +79,14 @@ export default class Game {
         } else if (this.pointsSun >= 100) {
             this.pointsSun = 100
         }
-        const barSun = document.getElementById("barSun").children[0]
+        const barSun = document.getElementById('barSun').children[0]
         barSun.style.width = this.pointsSun+"%";
         this.pointsSun <= 25 || this.pointsSun >= 75 ? barSun.classList.add("danger") : barSun.classList.remove("danger")
     }
 
     /* Add/Remove rain */
     initThist() {
-        const thirstButton = document.querySelector('#thirst')
+        const thirstButton = document.getElementById('thirstButton')
         const rainR = this.rain.rainObject
         thirstButton.addEventListener('click', (e) => {
             e.preventDefault()
@@ -95,8 +99,8 @@ export default class Game {
                 this.scene.add(rainR)
                 thirstButton.style.background = '#C57B3C'
             }
+            this.soundButton.playSound()
             this.soundRain.toggleSound(this.booleanThirst)
-            this.soundButton.toggleSound(this.booleanThirst)
         })
     }
     
@@ -109,35 +113,35 @@ export default class Game {
 
     /* Add/Remove sun */
     initSun() {
-        const temps = document.querySelector('#temps')
-        const jour = document.querySelector('.jour')
-        const nuit = document.querySelector('.nuit')
+        const sunButton = document.getElementById('sunButton')
+        const infosDay = document.getElementById('infosDay')
+        const infosNight = document.getElementById('infosNight')
 
-        temps.addEventListener('click', (e) => {
+        sunButton.addEventListener('click', (e) => {
             e.preventDefault()
             if (this.booleanSun) {
                 this.booleanSun = false
-                temps.style.background = '#FFA45B'
-                jour.style.display = 'block'
-                nuit.style.display = 'none'
+                sunButton.style.background = '#FFA45B'
+                infosDay.style.display = 'block'
+                infosNight.style.display = 'none'
                 this.background.putTheDay()
             } else {
                 this.booleanSun = true
-                temps.style.background = '#C57B3C'
-                jour.style.display = 'none'
-                nuit.style.display = 'block'
+                sunButton.style.background = '#C57B3C'
+                infosDay.style.display = 'none'
+                infosNight.style.display = 'block'
                 this.background.putTheNight()
             }
+            this.soundButton.playSound()
             this.soundNight.toggleSound(this.booleanSun)
-            this.soundButton.toggleSound(this.booleanSun)
         })
     }
 
     /* Add/Remove sound */
     initSound() {
-        const sound = document.querySelector('.sound')
-        const speaker = document.querySelector('.speaker')
-        const speakerStop = document.querySelector('.speakerStop')
+        const sound = document.getElementById('sound')
+        const speaker = document.getElementById('speaker')
+        const speakerStop = document.getElementById('speakerStop')
 
         sound.addEventListener('click', (e) => {
             e.preventDefault()

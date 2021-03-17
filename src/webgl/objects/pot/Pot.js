@@ -11,10 +11,10 @@ export default class Pot extends Mesh {
       var radiusT
       var radiusB
 
-      if (stylePot == "pot-1") {
+      if (stylePot == "pot1") {
         radiusT = 3
         radiusB = 2
-      } else if (stylePot == "pot-2") {
+      } else if (stylePot == "pot2") {
         radiusT = 1
         radiusB = 1
       } else {

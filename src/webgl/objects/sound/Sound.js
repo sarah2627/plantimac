@@ -27,7 +27,7 @@ export default class Sound {
                 sound1.setLoop(false);
             }
             sound1.setVolume(0.1);
-            if(pathImg === "ambiance.mp3") {
+            if(pathImg === "ambient.mp3") {
                 sound1.play()
             }
         })
@@ -40,6 +40,10 @@ export default class Sound {
         } else {
             this.sound1.stop()
         }
+    }
+
+    playSound() {
+        this.sound1.play()
     }
 
     toggleMuteSound(booleanMuteAudio) {
