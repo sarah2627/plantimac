@@ -1,4 +1,4 @@
-import { Points, Vector3 } from 'three'
+import { Vector3 } from 'three'
 
 import LSystem from './LSystem'
 import Branch from './Branch'
@@ -46,7 +46,30 @@ export default class Plant {
       this.drawPartPlant(this.plant[this.partPlant])
       this.partPlant++
       const barGrowth = document.getElementById("barGrowth").children[0]
-      barGrowth.style.width = (100*this.partPlant/this.plant.length)+"%";
+      let sizeBar = 100*this.partPlant/this.plant.length
+      barGrowth.style.width = sizeBar + "%";
+      if(sizeBar === 100) {
+        this.displayPopUpEnd()
+      }
     }
+  }
+
+  /**
+   * End of the game : display pop up if the width of the barGrowth = 100
+   */
+
+  displayPopUpEnd() {
+    const overlayPopUpEnd = document.getElementById('overlayPopUpEnd')
+    const popUpEnd = document.getElementById('popUpEnd')
+    const input = document.querySelector('input')
+
+    /* Name of the plant */
+    let valueInput = input.value
+    document.getElementById('displayNameEnd').innerHTML = valueInput
+    console.log(valueInput)
+
+    /* Display pop up */
+    overlayPopUpEnd.style.display = 'flex'
+    popUpEnd.style.display = 'block'
   }
 }

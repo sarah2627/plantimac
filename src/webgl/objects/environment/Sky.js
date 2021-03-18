@@ -1,8 +1,5 @@
 import { BackSide, BoxGeometry, Mesh, ShaderMaterial, UniformsUtils, Vector3 } from 'three'
 
-// import fragmentShader from './shaders/fragment.fs'
-// import vertexShader from './shaders/vertex.vs'
-
 export default class Sky {
 
 	constructor() {

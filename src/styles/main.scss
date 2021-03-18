@@ -354,7 +354,7 @@ body {
       }
     }
 
-    #overlayPopUp {
+    #overlayPopUp, #overlayPopUpEnd {
       display: none;
       position: absolute;
       width: 100%;
@@ -362,7 +362,7 @@ body {
       background-color: rgba($color: #000000, $alpha: 0.7);
     }
 
-    #popUp {
+    #popUp, #popUpEnd {
       width: 85%;
       max-width: 500px;
       display: none;
@@ -451,26 +451,41 @@ body {
             }
           }
         }
+      }
+    }
 
-        #submitSettings {
-          background-color: $color3;
-          color: #FFFFFF;
-          border: none;
-          outline: 0;
-          font-size: 18px;
-          border-radius: 18px;
-          padding: 15px 25px;
-          width: 150px;
-          margin: 15px auto 0 auto;
-          font-family: 'Averia Sans Libre';
-          line-height: 20px;
-          cursor: pointer;
-          transition: all .3s ease;
+    #popUpEnd {
+      width: 70%;
+      padding: 2rem;
+      text-align: center;
+      font-size: 25px;
+      span {
+        color: $color2;
+      }
+      .imgPlant {
+        display: block;
+        width: 100px;
+        margin: auto;
+      }
+    }
 
-          &:hover {
-            background-color: $color2;
-          }
-        }
+    #submitSettings {
+      background-color: $color3;
+      color: #FFFFFF;
+      border: none;
+      outline: 0;
+      font-size: 18px;
+      border-radius: 18px;
+      padding: 15px 25px;
+      width: 150px;
+      margin: 15px auto 0 auto;
+      font-family: 'Averia Sans Libre';
+      line-height: 20px;
+      cursor: pointer;
+      transition: all .3s ease;
+
+      &:hover {
+        background-color: $color2;
       }
     }
   }
