@@ -1,32 +1,46 @@
-import {
-    Mesh,
-    Color,
-    CylinderGeometry,
-    MeshStandardMaterial
-} from 'three'
+import { Mesh, Color, CylinderGeometry, MeshStandardMaterial } from 'three'
 
 export default class Pot extends Mesh {
-    constructor(style) {
-      const stylePot = style
-      var radiusT
-      var radiusB
-
-      if (stylePot == "pot1") {
-        radiusT = 3
-        radiusB = 2
-      } else if (stylePot == "pot2") {
-        radiusT = 1
-        radiusB = 1
-      } else {
-        radiusT = 4
-        radiusB = 1
+  
+    constructor(stylePot) {
+      const radius = []
+      if (stylePot === 'pot1') {
+        radius[0] = 3
+        radius[1] = 2
+      } else if (stylePot === 'pot2') {
+        radius[0] = 1
+        radius[1] = 1
+      } else if (stylePot === 'pot2') {
+        radius[0] = 4
+        radius[1] = 1
       }
-      var cylinderGeometry = new CylinderGeometry(radiusT, radiusB, 2, 10)
+      const cylinderGeometry = new CylinderGeometry(radius[0], radius[1], 2, 10)
       const material = new MeshStandardMaterial( { color: '#da5454' } )
       super(cylinderGeometry, material)
     }
 
-    changeColor(value) {
-        this.material.color.set(new Color(value))
+    getStyle(stylePot) {
+      const radius = []
+      if (stylePot === 'pot1') {
+        radius[0] = 3
+        radius[1] = 2
+      } else if (stylePot === 'pot2') {
+        radius[0] = 1
+        radius[1] = 1
+      } else if (stylePot === 'pot3') {
+        radius[0] = 4
+        radius[1] = 1
+      }
+      return radius
     }
+
+    changeColor(color) {
+        this.material.color.set(new Color(color))
+    }
+
+    changeStyle(stylePot) {
+      const radius = this.getStyle(stylePot)
+      this.geometry.dispose()
+      this.geometry = new CylinderGeometry(radius[0], radius[1], 2, 10)
+  }
 }

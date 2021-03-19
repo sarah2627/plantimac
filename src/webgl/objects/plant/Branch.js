@@ -13,7 +13,7 @@ export default class Branch extends Cube {
     texture0.minFilter = LinearMipMapLinearFilter;
     texture1.magFilter = NearestFilter;
     texture1.minFilter = LinearMipMapLinearFilter;
-    var material = [
+    let material = [
       new MeshStandardMaterial( { map: texture0 } ),
       new MeshStandardMaterial( { map: texture0 } ),
       new MeshStandardMaterial( { map: texture1 } ),

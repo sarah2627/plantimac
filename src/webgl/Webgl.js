@@ -30,7 +30,7 @@ export default class Webgl {
 		this.renderer.toneMappingExposure = 0.5;
 
     // Canvas & controls
-    const canvas = document.querySelector('#canvas')
+    const canvas = document.getElementById('canvas')
     canvas.appendChild(this.renderer.domElement)
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
     this.controls.target.set(0, 5, 0);
@@ -42,44 +42,25 @@ export default class Webgl {
     // Plant
     this.plant = new Plant(this.scene, seed)
 
+    // Pot plant
+    this.pot = new Pot('pot1')
+    this.scene.add(this.pot)
+
     // Rain
     this.rain = new Rain(this.scene)
 
     // Game
-    this.game = new Game(this.camera, this.scene, this.plant, this.rain, this.background)
+    this.game = new Game(this.camera, this.scene, this.plant, this.pot, this.rain, this.background)
 
     // Start animation
     this.start = this.start.bind(this)
-    
-    // Pot plant
-    this.style = "pot1"
-    this.addPot(this.style)
-  }
-
-  /* Move this */
-  addPot(style) {
-    this.pot = new Pot(style)
-    this.scene.add(this.pot);
-  }
-
-  /* Move this */
-  changeStyle(style) {
-    if(this.style != style) {
-      // Destroy pot
-      this.pot.geometry = undefined
-      this.pot.material = undefined
-      this.scene.remove(this.pot)
-      // Add new stylish pot
-      this.addPot(style)
-      this.style = style
-    }
   }
   
   /* Resize window */
   onResize() {
     this.camera.aspect = window.innerWidth / window.innerHeight
     this.camera.updateProjectionMatrix()
-    this.renderer.setSize( window.innerWidth, window.innerHeight )
+    this.renderer.setSize(window.innerWidth, window.innerHeight)
   }
 
   /* Start game */
@@ -103,6 +84,9 @@ export default class Webgl {
     this.controls.update()
 
     this.renderer.render(this.scene, this.camera)
-    requestAnimationFrame(this.start)
+
+    if(this.game.gameInProgress) {
+      requestAnimationFrame(this.start)
+    }
   }
 }

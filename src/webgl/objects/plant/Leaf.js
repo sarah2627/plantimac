@@ -10,7 +10,7 @@ export default class Leaf extends Cube {
     const texture0 = textureLoader.load(require("../../../assets/textures/leaves.png"))
     texture0.magFilter = NearestFilter
     texture0.minFilter = LinearMipMapLinearFilter
-    var material = new MeshStandardMaterial( { map: texture0 } )
+    let material = new MeshStandardMaterial( { map: texture0 } )
 
     super(location, rotation, scale, material);
   }

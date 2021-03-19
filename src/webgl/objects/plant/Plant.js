@@ -21,6 +21,7 @@ export default class Plant {
     }
     this.plant = lSystem.shape
     this.partPlant = 0
+    this.sizeBar = 0
   }
 
   /**
@@ -46,30 +47,8 @@ export default class Plant {
       this.drawPartPlant(this.plant[this.partPlant])
       this.partPlant++
       const barGrowth = document.getElementById("barGrowth").children[0]
-      let sizeBar = 100*this.partPlant/this.plant.length
-      barGrowth.style.width = sizeBar + "%";
-      if(sizeBar === 100) {
-        this.displayPopUpEnd()
-      }
+      this.sizeBar = 100*this.partPlant/this.plant.length
+      barGrowth.style.width = this.sizeBar + "%";
     }
-  }
-
-  /**
-   * End of the game : display pop up if the width of the barGrowth = 100
-   */
-
-  displayPopUpEnd() {
-    const overlayPopUpEnd = document.getElementById('overlayPopUpEnd')
-    const popUpEnd = document.getElementById('popUpEnd')
-    const input = document.querySelector('input')
-
-    /* Name of the plant */
-    let valueInput = input.value
-    document.getElementById('displayNameEnd').innerHTML = valueInput
-    console.log(valueInput)
-
-    /* Display pop up */
-    overlayPopUpEnd.style.display = 'flex'
-    popUpEnd.style.display = 'block'
   }
 }

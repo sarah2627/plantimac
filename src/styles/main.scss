@@ -50,31 +50,35 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    height: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 1;
+    margin: 30px;
 
     .instructions {
       position: absolute;
       margin: 0;
-      top: 15px;
-      left: 15px;
+      top: 0;
+      left: 0;
       display: flex;
       align-items: center;
       font-family: 'SeoulNamsan-CL';
-      font-size: 36px;
+      font-size: 28px;
       font-weight: 300;
 
       img {
-        width: 40px;
-        margin-left: 15px;
+        width: 35px;
+        margin-left: 10px;
       }
     }
 
     h1 {
       pointer-events: none;
       text-align: center;
-      font-size: 64px;
+      font-size: 58px;
       font-weight: 300;
 
       span {
@@ -91,13 +95,14 @@ body {
         position: relative;
         border-bottom: 2px solid $color1;
         margin: 2rem 0 1rem 0;
+        position: relative;
 
-        .input {
+        #chooseNamePlant {
           display: block;
           width: 700px;
           margin-bottom: .5rem;
           text-align: center;
-          font-size: 62px;
+          font-size: 48px;
           font-weight: 400;
           padding: 0;
           background-color: transparent;
@@ -138,15 +143,22 @@ body {
           transition: all 0.4s;
         }
 
-        .input:focus+.animationBorder::before {
+        #chooseNamePlant:focus+.animationBorder::before {
           width: 100%;
+        }
+
+        #missName {
+          position: absolute;
+          margin-top: 5px;
+          color: $color3;
+          left: 0;
         }
       }
 
       #wrapSubmit {
         display: flex;
         flex-direction: column;
-        margin-top: 5rem;
+        margin-top: 35px;
         justify-content: center;
 
         .seed {
@@ -170,88 +182,62 @@ body {
             width: 100%;
           }
         }
-
-        .missName {
-          margin-top: 1rem;
-        }
       }
     }
   }
 
   #canvas {
-    position: relative;
     display: none;
+    position: relative;
 
     #overlay {
-      width: 80%;
-      margin: auto;
 
-      #menuInfosGame {
+      #menuInfosDayNight {
+        margin-left: 30px;
+        border-radius: 0 0 25px 25px;
+        background-color: rgba($color: $color2, $alpha: 0.75);
+        width: 50px;
+        height: 120px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: flex-end;
         position: absolute;
+        top: 0;
 
-        >div {
-          width: 50px;
-          height: 115px;
-          display: inline-flex;
-          justify-content: center;
-          align-items: flex-end;
-
-          img {
-            margin-bottom: 10px;
-            border: none;
-            outline: none;
-            background-color: transparent;
-            width: 80%;
-          }
+        img {
+          margin-bottom: 10px;
+          width: 80%;
         }
 
-        #infosDayNight {
-          border-radius: 0 0 25px 25px;
-          background-color: rgba($color: $color2, $alpha: 0.75);
-
-          #infosDay {
-            display: block;
-          }
-
-          #infosNight {
-            display: none;
-          }
+        #infosDay {
+          display: block;
         }
 
-        #sound {
-          margin-left: 4px;
-
-          img {
-            cursor: pointer;
-          }
-
-          #speakerStop {
-            display: none;
-          }
+        #infosNight {
+          display: none;
         }
-
       }
 
       #infosPlant {
 
         #displayName {
+          margin-top: 20px;
           position: absolute;
           font-size: 52px;
           font-weight: 400;
           color: $color2;
-          width: 100%;
           text-align: center;
-          left: 0;
-          margin: 20px 0 0 0;
+          left: 50%;
+          transform: translateX(-50%);
         }
 
         #needsPlant {
           display: block;
           position: absolute;
-          top: 20vh;
-          right: 20vw;
+          top: 25vh;
+          right: 50%;
+          transform: translateX(160%);
           width: 230px;
-          padding: 10px;
 
           #bubbleImage {
             width: 100%;
@@ -259,31 +245,34 @@ body {
 
           #needsImage {
             position: absolute;
-            left: 55px;
             width: 40%;
-            margin: 25px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-40%, -53%);
           }
         }
 
         #menuBars {
+          margin: 30px;
           color: #FCFCFC;
           position: absolute;
-          right: 20px;
-          top: 20px;
+          right: 0;
+          top: 0;
           text-align: right;
 
           >.bar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
             margin-bottom: 10px;
 
             .imgBar {
               width: 30px;
-              vertical-align: middle;
               margin: 0 3px;
             }
 
             .meter {
               display: inline-block;
-              vertical-align: middle;
               width: 200px;
               background-color: #FCFCFC;
               padding: 3px;
@@ -318,43 +307,45 @@ body {
       }
 
       #menuButtons {
-        width: 80%;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         position: absolute;
-        bottom: 50px;
+        bottom: 0;
 
         button {
+          margin: 30px;
           border-radius: 18px;
           width: 100px;
           height: 100px;
           background-color: $color3;
-          margin-right: 2rem;
+          margin-right: 30px;
           border: none;
           cursor: pointer;
           transition: all .3s ease;
           outline: 0;
+          padding: 8px;
 
           img {
             width: 100%;
           }
 
-          &:hover {
+          &:hover, &.activated {
             background-color: $color2 !important;
           }
         }
 
         #menuButtonsActions {
           display: flex;
-        }
 
-        #popUpSettings {
-          margin-right: 0;
+          button {
+            margin-right: 0;
+          }
         }
       }
     }
 
-    #overlayPopUp, #overlayPopUpEnd {
+    .popupBg {
       display: none;
       position: absolute;
       width: 100%;
@@ -362,7 +353,8 @@ body {
       background-color: rgba($color: #000000, $alpha: 0.7);
     }
 
-    #popUp, #popUpEnd {
+    .popUp {
+      text-align: center;
       width: 85%;
       max-width: 500px;
       display: none;
@@ -374,12 +366,62 @@ body {
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      padding: 25px;
+      padding: 35px 25px;
       z-index: 1;
+      overflow: hidden;
 
-      #changeName {
+      .btnPopUp {
+        background-color: $color3;
+        color: #FFFFFF;
+        border: none;
+        outline: 0;
+        font-size: 18px;
+        border-radius: 18px;
+        padding: 15px 25px;
+        width: 150px;
+        margin: 15px auto 0 auto;
+        font-family: 'Averia Sans Libre';
+        line-height: 20px;
+        cursor: pointer;
+        transition: all .3s ease;
+  
+        &:hover {
+          background-color: $color2;
+        }
+      }
+    }
+
+    #popUpSettings {
+      #sound {
+        display: flex;
+        position: absolute;
+        padding: 100px 25px 30px 100px;
+        background-color: #FFA45B;
+        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
+        border-radius: 100%;
+
+        > div {
+          width: 50px;
+          height: 50px;
+          cursor: pointer;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        #speakerStop {
+          display: none;
+        }
+      }
+
+      #inputChangeName {
         display: block;
         margin: auto;
+        width: 80%;
         padding: 0;
         background-color: transparent;
         border: none;
@@ -392,18 +434,19 @@ body {
       }
 
       p {
+        font-size: 25px;
         margin: 0 10px;
       }
 
       #potSettings {
         display: flex;
         flex-direction: column;
-        margin: 20px 0;
+        margin-top: 30px;
 
         .potSetting {
           display: flex;
           flex-direction: row;
-          justify-content: space-around;
+          justify-content: space-evenly;
           align-items: center;
           margin: 15px 0;
 
@@ -433,8 +476,8 @@ body {
               div,
               img {
                 border-radius: 10px;
-                width: 75px;
-                height: 75px;
+                width: 75%;
+                height: 75%;
               }
 
               #colored1 {
@@ -455,37 +498,19 @@ body {
     }
 
     #popUpEnd {
-      width: 70%;
-      padding: 2rem;
-      text-align: center;
-      font-size: 25px;
-      span {
-        color: $color2;
+      p {
+        margin: 0;
+        font-size: 25px;
+
+        span {
+          color: $color2;
+        }
       }
+      
       .imgPlant {
         display: block;
         width: 100px;
-        margin: auto;
-      }
-    }
-
-    #submitSettings {
-      background-color: $color3;
-      color: #FFFFFF;
-      border: none;
-      outline: 0;
-      font-size: 18px;
-      border-radius: 18px;
-      padding: 15px 25px;
-      width: 150px;
-      margin: 15px auto 0 auto;
-      font-family: 'Averia Sans Libre';
-      line-height: 20px;
-      cursor: pointer;
-      transition: all .3s ease;
-
-      &:hover {
-        background-color: $color2;
+        margin: 20px auto;
       }
     }
   }
@@ -494,10 +519,10 @@ body {
 @media screen and (max-width: 768px) {
   #app {
     #home {
+      margin: 20px;
+
       .instructions {
         font-size: 22px;
-        top: 8px;
-        left: 8px;
 
         img {
           margin-left: 8px;
@@ -508,7 +533,7 @@ body {
         font-size: 36px;
       }
 
-      #setupApp #wrapInput .input {
+      #setupApp #wrapInput #chooseNamePlant {
         font-size: 26px;
         width: 100%;
       }
@@ -516,16 +541,81 @@ body {
 
     #canvas {
       #overlay {
+        #menuInfosDayNight {
+            margin-left: 20px;
+        }
+
         #menuButtons {
+
           button {
-            width: 80px;
-            height: 80px;
+            width: 75px;
+            height: 75px;
+            margin: 20px;
+          }
+        }
+
+        #infosPlant {
+          #displayName {
+            position: absolute;
+            font-size: 32px;
+            transform: translateY(-50%) rotate(-90deg);
+            left: 5px;
+            top: 50%;
+            margin: 0;
+          }
+
+          #needsPlant {
+            width: 150px;
+            transform: translateX(120%);
+          }
+
+          #menuBars {
+            margin: 20px;
+
+            >.bar {
+              .meter {
+                &#barGrowth {
+                  width: 200px;
+                }
+              }
+            }
           }
         }
       }
+    }
+  }
+}
 
-      #popUp {
+@media screen and (max-width: 400px) {
+  #app {
+    #home {
+      h1 {
+        font-size: 30px;
+      }
+    }
+
+    #canvas {
+      #overlay {
+        #menuInfosDayNight {
+          display: none;
+        }
+      }
+
+      .popUp {
         padding: 20px;
+      }
+
+      #popUpSettings {
+        #potSettings {
+          .potSetting {
+            .choice {
+              label {
+                width: 70px;
+                height: 70px;
+              }
+            }
+          }
+        }
       }
     }
   }

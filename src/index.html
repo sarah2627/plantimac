@@ -10,12 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="¨Plantimac : adopte une graine et fait grandir ta plante !" />
     <meta name="keywords" content="graine, plante, plantimac, intelligence, artificielle, croissance, fleur, ia, ai, lsystem">
-    
-    <style>
-      body .dg.ac {
-        z-index: 9999 !important;
-      }
-    </style>
   </head>
 
   <body>
@@ -33,22 +27,22 @@
         </h1>
         <form id="setupApp">
           <div id="wrapInput">
-            <input class="input" type="text" placeholder="Nom de votre plante" maxlength='20' required>
+            <input id="chooseNamePlant" type="text" placeholder="Nom de votre plante" maxlength='20' required>
             <span class="animationBorder"></span>
+            <span id="missName"></span>
           </div>
           <div id="wrapSubmit">
             <div class="seed">
-              <button class="btnSubmit" form="setupApp" value="1" type="submit">
+              <button class="btnSubmit" value="1" type="submit">
                 <img src="../src/assets/images/seed1.svg" />
               </button>
-              <button class="btnSubmit" form="setupApp" value="2" type="submit">
+              <button class="btnSubmit" value="2" type="submit">
                 <img src="../src/assets/images/seed2.svg" />
               </button>
-              <button class="btnSubmit" form="setupApp" value="3" type="submit">
+              <button class="btnSubmit" value="3" type="submit">
                 <img src="../src/assets/images/seed3.svg" />
               </button>
             </div>
-            <span id="missName"></span>
           </div>
         </form>
       </section>
@@ -58,16 +52,10 @@
 
         <!-- PAGE 2 > OVERLAY -->
         <div id="overlay">
-          <!-- PAGE 2 > OVERLAY > MENU INFOS GAME (TOP-LEFT) -->
-          <div id="menuInfosGame">
-            <div id="infosDayNight">
-              <img id="infosDay" src="../src/assets/images/day.svg" />
-              <img id="infosNight" src="../src/assets/images/night.svg" />
-            </div>
-            <div id="sound">
-              <img id="speaker" src="../src/assets/images/speaker1.svg" />
-              <img id="speakerStop" src="../src/assets/images/speaker2.svg" />
-            </div>
+          <!-- PAGE 2 > OVERLAY > MENU INFOS DAY-NIGHT (TOP-LEFT) -->
+          <div id="menuInfosDayNight">
+            <img id="infosDay" src="../src/assets/images/day.svg" />
+            <img id="infosNight" src="../src/assets/images/night.svg" />
           </div>
           <!-- PAGE 2 > OVERLAY > INFOS PLANT -->
           <div id="infosPlant">
@@ -106,17 +94,23 @@
               <button id="sunButton"><img src="../src/assets/images/putNight.svg" /></button>
             </div>
             <div id="menuButtonsParameter">
-              <button id="popUpSettings"> <img src="../src/assets/images/putOptions.svg" /></button>
+              <button id="btnPopUpSettings"><img src="../src/assets/images/putOptions.svg" /></button>
             </div>
           </div>
         </div>
 
         <!-- PAGE 2 > POPUP -->
-        <div id="overlayPopUp"></div>
-        <div id="popUp">
-          <input id="changeName" class="input" type="text" maxlength='20' required>
+        <div id="bgPopUpSettings" class="popupBg"></div>
+        <div id="popUpSettings" class="popUp">
+          <div id="sound">
+            <div>
+              <img id="speaker" src="../src/assets/images/speaker1.svg" />
+              <img id="speakerStop" src="../src/assets/images/speaker2.svg" />
+            </div>
+          </div>
+          <input id="inputChangeName" class="input" type="text" maxlength='20' required>
           <form id="potSettings">
-            <h2>Couleur de pot</h2>
+            <p>Couleur de pot</p>
             <div id="potColor" class="potSetting">
               <div class="choice">
                 <input type="radio" checked name="choiceColor" id="color1" value="#da5454">
@@ -137,7 +131,7 @@
                 </label>
               </div>
             </div>
-            <h2>Style de pot</h2>
+            <p>Style de pot</p>
             <div id="potStyle" class="potSetting">
               <div class="choice">
                 <input type="radio" checked="true" name="choiceStyle" id="pot1" value="pot1">
@@ -158,16 +152,16 @@
                 </label>
               </div>
             </div>
-            <button id="submitSettings" form="potStyle" type="submit">Valider</button>
+            <button id="btnSubmitSettings" class="btnPopUp" form="potStyle" type="submit">Valider</button>
           </form>
         </div>
         
         <!-- PAGE 2 > POPUP END -->
-        <div id="overlayPopUpEnd"></div>
-        <div id="popUpEnd">
-          <h1> Bravo, <span id="displayNameEnd"></span> a désormais atteint sa taille adulte ! Tu es un véritable jardinier en herbe ! </h1>
+        <div id="bgPopUpEnd" class="popupBg"></div>
+        <div id="popUpEnd" class="popUp">
+          <p>Bravo, <span id="displayNameEnd"></span> a désormais atteint sa taille adulte ! Tu es un véritable jardinier en herbe !</p>
           <img class="imgPlant" src="../src/assets/images/growth.png" />
-          <button id="submitSettings" onClick="window.location.reload()"> Rejouer </button>
+          <button class="btnPopUp" onClick="window.location.reload()">Rejouer</button>
         </div>
       </section>
     </div>

@@ -1,10 +1,11 @@
 import Sound from '../objects/sound/Sound'
 
 export default class Game {
-    constructor(camera, scene, plant, rain, background) {
+    constructor(camera, scene, plant, pot, rain, background) {
         this.camera = camera
         this.scene = scene
         this.plant = plant
+        this.gameInProgress = true
         
         // Thirst
         this.rain = rain
@@ -30,6 +31,10 @@ export default class Game {
         this.sounds = [this.soundAmbient, this.soundNight, this.soundRain, this.soundButton, this.soundBubble]
         this.booleanAudio = false
         this.initSound()
+
+        // PopUp settings
+        this.pot = pot
+        this.initPopUpSettings()
     }
 
     /* Update plant : bubble and growth */
@@ -40,6 +45,9 @@ export default class Game {
         if(this.pointsThirst > 25 && this.pointsThirst < 75 && this.pointsSun > 25 && this.pointsSun < 75) {
             bubble.style.display = 'none'
             this.plant.update()
+            if(this.plant.sizeBar >= 100) {
+                this.endGame()
+            }
         } else {
             if(bubble.style.display === 'none') {
                 this.soundBubble.playSound()
@@ -139,7 +147,7 @@ export default class Game {
 
     /* Add/Remove sound */
     initSound() {
-        const sound = document.getElementById('sound')
+        const sound = document.getElementById('sound').children[0]
         const speaker = document.getElementById('speaker')
         const speakerStop = document.getElementById('speakerStop')
 
@@ -160,5 +168,66 @@ export default class Game {
                 item.toggleMuteSound(booleanAudio)
             })
         })
+    }
+
+    /* Initialize popup settings */
+    initPopUpSettings() {
+        const bgPopUpSettings = document.getElementById('bgPopUpSettings')
+        const popUpSettings = document.getElementById('popUpSettings')
+        const btnPopUpSettings = document.getElementById('btnPopUpSettings')
+    
+        // Open/close popup parameters
+        btnPopUpSettings.addEventListener('click', (e) => {
+            e.preventDefault()
+            this.soundButton.playSound()
+            bgPopUpSettings.style.display = 'flex'
+            popUpSettings.style.display = 'block'
+            btnPopUpSettings.classList.add('activated')
+        })
+    
+        bgPopUpSettings.addEventListener('click', (e) => {
+            e.preventDefault()
+            bgPopUpSettings.style.display = 'none'
+            popUpSettings.style.display = 'none'
+            btnPopUpSettings.classList.remove('activated')
+        })
+
+        const btnSubmitSettings = document.getElementById('btnSubmitSettings')
+        const inputChangeName = document.getElementById('inputChangeName')
+
+        btnSubmitSettings.addEventListener('click', (e) => {
+            e.preventDefault()
+            this.soundButton.playSound()
+            // Name
+            let valueInput = inputChangeName.value
+            document.getElementById('displayName').innerHTML = valueInput
+            // Color
+            var color = document.querySelector('[name="choiceColor"]:checked')
+            this.pot.changeColor(color.value)
+            // Style
+            var style = document.querySelector('[name="choiceStyle"]:checked')
+            this.pot.changeStyle(style.value)
+            // Close popup
+            bgPopUpSettings.style.display = 'none'
+            popUpSettings.style.display = 'none'
+            btnPopUpSettings.classList.remove('activated')
+        })
+    }
+
+    /* End of the game : display pop up if the width of the barGrowth = 100 */
+     endGame() {
+        this.gameInProgress = false
+
+        const overlayPopUpEnd = document.getElementById('bgPopUpEnd')
+        const popUpEnd = document.getElementById('popUpEnd')
+        const inputChangeName = document.getElementById('inputChangeName')
+
+        // Name of the plant
+        let valueInput = inputChangeName.value
+        document.getElementById('displayNameEnd').innerHTML = valueInput
+
+        // Display pop up
+        overlayPopUpEnd.style.display = 'flex'
+        popUpEnd.style.display = 'block'
     }
 }
