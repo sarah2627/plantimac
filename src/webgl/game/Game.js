@@ -108,11 +108,11 @@ export default class Game {
             if (this.booleanThirst) {
                 this.booleanThirst = false
                 this.scene.remove(rainR)
-                thirstButton.style.background = '#FFA45B'
+                thirstButton.classList.remove('activated')
             } else {
                 this.booleanThirst = true
                 this.scene.add(rainR)
-                thirstButton.style.background = '#C57B3C'
+                thirstButton.classList.add('activated')
             }
             this.soundButton.playSound()
             this.soundRain.toggleSound(this.booleanThirst)
@@ -140,15 +140,15 @@ export default class Game {
             e.preventDefault()
             if (this.booleanSun) {
                 this.booleanSun = false
-                sunButton.style.background = '#FFA45B'
                 infosDay.style.display = 'block'
                 infosNight.style.display = 'none'
+                sunButton.classList.remove('activated')
                 this.background.putTheDay()
             } else {
                 this.booleanSun = true
-                sunButton.style.background = '#C57B3C'
                 infosDay.style.display = 'none'
                 infosNight.style.display = 'block'
+                sunButton.classList.add('activated')
                 this.background.putTheNight()
             }
             this.soundButton.playSound()

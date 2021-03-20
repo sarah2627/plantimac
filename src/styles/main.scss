@@ -297,7 +297,7 @@ body {
                 background-color: #5bffa4;
                 border-radius: 5px;
                 height: 22px;
-                transition: width 500ms ease-in-out;
+                transition: width .5s ease-in-out;
 
                 &.danger {
                   background-color: $color3;
@@ -320,6 +320,8 @@ body {
         width: 100%;
 
         button {
+          position: relative;
+          bottom: 0;
           background-color: $color3;
           border: none;
           border-radius: 18px;
@@ -335,8 +337,8 @@ body {
             width: 100%;
           }
 
-          &:hover, &.activated {
-            background-color: $color2 !important;
+          &.activated {
+            background-color: $color2;
           }
         }
 
@@ -373,6 +375,8 @@ body {
       transform: translate(-50%, -50%);
       
       .btnPopUp {
+        position: relative;
+        bottom: 0;
         background-color: $color3;
         border: none;
         border-radius: 18px;
@@ -387,9 +391,13 @@ body {
         width: 150px;
         transition: all .3s ease;
 
-  
+        
         &:hover {
           background-color: $color2;
+        }
+
+        &:active {
+          bottom: -5px;
         }
       }
     }
@@ -645,6 +653,21 @@ body {
                 height: 70px;
               }
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(hover: hover) {
+  #app {
+    #canvas {
+      #overlay {
+        #menuButtons {
+          button:hover {
+            background-color: $color2;
+            bottom: 5px;
           }
         }
       }
