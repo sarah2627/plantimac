@@ -58,16 +58,16 @@ export default class Game {
             }
             if (this.pointsThirst <= 25) {
                 //J'ai soif
-                needsImage.src  = 'src/assets/images/thirst1.png'
+                needsImage.src  = '../assets/images/thirst1.png'
             } else if (this.pointsThirst >= 75) {
                 //Je me noie
-                needsImage.src  = 'src/assets/images/thirst2.png'
+                needsImage.src  = '../assets/images/thirst2.png'
             } else if (this.pointsSun <= 25) {
                 //J'ai froid
-                needsImage.src  = 'src/assets/images/sun1.png'
+                needsImage.src  = '../assets/images/sun1.png'
             } else if (this.pointsSun >= 75) {
                 //J'ai chaud
-                needsImage.src  = 'src/assets/images/sun2.png'
+                needsImage.src  = '../assets/images/sun2.png'
             }
         }
     }

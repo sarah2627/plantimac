@@ -20,7 +20,7 @@ export default class Sound {
         const audioLoader = new AudioLoader()
 
         // Load a resource
-        audioLoader.load('../../src/assets/sounds/' + pathImg, function(buffer) {
+        audioLoader.load('../assets/sounds/' + pathImg, function(buffer) {
             sound1.setBuffer(buffer);
             sound1.setLoop(true);
             if(pathImg === "button.ogg" || pathImg === "bubble.mp3" || pathImg === "win.mp3") {
