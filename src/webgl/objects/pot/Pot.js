@@ -19,6 +19,9 @@ export default class Pot extends Mesh {
       super(cylinderGeometry, material)
     }
 
+    /**
+     *  Get radius of geometry (pot) according to the name of the style
+     */
     getStyle(stylePot) {
       const radius = []
       if (stylePot === 'pot1') {
@@ -34,10 +37,16 @@ export default class Pot extends Mesh {
       return radius
     }
 
+    /**
+     *  Change color of the pot
+     */
     changeColor(color) {
         this.material.color.set(new Color(color))
     }
 
+    /**
+     *  Change style of the pot
+     */
     changeStyle(stylePot) {
       const radius = this.getStyle(stylePot)
       this.geometry.dispose()

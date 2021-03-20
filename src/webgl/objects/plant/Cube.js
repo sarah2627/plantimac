@@ -7,7 +7,7 @@ export default class Cube extends Mesh {
     const geometry = new BoxGeometry(scale.x, scale.y, scale.z);
     geometry.translate(0, -(scale.y/2), 0)
 
-    /* const material = new MeshBasicMaterial( { color: color, wireframe: false } ); */
+    //const material = new MeshBasicMaterial( { color: color, wireframe: false } );
     super(geometry, material);
     
     this.position.set(location.x, location.y, location.z)

@@ -6,7 +6,6 @@ var webgl
 
 function interactions() {
 
-    /* HOME */
     const home = document.getElementById('home')
     const btnSubmit = document.querySelectorAll('.btnSubmit')
     const chooseNamePlant = document.getElementById('chooseNamePlant')
@@ -30,11 +29,11 @@ function interactions() {
                 document.getElementById('displayName').innerHTML = valueInput
                 document.getElementById('inputChangeName').value = valueInput
 
-                // Value of the button submit (1, 2 or 3)
+                // Value of the seed / button submit (1, 2 or 3)
                 let valueSubmit = parseInt(element.value)
                 webgl = new Webgl(valueSubmit)
 
-                // Start and display the webgl game
+                // Start and display the WebGL game
                 webgl.start()
                 document.getElementById('canvas').style.display = 'block'
                 home.style.display = 'none'

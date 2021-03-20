@@ -4,29 +4,29 @@ export default class Sound {
 
     constructor(camera, scene, pathImg) {
 
-        // instantiate a listener
+        // Instantiate a listener
         const audioListener = new AudioListener()
 
-        // add the listener to the camera
+        // Add the listener to the camera
         camera.add(audioListener)
 
-        // instantiate audio object
+        // Instantiate audio object
         const sound1 = new Audio(audioListener)
 
-        // add the audio object to the scene
+        // Add the audio object to the scene
         scene.add(sound1)
         
-        // instantiate a loader
+        // Instantiate a loader
         const audioLoader = new AudioLoader()
 
-        // load a resource
+        // Load a resource
         audioLoader.load('../../src/assets/sounds/' + pathImg, function(buffer) {
             sound1.setBuffer(buffer);
             sound1.setLoop(true);
-            if(pathImg === "button.ogg" || pathImg === "bubble.mp3") {
+            if(pathImg === "button.ogg" || pathImg === "bubble.mp3" || pathImg === "win.mp3") {
                 sound1.setLoop(false);
             }
-            sound1.setVolume(0.1);
+            sound1.setVolume(0.6);
             if(pathImg === "ambient.mp3") {
                 sound1.play()
             }
@@ -34,6 +34,9 @@ export default class Sound {
         this.sound1 = sound1
     }
 
+    /**
+     *  Play or stop sound (with boolean)
+     */
     toggleSound(booleanAudio) {
         if(booleanAudio) {
             this.sound1.play()
@@ -42,10 +45,16 @@ export default class Sound {
         }
     }
 
+    /**
+     *  Play a sound (1 time or loop)
+     */
     playSound() {
         this.sound1.play()
     }
 
+    /**
+     *  Mute or demute sound (with boolean)
+     */
     toggleMuteSound(booleanMuteAudio) {
         if(booleanMuteAudio) {
             this.sound1.setVolume(0)

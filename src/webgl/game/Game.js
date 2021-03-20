@@ -28,7 +28,8 @@ export default class Game {
         this.soundRain = new Sound(this.camera, this.scene, 'rain.mp3')
         this.soundButton = new Sound(this.camera, this.scene, 'button.ogg')
         this.soundBubble = new Sound(this.camera, this.scene, 'bubble.mp3')
-        this.sounds = [this.soundAmbient, this.soundNight, this.soundRain, this.soundButton, this.soundBubble]
+        this.soundWin = new Sound(this.camera, this.scene, 'win.mp3')
+        this.sounds = [this.soundAmbient, this.soundNight, this.soundRain, this.soundButton, this.soundBubble, this.soundWin]
         this.booleanAudio = false
         this.initSound()
 
@@ -37,7 +38,9 @@ export default class Game {
         this.initPopUpSettings()
     }
 
-    /* Update plant : bubble and growth */
+    /** 
+     * Update plant : bubble and growth
+     */ 
     updatePlant() {
         const bubble = document.querySelector('#needsPlant')
         const needsImage = document.querySelector('#needsImage')
@@ -69,7 +72,9 @@ export default class Game {
         }
     }
 
-    /* Update points plant and bars */
+    /** 
+     * Update points plant and bars 
+     */
     updatePointsPlant() {
         this.pointsThirst += this.booleanThirst ? 1 : -1
         if (this.pointsThirst <= 0) {
@@ -92,7 +97,9 @@ export default class Game {
         this.pointsSun <= 25 || this.pointsSun >= 75 ? barSun.classList.add("danger") : barSun.classList.remove("danger")
     }
 
-    /* Add/Remove rain */
+    /** 
+     * Add/remove rain 
+     */
     initThist() {
         const thirstButton = document.getElementById('thirstButton')
         const rainR = this.rain.rainObject
@@ -112,14 +119,18 @@ export default class Game {
         })
     }
     
-    /* Animation rain */
+    /** 
+     * Animation rain 
+     */
     updateRain() {
         if(this.booleanThirst) {
             this.rain.update()
         }
     }
 
-    /* Add/Remove sun */
+    /** 
+     * Add/remove sun 
+     */
     initSun() {
         const sunButton = document.getElementById('sunButton')
         const infosDay = document.getElementById('infosDay')
@@ -145,7 +156,9 @@ export default class Game {
         })
     }
 
-    /* Add/Remove sound */
+    /** 
+     * Initialize sound : add/remove sound 
+     */
     initSound() {
         const sound = document.getElementById('sound').children[0]
         const speaker = document.getElementById('speaker')
@@ -170,13 +183,16 @@ export default class Game {
         })
     }
 
-    /* Initialize popup settings */
+    /** 
+     * Initialize popUp settings 
+     */
     initPopUpSettings() {
+
+        // Display/close popUp settings
         const bgPopUpSettings = document.getElementById('bgPopUpSettings')
         const popUpSettings = document.getElementById('popUpSettings')
         const btnPopUpSettings = document.getElementById('btnPopUpSettings')
-    
-        // Open/close popup parameters
+
         btnPopUpSettings.addEventListener('click', (e) => {
             e.preventDefault()
             this.soundButton.playSound()
@@ -184,50 +200,61 @@ export default class Game {
             popUpSettings.style.display = 'block'
             btnPopUpSettings.classList.add('activated')
         })
-    
         bgPopUpSettings.addEventListener('click', (e) => {
             e.preventDefault()
+            this.soundButton.playSound()
             bgPopUpSettings.style.display = 'none'
             popUpSettings.style.display = 'none'
             btnPopUpSettings.classList.remove('activated')
         })
 
+        // Validate form popUp : change style pot / color pot / name plant
         const btnSubmitSettings = document.getElementById('btnSubmitSettings')
         const inputChangeName = document.getElementById('inputChangeName')
 
         btnSubmitSettings.addEventListener('click', (e) => {
             e.preventDefault()
             this.soundButton.playSound()
-            // Name
+            // Name of the plant
             let valueInput = inputChangeName.value
             document.getElementById('displayName').innerHTML = valueInput
-            // Color
+            // Color pot
             var color = document.querySelector('[name="choiceColor"]:checked')
             this.pot.changeColor(color.value)
-            // Style
+            // Style pot
             var style = document.querySelector('[name="choiceStyle"]:checked')
             this.pot.changeStyle(style.value)
-            // Close popup
+            // Close popUp
             bgPopUpSettings.style.display = 'none'
             popUpSettings.style.display = 'none'
             btnPopUpSettings.classList.remove('activated')
         })
     }
 
-    /* End of the game : display pop up if the width of the barGrowth = 100 */
+    /** 
+     * End of the game : display pop up if the width of the barGrowth = 100 
+     */
      endGame() {
         this.gameInProgress = false
 
-        const overlayPopUpEnd = document.getElementById('bgPopUpEnd')
+        this.soundWin.playSound()
+
+        const bgPopUpEnd = document.getElementById('bgPopUpEnd')
         const popUpEnd = document.getElementById('popUpEnd')
         const inputChangeName = document.getElementById('inputChangeName')
 
         // Name of the plant
         let valueInput = inputChangeName.value
         document.getElementById('displayNameEnd').innerHTML = valueInput
-
-        // Display pop up
-        overlayPopUpEnd.style.display = 'flex'
+        // Display popUp
+        bgPopUpEnd.style.display = 'flex'
         popUpEnd.style.display = 'block'
+        // Close popUp
+        bgPopUpEnd.addEventListener('click', (e) => {
+            e.preventDefault()
+            this.soundButton.playSound()
+            bgPopUpEnd.style.display = 'none'
+            popUpEnd.style.display = 'none'
+        })
     }
 }

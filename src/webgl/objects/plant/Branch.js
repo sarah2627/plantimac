@@ -7,8 +7,8 @@ export default class Branch extends Cube {
 
   constructor(location = new Vector3(), rotation = new Vector3(), scale = new Vector3(1, 1, 1)) {
     const textureLoader = new TextureLoader();
-    const texture0 = textureLoader.load(require("../../../assets/textures/log_oak.png"))
-    const texture1 = textureLoader.load(require("../../../assets/textures/log_oak_top.png"))
+    const texture0 = textureLoader.load(require('../../../assets/textures/log_oak.png'))
+    const texture1 = textureLoader.load(require('../../../assets/textures/log_oak_top.png'))
     texture0.magFilter = NearestFilter;
     texture0.minFilter = LinearMipMapLinearFilter;
     texture1.magFilter = NearestFilter;

@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'SeoulNamsan-CL';
+  font-style: normal;
+  font-weight: normal;
   src: url('../assets/fonts/SeoulNamsan-CL.ttf.woff') format('woff'),
     url('../assets/fonts/SeoulNamsan-CL.ttf.svg#SeoulNamsan-CL') format('svg'),
     url('../assets/fonts/SeoulNamsan-CL.ttf.eot'),
     url('../assets/fonts/SeoulNamsan-CL.ttf.eot?#iefix') format('embedded-opentype');
-  font-weight: normal;
-  font-style: normal;
 }
 
 @font-face {
@@ -31,12 +31,12 @@ body {
   position: relative;
   background-color: $bgColor;
   color: $color1;
+  overflow: hidden;
+  font-family: 'Averia Sans Libre';
   margin: 0px;
   padding: 0px;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  font-family: 'Averia Sans Libre';
 }
 
 #app {
@@ -44,34 +44,35 @@ body {
   height: 100%;
 
   #home {
-    position: absolute;
-    background-color: $bgColor;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: auto;
+    position: absolute;
+    background-color: $bgColor;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1;
     margin: 30px;
+    height: auto;
 
     .instructions {
-      position: absolute;
-      margin: 0;
-      top: 0;
-      left: 0;
       display: flex;
       align-items: center;
+      position: absolute;
       font-family: 'SeoulNamsan-CL';
       font-size: 28px;
       font-weight: 300;
-
+      top: 0;
+      left: 0;
+      margin: 0;
+      
       img {
-        width: 35px;
-        margin-left: 10px;
+        position: absolute;
+        right: -52px;
+        width: 45px;
       }
     }
 
@@ -82,8 +83,8 @@ body {
       font-weight: 300;
 
       span {
-        font-weight: 400;
         color: $color2;
+        font-weight: 400;
       }
     }
 
@@ -91,56 +92,55 @@ body {
       text-align: center;
 
       #wrapInput {
-        width: 100%;
         position: relative;
         border-bottom: 2px solid $color1;
         margin: 2rem 0 1rem 0;
-        position: relative;
+        width: 100%;
 
         #chooseNamePlant {
           display: block;
-          width: 700px;
-          margin-bottom: .5rem;
-          text-align: center;
+          background-color: transparent;
+          border: none;
+          color: $color2;
+          font-family: 'Averia Sans Libre';
           font-size: 48px;
           font-weight: 400;
-          padding: 0;
-          background-color: transparent;
-          color: $color2;
-          border: none;
           outline: 0;
-          font-family: 'Averia Sans Libre';
+          text-align: center;
+          margin-bottom: .5rem;
+          padding: 0;
+          width: 700px;
         }
 
         .animationBorder {
-          position: absolute;
           display: block;
+          position: absolute;
+          pointer-events: none;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
-          top: 0;
-          left: 0;
-          pointer-events: none;
-        }
 
-        .animationBorder::before {
-          content: "";
-          display: block;
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          width: 0;
-          height: 2px;
-          transition: all 0.4s;
-          background: linear-gradient(45deg, $color3, $color2);
-        }
+          &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            background: linear-gradient(45deg, $color3, $color2);
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            transition: all 0.4s;
+          }
 
-        .animationBorder::after {
-          display: block;
-          width: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          transition: all 0.4s;
+          &::after {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: all 0.4s;
+          }
         }
 
         #chooseNamePlant:focus+.animationBorder::before {
@@ -149,40 +149,46 @@ body {
 
         #missName {
           position: absolute;
-          margin-top: 5px;
           color: $color3;
           left: 0;
+          margin-top: 5px;
         }
       }
 
       #wrapSubmit {
-        display: flex;
-        flex-direction: column;
         margin-top: 35px;
-        justify-content: center;
 
         .seed {
           display: flex;
-          flex-direction: row;
+          align-items: center;
+          justify-content: center;
 
           .btnSubmit {
-            margin: auto;
             outline: 0;
-            border: 0;
             background-color: transparent;
+            border: 0;
             cursor: pointer;
+            padding: 0 6px;
             transition: transform .8s ease-in;
-          }
 
-          .btnSubmit:hover {
-            transform: rotate(360deg);
-          }
+            >img {
+              max-width: 175px;
+              width: 100%;
+            }
 
-          img {
-            width: 100%;
+            &.btnSubmit:hover {
+              transform: rotate(360deg);
+            }
           }
         }
       }
+    }
+
+    footer {
+      position: fixed;
+      font-size: 16px;
+      right: 8px;
+      bottom: 8px;
     }
   }
 
@@ -191,19 +197,18 @@ body {
     position: relative;
 
     #overlay {
-
       #menuInfosDayNight {
-        margin-left: 30px;
-        border-radius: 0 0 25px 25px;
-        background-color: rgba($color: $color2, $alpha: 0.75);
-        width: 50px;
-        height: 120px;
-        display: inline-flex;
-        justify-content: center;
+        display: flex;
         align-items: flex-end;
+        justify-content: center;
         position: absolute;
         top: 0;
-
+        background-color: rgba($color: $color2, $alpha: 0.75);
+        border-radius: 0 0 25px 25px;
+        margin-left: 30px;
+        width: 50px;
+        height: 120px;
+        
         img {
           margin-bottom: 10px;
           width: 80%;
@@ -221,13 +226,13 @@ body {
       #infosPlant {
 
         #displayName {
-          margin-top: 20px;
           position: absolute;
+          top: 15px;
+          left: 50%;
+          color: $color2;
           font-size: 52px;
           font-weight: 400;
-          color: $color2;
           text-align: center;
-          left: 50%;
           transform: translateX(-50%);
         }
 
@@ -245,20 +250,20 @@ body {
 
           #needsImage {
             position: absolute;
-            width: 40%;
             top: 50%;
             left: 50%;
             transform: translate(-40%, -53%);
+            width: 50%;
           }
         }
 
         #menuBars {
-          margin: 30px;
-          color: #FCFCFC;
           position: absolute;
           right: 0;
           top: 0;
+          color: #FCFCFC;
           text-align: right;
+          margin: 30px;
 
           >.bar {
             display: flex;
@@ -267,17 +272,17 @@ body {
             margin-bottom: 10px;
 
             .imgBar {
-              width: 30px;
               margin: 0 3px;
+              width: 30px;
             }
 
             .meter {
               display: inline-block;
-              width: 200px;
               background-color: #FCFCFC;
-              padding: 3px;
               border-radius: 5px;
-
+              padding: 3px;
+              width: 200px;
+              
               &#barGrowth {
                 width: 300px;
 
@@ -288,9 +293,9 @@ body {
 
               span {
                 display: block;
-                height: 22px;
                 background-color: #5bffa4;
                 border-radius: 5px;
+                height: 22px;
                 transition: width 500ms ease-in-out;
 
                 &.danger {
@@ -307,24 +312,23 @@ body {
       }
 
       #menuButtons {
-        width: 100%;
         display: flex;
         justify-content: space-between;
         position: absolute;
         bottom: 0;
+        width: 100%;
 
         button {
-          margin: 30px;
-          border-radius: 18px;
-          width: 100px;
-          height: 100px;
           background-color: $color3;
-          margin-right: 30px;
           border: none;
+          border-radius: 18px;
           cursor: pointer;
-          transition: all .3s ease;
           outline: 0;
           padding: 8px;
+          margin: 30px;
+          width: 100px;
+          height: 100px;
+          transition: all .3s ease;
 
           img {
             width: 100%;
@@ -348,42 +352,40 @@ body {
     .popupBg {
       display: none;
       position: absolute;
+      background-color: rgba($color: #000000, $alpha: 0.7);
       width: 100%;
       height: 100%;
-      background-color: rgba($color: #000000, $alpha: 0.7);
     }
 
     .popUp {
-      text-align: center;
-      width: 85%;
-      max-width: 500px;
-      display: none;
-      background-color: $bgColor;
-      border-radius: 25px;
-      border: 2px solid $color2;
       display: none;
       position: absolute;
-      left: 50%;
       top: 50%;
-      transform: translate(-50%, -50%);
-      padding: 35px 25px;
-      z-index: 1;
+      left: 50%;
+      text-align: center;
+      background-color: $bgColor;
+      border: 2px solid $color2;
+      border-radius: 25px;
       overflow: hidden;
-
+      padding: 35px 25px;
+      width: 85%;
+      transform: translate(-50%, -50%);
+      
       .btnPopUp {
         background-color: $color3;
-        color: #FFFFFF;
         border: none;
-        outline: 0;
-        font-size: 18px;
         border-radius: 18px;
+        color: #FFFFFF;
+        cursor: pointer;
+        line-height: 20px;
+        font-family: 'Averia Sans Libre';
+        font-size: 18px;
+        outline: 0;
+        margin: 15px auto 0 auto;
         padding: 15px 25px;
         width: 150px;
-        margin: 15px auto 0 auto;
-        font-family: 'Averia Sans Libre';
-        line-height: 20px;
-        cursor: pointer;
         transition: all .3s ease;
+
   
         &:hover {
           background-color: $color2;
@@ -392,21 +394,23 @@ body {
     }
 
     #popUpSettings {
+      max-width: 500px;
+
       #sound {
         display: flex;
         position: absolute;
-        padding: 100px 25px 30px 100px;
-        background-color: #FFA45B;
-        transform: translate(-50%, -50%);
         top: 0;
         left: 0;
+        background-color: #FFA45B;
         border-radius: 100%;
+        transform: translate(-50%, -50%);
+        padding: 100px 25px 30px 100px;
 
         > div {
+          cursor: pointer;
           width: 50px;
           height: 50px;
-          cursor: pointer;
-
+          
           img {
             width: 100%;
             height: 100%;
@@ -420,17 +424,17 @@ body {
 
       #inputChangeName {
         display: block;
-        margin: auto;
-        width: 80%;
-        padding: 0;
         background-color: transparent;
         border: none;
         border-bottom: 2px solid #B65B11;
-        outline: 0;
         color: $color2;
         font-family: 'Averia Sans Libre';
         font-size: 36px;
+        outline: 0;
         text-align: center;
+        margin: auto;
+        padding: 0;
+        width: 80%;
       }
 
       p {
@@ -445,17 +449,17 @@ body {
 
         .potSetting {
           display: flex;
+          align-items: center;
           flex-direction: row;
           justify-content: space-evenly;
-          align-items: center;
           margin: 15px 0;
 
           .choice {
             margin: 0 5px;
 
             input {
-              visibility: hidden;
               position: absolute;
+              visibility: hidden;
             }
 
             input:checked~label {
@@ -463,21 +467,25 @@ body {
             }
 
             label {
-              cursor: pointer;
-              outline: none;
-              border-radius: 10px;
-              width: 100px;
-              height: 100px;
               display: flex;
               align-items: center;
               justify-content: center;
+              border-radius: 10px;
               box-sizing: border-box;
+              cursor: pointer;
+              outline: none;
+              width: 100px;
+              height: 100px;
 
-              div,
-              img {
+              >div {
                 border-radius: 10px;
                 width: 75%;
                 height: 75%;
+              }
+
+              >img {
+                width: 100%;
+                height: 100%;
               }
 
               #colored1 {
@@ -498,9 +506,11 @@ body {
     }
 
     #popUpEnd {
+      max-width: 600px;
+
       p {
-        margin: 0;
         font-size: 25px;
+        margin: 0;
 
         span {
           color: $color2;
@@ -509,8 +519,27 @@ body {
       
       .imgPlant {
         display: block;
-        width: 100px;
         margin: 20px auto;
+        width: 100px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #app {
+    #canvas {
+      #overlay {
+        #infosPlant {
+          #displayName {
+            position: absolute;
+            top: 50%;
+            left: 3px;
+            font-size: 42px;
+            transform: translateY(50%) rotate(-90deg);
+            transform-origin: top left;
+          }
+        }
       }
     }
   }
@@ -525,7 +554,8 @@ body {
         font-size: 22px;
 
         img {
-          margin-left: 8px;
+          right: -40px;
+          width: 35px;
         }
       }
 
@@ -546,27 +576,21 @@ body {
         }
 
         #menuButtons {
-
           button {
+            margin: 20px;
             width: 75px;
             height: 75px;
-            margin: 20px;
           }
         }
 
         #infosPlant {
           #displayName {
-            position: absolute;
             font-size: 32px;
-            transform: translateY(-50%) rotate(-90deg);
-            left: 5px;
-            top: 50%;
-            margin: 0;
           }
 
           #needsPlant {
-            width: 150px;
             transform: translateX(120%);
+            width: 150px;
           }
 
           #menuBars {

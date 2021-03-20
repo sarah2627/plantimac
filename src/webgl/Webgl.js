@@ -56,25 +56,31 @@ export default class Webgl {
     this.start = this.start.bind(this)
   }
   
-  /* Resize window */
+  /**
+   * Resize window 
+   */
   onResize() {
     this.camera.aspect = window.innerWidth / window.innerHeight
     this.camera.updateProjectionMatrix()
     this.renderer.setSize(window.innerWidth, window.innerHeight)
   }
 
-  /* Start game */
+  /**
+   *  Start game 
+   */
   start(time) {
-    // Update plant : bubble and growth
-    if(time - this.lastTime1 >= 400) {
-      this.lastTime1 = time
-      this.game.updatePlant()
-    }
+    if(this.game.gameInProgress) {
+      // Update plant : bubble and growth
+      if(time - this.lastTime1 >= 600) {
+        this.lastTime1 = time
+        this.game.updatePlant()
+      }
 
-    // Update points plant and bars
-    if(time - this.lastTime2 >= 200) {
-      this.lastTime2 = time
-      this.game.updatePointsPlant()
+      // Update points plant and bars
+      if(time - this.lastTime2 >= 200) {
+        this.lastTime2 = time
+        this.game.updatePointsPlant()
+      }
     }
 
     // Animation rain
@@ -84,9 +90,6 @@ export default class Webgl {
     this.controls.update()
 
     this.renderer.render(this.scene, this.camera)
-
-    if(this.game.gameInProgress) {
-      requestAnimationFrame(this.start)
-    }
+    requestAnimationFrame(this.start)
   }
 }
