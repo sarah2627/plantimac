@@ -11,7 +11,7 @@ Plantimac is a mini-game integrated in a website. It consists in making your ran
 
 ###  Links
 *https://github.com/sarah2627/plantimac*<br/>
-*/*
+*https://plantimac.netlify.app/*
 
 ###  Credits
 * **Clara Daigmorte** - (https://github.com/ClawsDevlp)
