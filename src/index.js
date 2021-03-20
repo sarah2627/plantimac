@@ -2,7 +2,7 @@ import './styles/main.scss'
 
 import Webgl from './webgl/Webgl'
 
-var webgl
+let webgl
 
 function interactions() {
 
