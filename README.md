@@ -1,4 +1,4 @@
-# IMAC INTELLIGENCE ARTIFICIELLE | Plantimac
+# IMAC IA | Plantimac
 
 ## Presentation
 
