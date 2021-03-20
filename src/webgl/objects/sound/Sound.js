@@ -26,7 +26,7 @@ export default class Sound {
             if(pathImg === "button.ogg" || pathImg === "bubble.mp3" || pathImg === "win.mp3") {
                 sound1.setLoop(false);
             }
-            sound1.setVolume(0.6);
+            sound1.setVolume(0.5);
             if(pathImg === "ambient.mp3") {
                 sound1.play()
             }
@@ -59,7 +59,7 @@ export default class Sound {
         if(booleanMuteAudio) {
             this.sound1.setVolume(0)
         } else {
-            this.sound1.setVolume(0.1)
+            this.sound1.setVolume(0.5)
         }
     }
 
