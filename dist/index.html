@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-  <link rel="shortcut icon" href="../src/assets/images/favicon.ico" />
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" />
   <title>Plantimac | Fais grandir ta plante</title>
 
   <!-- REQUIRED META TAGS -->
@@ -20,7 +20,7 @@
     <section id="home">
       <p class="instructions">
         Entre le nom et clique sur
-        <img src="../src/assets/images/seed1.png"/>
+        <img src="./assets/images/seed1.png"/>
       </p>
       <h1>
         Ces <span>graines</span> ont besoin d'une famille.<br />
@@ -35,13 +35,13 @@
         <div id="wrapSubmit">
           <div class="seed">
             <button class="btnSubmit" value="1" type="submit">
-              <img src="../src/assets/images/seed1.png" />
+              <img src="./assets/images/seed1.png" />
             </button>
             <button class="btnSubmit" value="2" type="submit">
-              <img src="../src/assets/images/seed2.png" />
+              <img src="./assets/images/seed2.png" />
             </button>
             <button class="btnSubmit" value="3" type="submit">
-              <img src="../src/assets/images/seed3.png" />
+              <img src="./assets/images/seed3.png" />
             </button>
           </div>
         </div>
@@ -56,14 +56,14 @@
       <div id="overlay">
         <!-- PAGE 2 > OVERLAY > MENU INFOS DAY-NIGHT (TOP-LEFT) -->
         <div id="menuInfosDayNight">
-          <img id="infosDay" src="../src/assets/images/sun.png" />
-          <img id="infosNight" src="../src/assets/images/moon.png" />
+          <img id="infosDay" src="./assets/images/sun.png" />
+          <img id="infosNight" src="./assets/images/moon.png" />
         </div>
         <!-- PAGE 2 > OVERLAY > INFOS PLANT -->
         <div id="infosPlant">
           <span id="displayName"></span>
           <div id="needsPlant">
-            <img id="bubbleImage" src="/src/assets/images/bubble.png">
+            <img id="bubbleImage" src="./assets/images/bubble.png">
             <img id="needsImage">
           </div>
           <div id="menuBars">
@@ -71,32 +71,32 @@
               <div class="meter" id="barGrowth">
                 <span style="width: 0%"></span>
               </div>
-              <img class="imgBar" src="../src/assets/images/growth.png" />
+              <img class="imgBar" src="./assets/images/growth.png" />
             </div>
             <div class="bar">
-              <img class="imgBar" src="../src/assets/images/thirst1.png" />
+              <img class="imgBar" src="./assets/images/thirst1.png" />
               <div class="meter" id="barThirst">
                 <span style="width: 50%"></span>
               </div>
-              <img class="imgBar" src="../src/assets/images/thirst2.png" />
+              <img class="imgBar" src="./assets/images/thirst2.png" />
             </div>
             <div class="bar">
-              <img class="imgBar" src="../src/assets/images/sun1.png" />
+              <img class="imgBar" src="./assets/images/sun1.png" />
               <div class="meter" id="barSun">
                 <span style="width: 50%"></span>
               </div>
-              <img class="imgBar" src="../src/assets/images/sun2.png" />
+              <img class="imgBar" src="./assets/images/sun2.png" />
             </div>
           </div>
         </div>
         <!-- PAGE 2 > OVERLAY > INFOS BUTTONS (BOTTOM) -->
         <div id="menuButtons">
           <div id="menuButtonsActions">
-            <button id="thirstButton"><img src="../src/assets/images/wateringCan.png" /></button>
-            <button id="sunButton"><img src="../src/assets/images/moon.png" /></button>
+            <button id="thirstButton"><img src="./assets/images/wateringCan.png" /></button>
+            <button id="sunButton"><img src="./assets/images/moon.png" /></button>
           </div>
           <div id="menuButtonsParameter">
-            <button id="btnPopUpSettings"><img src="../src/assets/images/parameters.png" /></button>
+            <button id="btnPopUpSettings"><img src="./assets/images/parameters.png" /></button>
           </div>
         </div>
       </div>
@@ -106,8 +106,8 @@
       <div id="popUpSettings" class="popUp">
         <div id="sound">
           <div>
-            <img id="speaker" src="../src/assets/images/speaker1.png" />
-            <img id="speakerStop" src="../src/assets/images/speaker2.png" />
+            <img id="speaker" src="./assets/images/speaker1.png" />
+            <img id="speakerStop" src="./assets/images/speaker2.png" />
           </div>
         </div>
         <input id="inputChangeName" class="input" type="text" maxlength='12' required>
@@ -138,19 +138,19 @@
             <div class="choice">
               <input type="radio" checked="true" name="choiceStyle" id="pot1" value="pot1">
               <label for="pot1">
-                <img src="../src/assets/images/pot1.png" />
+                <img src="./assets/images/pot1.png" />
               </label>
             </div>
             <div class="choice">
               <input type="radio" name="choiceStyle" id="pot2" value="pot2">
               <label for="pot2">
-                <img src="../src/assets/images/pot2.png" />
+                <img src="./assets/images/pot2.png" />
               </label>
             </div>
             <div class="choice">
               <input type="radio" name="choiceStyle" id="pot3" value="pot3">
               <label for="pot3">
-                <img src="../src/assets/images/pot3.png" />
+                <img src="./assets/images/pot3.png" />
               </label>
             </div>
           </div>
@@ -163,7 +163,7 @@
       <div id="popUpEnd" class="popUp">
         <p>Bravo, <span id="displayNameEnd"></span> a désormais atteint sa taille adulte ! Tu es un véritable jardinier
           en herbe !</p>
-        <img class="imgPlant" src="../src/assets/images/growth.png" />
+        <img class="imgPlant" src="./assets/images/growth.png" />
         <button class="btnPopUp" onClick="window.location.reload()">Rejouer</button>
       </div>
     </section>
