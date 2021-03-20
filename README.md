@@ -2,12 +2,12 @@
 
 ## Presentation
 
-"Plantimac : grow your own plant !"
+**"Plantimac : grow your own plant !"**  
 Plantimac is a mini-game integrated in a website. It consists in making your randomly generated plant grow.
+* Plantimac uses L-System (artificial intelligence concept)
+* The website is in French
 
 >This project is created in the context of studies in [IMAC](https://www.ingenieur-imac.fr/).
->Plantimac uses L-System (artificial intelligence concept)
->The website is in French
 
 ###  Links
 *https://github.com/sarah2627/plantimac*<br/>
