@@ -1,12 +1,173 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Plantimac</title><style>body .dg.ac {
-        z-index: 9999 !important;
-      }</style></head><body><div id="app"><section class="home"><p>Entre le nom et clique sur <img src="../src/assets/images/graine.svg"/></p><h1>Cette <span>graine </span>a besoin d'une famille<br/>Donne lui un nom pour l'adopter !</h1><form id="setupApp"><div class="wrapInput"><input class="input" placeholder="Nom de votre plante" maxlength="20" required> <span class="animationBorder"></span></div><div class="wrapSubmit"><button class="btnSubmit" form="setupApp" type="submit"><img src="../src/assets/images/graine.svg"/></button> <span class="missName"></span></div></form></section><section class="canvas"><div class="overlay"><div class="temps"><button><img src="../src/assets/images/lune.svg"/></button></div><div class="namePlant"><p class="displayName"></p></div><div class="menu"><div class="menuLeft"><button><img src="../src/assets/images/arrosoir.svg"/></button> <button><img src="../src/assets/images/soleil.svg"/></button></div><div class="menuRight"><button class="popUpSettings"><img src="../src/assets/images/options.svg"/></button></div></div></div><div class="overlayPopUp"></div><div class="popUp"><p class="displayName"></p><div class="settingsPlant"><div class="potColor"><h2>Couleur de pot</h2></div><div class="potStyle"><h2>Style de pot</h2><form id="potStyle"><div class="potStyle"><div class="choice"><input type="radio" name="choice-pot" id="pot-1" value="pot-1" class="visually-hidden"> <label class="pot-1" for="pot-1"><img src="../src/assets/images/pot-1.svg"/></label></div><div class="choice"><input type="radio" name="choice-pot" id="pot-2" value="pot-2" class="visually-hidden"> <label class="pot-2" for="pot-2"><img src="../src/assets/images/pot-2.svg"/></label></div><div class="choice"><input type="radio" name="choice-pot" id="pot-3" value="pot-3" class="visually-hidden"> <label class="pot-3" for="pot-3"><img src="../src/assets/images/pot-3.svg"/></label></div></div><button class="submitSettings" form="potStyle" type="submit">Valider</button></form></div></div></div></section></div><script>// const overlayPopUp = document.querySelector('.overlayPopUp')
-      // const popUp = document.querySelector('.popUp')
-      // function displayPopUpSettings() {
-      //   overlayPopUp.style.display = 'flex'
-      //   popUp.style.display = 'block'
-      // }
-      // function removePopUpSettings() {
-      //   overlayPopUp.style.display = 'none'
-      //   popUp.style.display = 'none'
-      // }</script><script src="main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <link rel="shortcut icon" href="../src/assets/images/favicon.ico" />
+  <title>Plantimac | Fais grandir ta plante</title>
+
+  <!-- REQUIRED META TAGS -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="¨Plantimac : adopte une graine et fait grandir ta plante !" />
+  <meta name="keywords"
+    content="graine, plante, plantimac, intelligence, artificielle, croissance, fleur, ia, ai, lsystem">
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- PAGE 1 - HOME -->
+    <section id="home">
+      <p class="instructions">
+        Entre le nom et clique sur
+        <img src="../src/assets/images/seed1.png"/>
+      </p>
+      <h1>
+        Ces <span>graines</span> ont besoin d'une famille.<br />
+        Choisis un nom et clique sur une pour l'adopter !
+      </h1>
+      <form id="setupApp">
+        <div id="wrapInput">
+          <input id="chooseNamePlant" type="text" placeholder="Nom de votre plante" maxlength='12' required>
+          <span class="animationBorder"></span>
+          <span id="missName"></span>
+        </div>
+        <div id="wrapSubmit">
+          <div class="seed">
+            <button class="btnSubmit" value="1" type="submit">
+              <img src="../src/assets/images/seed1.png" />
+            </button>
+            <button class="btnSubmit" value="2" type="submit">
+              <img src="../src/assets/images/seed2.png" />
+            </button>
+            <button class="btnSubmit" value="3" type="submit">
+              <img src="../src/assets/images/seed3.png" />
+            </button>
+          </div>
+        </div>
+      </form>
+      <footer>Plantimac © 2021</footer>
+    </section>
+
+    <!-- PAGE 2 - CANVAS/APPLICATION -->
+    <section id="canvas">
+
+      <!-- PAGE 2 > OVERLAY -->
+      <div id="overlay">
+        <!-- PAGE 2 > OVERLAY > MENU INFOS DAY-NIGHT (TOP-LEFT) -->
+        <div id="menuInfosDayNight">
+          <img id="infosDay" src="../src/assets/images/sun.png" />
+          <img id="infosNight" src="../src/assets/images/moon.png" />
+        </div>
+        <!-- PAGE 2 > OVERLAY > INFOS PLANT -->
+        <div id="infosPlant">
+          <span id="displayName"></span>
+          <div id="needsPlant">
+            <img id="bubbleImage" src="/src/assets/images/bubble.png">
+            <img id="needsImage">
+          </div>
+          <div id="menuBars">
+            <div class="bar">
+              <div class="meter" id="barGrowth">
+                <span style="width: 0%"></span>
+              </div>
+              <img class="imgBar" src="../src/assets/images/growth.png" />
+            </div>
+            <div class="bar">
+              <img class="imgBar" src="../src/assets/images/thirst1.png" />
+              <div class="meter" id="barThirst">
+                <span style="width: 50%"></span>
+              </div>
+              <img class="imgBar" src="../src/assets/images/thirst2.png" />
+            </div>
+            <div class="bar">
+              <img class="imgBar" src="../src/assets/images/sun1.png" />
+              <div class="meter" id="barSun">
+                <span style="width: 50%"></span>
+              </div>
+              <img class="imgBar" src="../src/assets/images/sun2.png" />
+            </div>
+          </div>
+        </div>
+        <!-- PAGE 2 > OVERLAY > INFOS BUTTONS (BOTTOM) -->
+        <div id="menuButtons">
+          <div id="menuButtonsActions">
+            <button id="thirstButton"><img src="../src/assets/images/wateringCan.png" /></button>
+            <button id="sunButton"><img src="../src/assets/images/moon.png" /></button>
+          </div>
+          <div id="menuButtonsParameter">
+            <button id="btnPopUpSettings"><img src="../src/assets/images/parameters.png" /></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 2 > POPUP SETTINGS -->
+      <div id="bgPopUpSettings" class="popupBg"></div>
+      <div id="popUpSettings" class="popUp">
+        <div id="sound">
+          <div>
+            <img id="speaker" src="../src/assets/images/speaker1.png" />
+            <img id="speakerStop" src="../src/assets/images/speaker2.png" />
+          </div>
+        </div>
+        <input id="inputChangeName" class="input" type="text" maxlength='12' required>
+        <form id="potSettings">
+          <p>Couleur de pot</p>
+          <div id="potColor" class="potSetting">
+            <div class="choice">
+              <input type="radio" checked name="choiceColor" id="color1" value="#DA5454">
+              <label for="color1">
+                <div id="colored1"></div>
+              </label>
+            </div>
+            <div class="choice">
+              <input type="radio" name="choiceColor" id="color2" value="#B65B11">
+              <label for="color2">
+                <div id="colored2"></div>
+              </label>
+            </div>
+            <div class="choice">
+              <input type="radio" name="choiceColor" id="color3" value="#FFA45B">
+              <label for="color3">
+                <div id="colored3"></div>
+              </label>
+            </div>
+          </div>
+          <p>Style de pot</p>
+          <div id="potStyle" class="potSetting">
+            <div class="choice">
+              <input type="radio" checked="true" name="choiceStyle" id="pot1" value="pot1">
+              <label for="pot1">
+                <img src="../src/assets/images/pot1.png" />
+              </label>
+            </div>
+            <div class="choice">
+              <input type="radio" name="choiceStyle" id="pot2" value="pot2">
+              <label for="pot2">
+                <img src="../src/assets/images/pot2.png" />
+              </label>
+            </div>
+            <div class="choice">
+              <input type="radio" name="choiceStyle" id="pot3" value="pot3">
+              <label for="pot3">
+                <img src="../src/assets/images/pot3.png" />
+              </label>
+            </div>
+          </div>
+          <button id="btnSubmitSettings" class="btnPopUp" form="potStyle" type="submit">Valider</button>
+        </form>
+      </div>
+
+      <!-- PAGE 2 > POPUP END -->
+      <div id="bgPopUpEnd" class="popupBg"></div>
+      <div id="popUpEnd" class="popUp">
+        <p>Bravo, <span id="displayNameEnd"></span> a désormais atteint sa taille adulte ! Tu es un véritable jardinier
+          en herbe !</p>
+        <img class="imgPlant" src="../src/assets/images/growth.png" />
+        <button class="btnPopUp" onClick="window.location.reload()">Rejouer</button>
+      </div>
+    </section>
+  </div>
+<script src="main.js"></script></body>
+
+</html>
